@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -27,8 +28,8 @@ IUSE="examples ieee1394 openni2 qt5"
 
 RDEPEND="
 	media-libs/opencv:=[qt5(-)?]
-	sci-libs/pcl:=[openni,vtk]
-	sci-libs/vtk:=[qt5(-)?]
+	sci-libs/pcl[openni,vtk]
+	sci-libs/vtk[qt5(-)?]
 	sys-libs/zlib
 	sci-libs/octomap:=
 	ieee1394? ( media-libs/libdc1394 )
@@ -51,12 +52,4 @@ src_configure() {
 		"-DBUILD_EXAMPLES=$(usex examples ON OFF)"
 	)
 	cmake-utils_src_configure
-}
-
-src_install() {
-	cmake-utils_src_install
-	# Needed since we force ros crawling to be done only in
-	# /usr/share/ros_packages/
-	insinto /usr/share/ros_packages/${PN}
-	doins "${ED}/usr/share/${PN}/package.xml"
 }

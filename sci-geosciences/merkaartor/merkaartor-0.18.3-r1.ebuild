@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=6
 
@@ -7,34 +8,46 @@ PLOCALES="ar cs de en es et fr hr hu id_ID it ja nl pl pt_BR pt ru sk sv uk vi z
 
 inherit fdo-mime gnome2-utils l10n qmake-utils
 
-DESCRIPTION="Qt based map editor for the openstreetmap.org project"
+DESCRIPTION="A Qt based map editor for the openstreetmap.org project"
 HOMEPAGE="http://www.merkaartor.be https://github.com/openstreetmap/merkaartor"
 SRC_URI="https://github.com/openstreetmap/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug exif gps libproxy"
+IUSE="debug exif gps libproxy qrcode qt5"
+
+REQUIRED_USE="qrcode? ( !qt5 )"
 
 RDEPEND="
-	dev-qt/qtconcurrent:5
-	dev-qt/qtcore:5
-	dev-qt/qtgui:5
-	dev-qt/qtprintsupport:5
-	dev-qt/qtsvg:5
-	dev-qt/qtwebkit:5
-	dev-qt/qtwidgets:5
-	dev-qt/qtxml:5
-	dev-qt/qtsingleapplication[X,qt5]
+	!qt5? (
+		dev-qt/qtcore:4
+		dev-qt/qtgui:4
+		dev-qt/qtsingleapplication[qt4]
+		dev-qt/qtsvg:4
+		dev-qt/qtwebkit:4
+	)
+	qt5? (
+		dev-qt/qtconcurrent:5
+		dev-qt/qtcore:5
+		dev-qt/qtgui:5
+		dev-qt/qtprintsupport:5
+		dev-qt/qtsvg:5
+		dev-qt/qtwebkit:5
+		dev-qt/qtwidgets:5
+		dev-qt/qtxml:5
+	)
+	dev-qt/qtsingleapplication[X,qt5?]
 	>=sci-libs/gdal-1.6.0
 	>=sci-libs/proj-4.6
 	sys-libs/zlib
 	exif? ( media-gfx/exiv2:= )
 	gps? ( >=sci-geosciences/gpsd-3.13[cxx] )
 	libproxy? ( net-libs/libproxy )
+	qrcode? ( media-gfx/zbar[qt4] )
 "
 DEPEND="${RDEPEND}
-	dev-qt/linguist-tools:5
+	qt5? ( dev-qt/linguist-tools:5 )
 	virtual/pkgconfig
 "
 
@@ -50,7 +63,11 @@ src_prepare() {
 
 	if [[ -n "$(l10n_get_locales)" ]]; then
 		l10n_for_each_disabled_locale_do my_rm_loc
-		$(qt5_get_bindir)/lrelease src/src.pro || die
+		if use qt5 ; then
+			$(qt5_get_bindir)/lrelease src/src.pro || die
+		else
+			$(qt4_get_bindir)/lrelease src/src.pro || die
+		fi
 	fi
 
 	# build system expects to be building from git
@@ -59,7 +76,8 @@ src_prepare() {
 
 src_configure() {
 	# TRANSDIR_SYSTEM is for bug #385671
-	eqmake5 \
+	if use qt5 ; then
+		eqmake5 \
 		PREFIX="${ED}usr" \
 		LIBDIR="${ED}usr/$(get_libdir)" \
 		TRANSDIR_MERKAARTOR="${ED}usr/share/${PN}/translations" \
@@ -70,8 +88,23 @@ src_configure() {
 		GEOIMAGE="$(usex exif '1' '0')" \
 		GPSDLIB="$(usex gps '1' '0')" \
 		LIBPROXY="$(usex libproxy '1' '0')" \
-		ZBAR=0 \
+		ZBAR="$(usex qrcode '1' '0')" \
 		Merkaartor.pro
+	else
+		eqmake4 \
+		PREFIX="${ED}usr" \
+		LIBDIR="${ED}usr/$(get_libdir)" \
+		TRANSDIR_MERKAARTOR="${ED}usr/share/${PN}/translations" \
+		TRANSDIR_SYSTEM="${EPREFIX}/usr/share/qt4/translations" \
+		SYSTEM_QTSA=1 \
+		RELEASE=1 \
+		NODEBUG="$(usex debug '0' '1')" \
+		GEOIMAGE="$(usex exif '1' '0')" \
+		GPSDLIB="$(usex gps '1' '0')" \
+		LIBPROXY="$(usex libproxy '1' '0')" \
+		ZBAR="$(usex qrcode '1' '0')" \
+		Merkaartor.pro
+	fi
 }
 
 pkg_preinst() {

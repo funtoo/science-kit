@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -30,7 +31,6 @@ PATCHES=(
 	"${FILESDIR}"/${P}-testpybel.patch
 	"${FILESDIR}"/${P}-bindings_only.patch
 	"${FILESDIR}"/${P}-swig-3.0.3.patch
-	"${FILESDIR}"/${P}-gcc-6_and_7-backport.patch
 	)
 
 src_prepare() {

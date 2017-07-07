@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -23,17 +24,13 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/openbabel-${PV}"
 
-PATCHES=(
-	"${FILESDIR}"/${P}-trunk_cmake.patch
-	"${FILESDIR}"/${P}-bindings_only.patch
-	"${FILESDIR}"/${P}-gcc-6_and_7-backport.patch
-)
-
 src_prepare() {
 	sed \
 		-e '/__GNUC__/s:== 4:>= 4:g' \
 		-i include/openbabel/shared_ptr.h || die
-	epatch "${PATCHES[@]}"
+	epatch \
+		"${FILESDIR}"/${P}-trunk_cmake.patch \
+		"${FILESDIR}"/${P}-bindings_only.patch
 	perl_set_version
 }
 

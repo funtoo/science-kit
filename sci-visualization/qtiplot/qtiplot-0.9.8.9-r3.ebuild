@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -75,8 +76,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-private.patch
 	"${FILESDIR}"/${P}-sip-4.15.patch
 	"${FILESDIR}"/${P}-PyQt4-4.11.3.patch
-	"${FILESDIR}"/${P}-sip-4.19.patch
-)
+	)
 
 RESTRICT="!bindist? ( bindist )"
 

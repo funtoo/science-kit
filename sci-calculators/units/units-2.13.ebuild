@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 PYTHON_COMPAT=( python{2_7,3_4} )
@@ -12,17 +13,22 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="FDL-1.3 GPL-3"
 SLOT="0"
-KEYWORDS="alpha amd64 ~arm hppa ppc ppc64 sparc x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="+units_cur"
-REQUIRED_USE="units_cur? ( ${PYTHON_REQUIRED_USE} )"
 
-RDEPEND="
+DEPEND="
 	sys-libs/readline:=
+	units_cur? (
+		dev-lang/python-exec:2
+	)
+"
+RDEPEND="
+	${DEPEND}
 	units_cur? (
 		dev-python/unidecode[${PYTHON_USEDEP}]
 		${PYTHON_DEPS}
-	)"
-DEPEND=${RDEPEND}
+	)
+"
 
 units_cur_prepare() {
 	local UNITS_PYTHON_MAJOR

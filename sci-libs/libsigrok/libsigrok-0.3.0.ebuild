@@ -1,5 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 
@@ -13,7 +14,7 @@ else
 	KEYWORDS="amd64 x86"
 fi
 
-DESCRIPTION="basic hardware drivers for logic analyzers and input/output file format support"
+DESCRIPTION="provide basic hardware drivers for logic analyzers and input/output file format support"
 HOMEPAGE="http://sigrok.org/wiki/Libsigrok"
 
 LICENSE="GPL-3"
@@ -22,7 +23,7 @@ IUSE="ftdi serial static-libs test usb"
 
 # We also support librevisa, but that isn't in the tree ...
 LIB_DEPEND=">=dev-libs/glib-2.32.0[static-libs(+)]
-	>=dev-libs/libzip-0.8:=[static-libs(+)]
+	>=dev-libs/libzip-0.8[static-libs(+)]
 	ftdi? ( >=dev-embedded/libftdi-0.16:=[static-libs(+)] )
 	serial? ( >=dev-libs/libserialport-0.1.0[static-libs(+)] )
 	usb? ( virtual/libusb:1[static-libs(+)] )"

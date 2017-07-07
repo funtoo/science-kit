@@ -8,4 +8,4 @@ LICENSE=LGPL-2.1
 SLOT=0
 SRC_URI=http://www.cise.ufl.edu/research/sparse/UFconfig/UFconfig-3.7.0.tar.gz
 _eclasses_=multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
-_md5_=18ad9f8a08c6d7d4ee78cd6bc438ea88
+_md5_=b526b2b8cda3333e6f4781de0b9a8189

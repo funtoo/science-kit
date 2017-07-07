@@ -1,9 +1,10 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI=6
+EAPI=5
 
-inherit scons-utils toolchain-funcs user
+inherit eutils scons-utils toolchain-funcs user
 
 DESCRIPTION="CEE (Control - Experiment - Explore) analog multitool"
 HOMEPAGE="http://www.nonolithlabs.com/cee/"
@@ -16,18 +17,18 @@ IUSE=""
 
 RDEPEND="
 	dev-libs/boost
-	virtual/udev
-"
+	virtual/udev"
 DEPEND="${RDEPEND}"
 
-PATCHES=(
-	"${FILESDIR}/${PV}-cflags-respect.patch"
-	"${FILESDIR}/${PV}-gcc6.patch"
-)
+PATCHES=( "${FILESDIR}/${PV}-cflags-respect.patch" )
 
 pkg_setup() {
 	tc-export CC CXX
 	enewuser nonolithd -1 -1 /dev/null usb
+}
+
+src_prepare() {
+	epatch ${PATCHES[@]}
 }
 
 src_configure() {

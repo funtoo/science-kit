@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -9,7 +10,7 @@ inherit eutils multilib python-r1 toolchain-funcs
 
 MY_P="${PN}_V${PV}"
 
-DESCRIPTION="A crystallographic real-space electron-density refinement & optimization program"
+DESCRIPTION="A crystallographic real-space electron-density refinement and optimization program"
 HOMEPAGE="http://www.gromacs.org/pipermail/eden-users/"
 SRC_URI="mirror://gentoo/${MY_P}.tar.gz"
 
@@ -17,12 +18,10 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE="double-precision"
-REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="
 	sci-libs/fftw:2.1
-	sci-libs/gsl
-	${PYTHON_DEPS}"
+	sci-libs/gsl"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 

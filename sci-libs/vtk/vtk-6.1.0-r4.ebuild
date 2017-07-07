@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -124,7 +125,6 @@ PATCHES=(
 	"${FILESDIR}"/${P}-glext.patch
 	"${FILESDIR}"/${P}-memset.patch
 	"${FILESDIR}"/${P}-gdal2.patch
-	"${FILESDIR}"/${P}-gcc67.patch
 	)
 
 RESTRICT=test
@@ -291,7 +291,7 @@ src_configure() {
 			-DSIP_INCLUDE_DIR="$(python_get_includedir)"
 			-DVTK_PYTHON_INCLUDE_DIR="$(python_get_includedir)"
 			-DVTK_PYTHON_LIBRARY="$(python_get_library_path)"
-			-DVTK_PYTHON_SETUP_ARGS:STRING="--prefix=${EPREFIX}/usr --root=${D}"
+			-DVTK_PYTHON_SETUP_ARGS:STRING="--prefix=${PREFIX} --root=${D}"
 		)
 	fi
 

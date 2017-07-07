@@ -1,9 +1,10 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="6"
 
-PYTHON_COMPAT=( python3_{4,5,6} )
+PYTHON_COMPAT=( python3_4 )
 
 inherit cmake-utils python-single-r1
 
@@ -24,10 +25,10 @@ IUSE="+decode qt4 qt5 static"
 REQUIRED_USE="decode? ( ${PYTHON_REQUIRED_USE} ) ^^ ( qt4 qt5 )"
 
 RDEPEND="
-	>=dev-libs/boost-1.55:=
+	>=dev-libs/boost-1.53:=
 	>=dev-libs/glib-2.28.0:2
 	>=dev-cpp/glibmm-2.28.0:2
-	>=sci-libs/libsigrok-0.5.0[cxx]
+	>=sci-libs/libsigrok-0.4.0[cxx]
 	qt4? (
 		>=dev-qt/qtcore-4.5:4
 		>=dev-qt/qtgui-4.5:4
@@ -40,7 +41,7 @@ RDEPEND="
 		dev-qt/qtsvg:5
 	)
 	decode? (
-		>=sci-libs/libsigrokdecode-0.5.0[${PYTHON_USEDEP}]
+		>=sci-libs/libsigrokdecode-0.4.0[${PYTHON_USEDEP}]
 		${PYTHON_DEPS}
 	)"
 DEPEND="${RDEPEND}

@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -68,7 +69,6 @@ AT_M4DIR="${S}/m4"
 REQUIRED_USE="
 	spatialite? ( sqlite )
 	mdb? ( java )
-	python? ( ${PYTHON_REQUIRED_USE} )
 "
 
 pkg_setup() {
