@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -42,8 +43,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.7.0-no-automagic.patch
 	# sage-on-gentoo trac 15654: PARI discriminant speed depends on stack size
 	epatch "${FILESDIR}"/${PN}-2.7.0-slow-discriminant.patch
-	# Fix Perl 5.26
-	epatch "${FILESDIR}/"${PN}-2.7.0-no-dot-inc.patch
 
 	# disable default building of docs during install
 	sed -i \

@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=6
 
@@ -11,7 +12,7 @@ SRC_URI="http://www.netlib.org/lapack/lapack-${PV}.tgz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos"
 IUSE="+deprecated"
 
 DEPEND="app-eselect/eselect-lapack
@@ -20,7 +21,7 @@ DEPEND="app-eselect/eselect-lapack
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/lapack-${PV}"
-PATCHES=( "${FILESDIR}/${P}-fix-build-system.patch" )
+PATCHES=( "${FILESDIR}/lapack-fix-build-system.patch" )
 
 src_prepare() {
 	epatch "${PATCHES[@]}"

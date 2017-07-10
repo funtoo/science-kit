@@ -1,12 +1,13 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=6
 
 FORTRAN_NEEDED=fortran
 FORTRAN_STANDARD=90
 
-inherit autotools fortran-2
+inherit fortran-2
 
 DESCRIPTION="Arbitrary precision float arithmetics and functions"
 HOMEPAGE="http://crd-legacy.lbl.gov/~dhbailey/mpdist/"
@@ -20,15 +21,7 @@ IUSE="cpu_flags_x86_fma3 cpu_flags_x86_fma4 doc fortran qd static-libs"
 DEPEND="qd? ( sci-libs/qd[fortran=] )"
 RDEPEND="${DEPEND}"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-2.2.18-fix-c++14.patch
-	"${FILESDIR}"/${P}-gold.patch
-)
-
-src_prepare() {
-	default
-	eautoreconf
-}
+PATCHES=( "${FILESDIR}"/${PN}-2.2.18-fix-c++14.patch )
 
 src_configure() {
 	econf \

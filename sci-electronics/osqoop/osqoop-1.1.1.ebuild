@@ -1,7 +1,8 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI=6
+EAPI=4
 
 inherit cmake-utils toolchain-funcs
 
@@ -15,15 +16,12 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="dev-qt/qtgui:4
-	virtual/libusb:0
-	x11-libs/libXtst"
+	virtual/libusb:0"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${PN}-${PN}
 
 src_prepare() {
-	cmake-utils_src_prepare
-
 	for f in $(find datasource processing -name CMakeLists.txt); do
 		sed -e '/install(TARGETS/s:DESTINATION :DESTINATION '$(get_libdir)/${PN}'/:' \
 			-i "${f}" || die

@@ -8,4 +8,4 @@ RDEPEND=dev-lang/perl
 SLOT=0
 SRC_URI=mirror://sourceforge/bio-bwa/bwa-0.7.15.tar.bz2
 _eclasses_=multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
-_md5_=1e7706ac5539187e6a18ffb1b2167e2c
+_md5_=4d3c46cb5a76a96e60903b8a63c97133

@@ -1,5 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=6
 
@@ -8,7 +9,7 @@ inherit toolchain-funcs versionator
 MYP="Normaliz-${PV}"
 
 DESCRIPTION="Tool for computations in affine monoids and more"
-HOMEPAGE="http://www.mathematik.uni-osnabrueck.de/normaliz/"
+HOMEPAGE="www.mathematik.uni-osnabrueck.de/normaliz/"
 SRC_URI="https://github.com/Normaliz/Normaliz/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"

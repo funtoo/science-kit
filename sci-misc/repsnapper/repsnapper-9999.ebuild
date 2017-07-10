@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -24,6 +25,8 @@ DEPEND="
 RDEPEND=${DEPEND}
 
 src_prepare() {
+	epatch "${FILESDIR}/std-c11.patch"
+	epatch "${FILESDIR}/std_abs.patch"
 	eautoreconf
 	append-cxxflags -std=c++11
 }

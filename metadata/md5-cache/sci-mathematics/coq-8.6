@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install test
-DEPEND=>=dev-lang/ocaml-3.11.2:=[ocamlopt?] camlp5? ( >=dev-ml/camlp5-6.02.3:=[ocamlopt?] ) !camlp5? ( dev-ml/camlp4:= ) gtk? ( >=dev-ml/lablgtk-2.10.1:=[sourceview,ocamlopt?] ) dev-ml/findlib doc? ( media-libs/netpbm[png,zlib] virtual/latex-base dev-tex/hevea dev-tex/xcolor dev-texlive/texlive-pictures || ( dev-texlive/texlive-mathscience dev-texlive/texlive-mathextra ) dev-texlive/texlive-latexextra )
+DEPEND=>=dev-lang/ocaml-3.11.2:=[ocamlopt?] camlp5? ( >=dev-ml/camlp5-6.02.3:=[ocamlopt?] ) !camlp5? ( dev-ml/camlp4:= ) gtk? ( >=dev-ml/lablgtk-2.10.1:=[sourceview,ocamlopt?] ) dev-ml/findlib doc? ( media-libs/netpbm[png,zlib] virtual/latex-base dev-tex/hevea dev-tex/xcolor dev-texlive/texlive-pictures dev-texlive/texlive-mathextra dev-texlive/texlive-latexextra )
 DESCRIPTION=Proof assistant written in O'Caml
 EAPI=5
 HOMEPAGE=http://coq.inria.fr/
 IUSE=gtk debug +ocamlopt doc camlp5
-KEYWORDS=amd64 ppc x86
+KEYWORDS=~amd64 ~ppc ~x86
 LICENSE=LGPL-2.1
 RDEPEND=>=dev-lang/ocaml-3.11.2:=[ocamlopt?] camlp5? ( >=dev-ml/camlp5-6.02.3:=[ocamlopt?] ) !camlp5? ( dev-ml/camlp4:= ) gtk? ( >=dev-ml/lablgtk-2.10.1:=[sourceview,ocamlopt?] )
 SLOT=0
 SRC_URI=http://coq.inria.fr/distrib/V8.6/files/coq-8.6.tar.gz
 _eclasses_=epatch	8233751dc5105a6ae8fcd86ce2bb0247	epunt-cxx	f8073339d152f56626493f43d8ba4691	estack	5ac2a138d0b33354b764d84f9e835db8	eutils	e7491451996e8b54c3caeb713285b0fb	ltprune	2770eed66a9b8ef944714cd0e968182e	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
-_md5_=d48f297a3f7a903e539d056da4b4c466
+_md5_=a98a5421014baed94e11fcbb78febf4f

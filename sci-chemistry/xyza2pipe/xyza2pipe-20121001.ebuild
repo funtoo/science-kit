@@ -1,9 +1,10 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI=6
+EAPI=5
 
-inherit toolchain-funcs
+inherit eutils toolchain-funcs
 
 DESCRIPTION="Cross conversion environment of NMR spectra"
 HOMEPAGE="http://fermi.pharm.hokudai.ac.jp/olivia/api/index.php/Xyza2pipe_src"
@@ -16,12 +17,10 @@ IUSE=""
 
 S="${WORKDIR}"/${PN}
 
-PATCHES=( "${FILESDIR}"/${P}-gentoo.patch )
-
 src_prepare() {
-	default
+	epatch "${FILESDIR}"/${P}-gentoo.patch
 	tc-export CC
-	mkdir bin || die
+	mkdir bin
 }
 
 src_install() {

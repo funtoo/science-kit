@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -19,16 +20,13 @@ LICENSE="CNRI"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
-REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-RDEPEND="${PYTHON_DEPS}
-	sci-chemistry/pymol[${PYTHON_USEDEP}]"
-DEPEND="${PYTHON_DEPS}
-	app-arch/unzip"
+RDEPEND="sci-chemistry/pymol[${PYTHON_USEDEP}]"
+DEPEND="app-arch/unzip"
 
 S="${WORKDIR}"
 
-src_install() {
+src_install(){
 	python_moduleinto pmg_tk/startup
 	python_foreach_impl python_domodule bni-tools.py
 	python_foreach_impl python_optimize

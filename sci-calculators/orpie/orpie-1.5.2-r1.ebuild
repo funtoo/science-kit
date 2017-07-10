@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=6
 
@@ -16,12 +17,12 @@ IUSE="doc"
 
 DEPEND="dev-ml/gsl-ocaml
 	sys-libs/ncurses:0=
-	dev-ml/camlp4"
+	|| ( <dev-lang/ocaml-4.02 dev-ml/camlp4 )"
 RDEPEND="${DEPEND}"
 
 PATCHES=(
 	"${FILESDIR}/${PN}-1.5.1-ocaml311.patch"
-	"${FILESDIR}/${PN}-1.5.2-nogsl.patch"
+	"${FILESDIR}/${P}-nogsl.patch"
 	"${FILESDIR}/${PN}-1.5.1-orpierc.patch"
 	"${FILESDIR}/${PN}-1.5.1-tinfo.patch"
 )
@@ -39,9 +40,10 @@ src_compile() {
 }
 
 src_install() {
+	default
 	if use doc; then
 		dodoc doc/manual.pdf
-		HTML_DOCS=( doc/manual.html )
+		docinto html/
+		dodoc doc/manual.html
 	fi
-	default
 }

@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=6
 
@@ -13,16 +14,12 @@ SRC_URI="http://www.csie.ntu.edu.tw/~cjlin/libsvm/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="amd64 ppc ppc64 x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="java openmp python tools"
-REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
-DEPEND="
-	java? ( >=virtual/jdk-1.4 )
-	python? ( ${PYTHON_DEPS} )"
+DEPEND="java? ( >=virtual/jdk-1.4 )"
 RDEPEND="
 	java? ( >=virtual/jre-1.4 )
-	python? ( ${PYTHON_DEPS} )
 	tools? ( sci-visualization/gnuplot )"
 
 PATCHES=(

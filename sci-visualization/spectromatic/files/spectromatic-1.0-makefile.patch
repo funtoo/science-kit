@@ -1,8 +1,8 @@
 Respect LDFLAGS, CFLAGS, CC  #334715
 Fix install paths
 
---- a/Makefile
-+++ b/Makefile
+--- Makefile
++++ Makefile
 @@ -1,33 +1,29 @@
  # Makefile for spectromatic
  

@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -8,7 +9,7 @@ inherit eutils fdo-mime gnome2-utils qmake-utils subversion
 MY_P=${PN}-${PV%0}-src
 
 DESCRIPTION="Qt5 application to design electric diagrams"
-HOMEPAGE="https://qelectrotech.org/"
+HOMEPAGE="http://qelectrotech.org/"
 ESVN_REPO_URI="svn://svn.tuxfamily.org/svnroot/qet/qet/trunk"
 
 LICENSE="CC-BY-3.0 GPL-2+"

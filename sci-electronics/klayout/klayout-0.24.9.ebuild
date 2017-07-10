@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -27,8 +28,6 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 all_ruby_prepare() {
-	epatch "${FILESDIR}"/${P}-c++11-no-throw-in-destuctor.patch
-
 	# now we generate the stub build configuration file for the home-brew build system
 	cp "${FILESDIR}/${PN}-0.23.10-Makefile.conf.linux-gentoo" "${S}/config/Makefile.conf.linux-gentoo" || die
 }

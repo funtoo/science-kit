@@ -1,5 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -9,7 +10,7 @@ MYPV=$(get_version_component_range 1-2)
 MYP="Normaliz${MYPV}"
 
 DESCRIPTION="Tool for computations in affine monoids and more"
-HOMEPAGE="http://www.mathematik.uni-osnabrueck.de/normaliz/"
+HOMEPAGE="www.mathematik.uni-osnabrueck.de/normaliz/"
 SRC_URI="https://www.normaliz.uni-osnabrueck.de/wp-content/uploads/2016/04/Normaliz${PV}.zip"
 
 LICENSE="GPL-3"

@@ -1,7 +1,8 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI=6
+EAPI=4
 
 inherit cmake-utils
 
@@ -20,6 +21,4 @@ S="${WORKDIR}"/${MY_P}
 
 src_prepare() {
 	cp "${FILESDIR}"/CMakeLists.txt . || die
-
-	cmake-utils_src_prepare
 }

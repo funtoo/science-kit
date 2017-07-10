@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -21,13 +22,14 @@ IUSE="doc openmp python static-libs"
 
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
-RDEPEND="
+DEPEND="
 	dev-lang/perl
 	media-libs/gd
 	doc? ( dev-texlive/texlive-latex )
-	python? ( ${PYTHON_DEPS} )"
-DEPEND="${RDEPEND}
-	python? ( dev-lang/swig:0 )"
+	python? (
+		${PYTHON_DEPS}
+		dev-lang/swig:0 )"
+RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/ViennaRNA-${PV}"
 

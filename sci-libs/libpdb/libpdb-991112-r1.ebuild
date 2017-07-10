@@ -1,7 +1,8 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI=6
+EAPI=4
 
 inherit eutils toolchain-funcs
 
@@ -20,14 +21,12 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}"
 
-PATCHES=( "${FILESDIR}"/${P}-dynlib+flags.patch )
-
 src_unpack() {
 	"${EPREFIX}/usr/bin/unshar" "${DISTDIR}"/${A} || die
 }
 
 src_prepare() {
-	default
+	epatch "${FILESDIR}"/${P}-dynlib+flags.patch
 	tc-export CC RANLIB AR
 }
 

@@ -1,11 +1,12 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
 inherit eutils flag-o-matic prefix toolchain-funcs
 
-DESCRIPTION="Development toolkit and applications for computational biology, including BLAST"
+DESCRIPTION="Development toolkit and applications for computational biology, including NCBI BLAST"
 HOMEPAGE="http://www.ncbi.nlm.nih.gov/"
 SRC_URI="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/${PV}/ncbi.tar.gz -> ${P}.tar.gz"
 

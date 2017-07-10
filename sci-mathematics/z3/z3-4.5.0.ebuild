@@ -1,5 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=6
 
@@ -14,7 +15,7 @@ SRC_URI="https://github.com/Z3Prover/z3/archive/${P}.tar.gz"
 SLOT="0"
 LICENSE="MIT"
 KEYWORDS="~amd64 ~x86"
-IUSE="doc examples gmp isabelle java python"
+IUSE="doc gmp isabelle java python"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
@@ -27,13 +28,7 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${PN}-${P}
 JAVA_SRC_DIR=${S}/src/api/java
 
-SO1="0"
-SO2="1"
-SOVER="${SO1}.${SO2}"
-
 pkg_setup() {
-	python_setup
-
 	if [[ ${MERGE_TYPE} != binary ]]; then
 		if [[ $(tc-getCXX)$ == *g++* ]] && ! tc-has-openmp; then
 			ewarn "Please use an openmp compatible compiler"
@@ -56,7 +51,7 @@ src_prepare() {
 		-i scripts/*mk* || die
 
 	sed \
-		-e "s:SLIBEXTRAFLAGS = '':SLIBEXTRAFLAGS = '-Wl,-soname,lib${PN}.so.${SOVER}':" \
+		-e "s:SLIBEXTRAFLAGS = '':SLIBEXTRAFLAGS = '-Wl,-soname,lib${PN}.so.0.1':" \
 		-i scripts/mk_util.py || die
 
 	sed -e 's:api\\html\\ml:api/html/ml:' \
@@ -67,24 +62,19 @@ src_prepare() {
 }
 
 src_configure() {
-	local PYTHON_SITEDIR
+	python_setup
 	python_export PYTHON_SITEDIR
 	export Z3_INSTALL_LIB_DIR="$(get_libdir)"
 	export Z3_INSTALL_INCLUDE_DIR="include/z3"
 	set -- \
-		--pypkgdir="${PYTHON_SITEDIR}/${PN}" \
+		--pypkgdir="${PYTHON_SITEDIR}" \
 		--prefix="${ROOT}usr" \
 		$(usex gmp --gmp "") \
 		$(usex python --python "") \
 		$(usex java --java "")
-	echo ./configure "$@" >&2
-	# LANG=C to force external tools to output ascii text only
-	# otherwise configure crashes as:
-	#    File "scripts/mk_make.py", line 21, in <module>
-	#    UnicodeEncodeError: 'ascii' codec can't encode characters in position 80-82: ordinal not in range(128)
-	LANG=C ./configure "$@" || die
-	echo ${EPYTHON} scripts/mk_make.py "$@" >&2
-	LANG=C ${EPYTHON} scripts/mk_make.py || die
+	elog ./configure "$@"
+	./configure "$@" || die
+	${EPYTHON} scripts/mk_make.py || die
 }
 
 src_compile() {
@@ -111,27 +101,8 @@ src_install() {
 		LINK_FLAGS="${LDFLAGS}" \
 		install DESTDIR="${D}"
 
-	dosym "/usr/$(get_libdir)/lib${PN}.so" \
-		  "/usr/$(get_libdir)/lib${PN}.so.${SO1}" \
-		  || die "Could not create /usr/$(get_libdir)/lib${PN}.so.${SO1} symlink"
-	dosym "/usr/$(get_libdir)/lib${PN}.so" \
-		  "/usr/$(get_libdir)/lib${PN}.so.${SOVER}" \
-		  || die "Could not create libz3.so soname symlink"
-
-	if use examples; then
-		insinto /usr/share/${PN}
-		doins -r examples
-	fi
-
 	if use python; then
-		python_moduleinto "${PN}"
-		instpybind() {
-			python_domodule src/api/python/z3/*.py
-			dosym "/usr/$(get_libdir)/lib${PN}.so" \
-				  "$(python_get_sitedir)/${PN}/lib${PN}.so" \
-				|| die "Could not create $(python_get_sitedir)/lib${PN}.so symlink for python module"
-		}
-		python_foreach_impl instpybind
+		python_foreach_impl python_domodule src/api/python/*.py
 	fi
 
 	use java && java-pkg-simple_src_install
@@ -139,7 +110,7 @@ src_install() {
 	if use isabelle; then
 		ISABELLE_HOME="${ROOT}usr/share/Isabelle"
 		dodir "${ISABELLE_HOME}/contrib/${PN}-${PV}/etc"
-		cat <<- EOF >> "${S}/settings" || die
+		cat <<- EOF >> "${S}/settings"
 			Z3_COMPONENT="\$COMPONENT"
 			Z3_HOME="${ROOT}usr/bin"
 			Z3_SOLVER="${ROOT}usr/bin/z3"
