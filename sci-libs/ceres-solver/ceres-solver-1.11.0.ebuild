@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -15,12 +14,12 @@ SRC_URI="${HOMEPAGE}/${P}.tar.gz"
 LICENSE="sparse? ( BSD ) !sparse? ( LGPL-2.1 ) cxsparse? ( BSD )"
 SLOT="0/1"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-
 IUSE="cxsparse c++11 doc examples gflags lapack openmp +schur sparse test"
-REQUIRED_USE="test? ( gflags ) sparse? ( lapack )"
+
+REQUIRED_USE="test? ( gflags ) sparse? ( lapack ) abi_x86_32? ( !sparse !lapack )"
 
 RDEPEND="
-	dev-cpp/glog[gflags?]
+	dev-cpp/glog[gflags?,${MULTILIB_USEDEP}]
 	cxsparse? ( sci-libs/cxsparse:0= )
 	lapack? ( virtual/lapack )
 	sparse? (
@@ -29,12 +28,14 @@ RDEPEND="
 		sci-libs/ccolamd:0=
 		sci-libs/cholmod:0=
 		sci-libs/colamd:0=
-		sci-libs/spqr:0= )"
+		sci-libs/spqr:0=
+	)"
 
 DEPEND="${RDEPEND}
 	dev-cpp/eigen:3
 	doc? ( dev-python/sphinx dev-python/sphinx_rtd_theme )
-	lapack? ( virtual/pkgconfig )"
+	lapack? ( virtual/pkgconfig )
+	${PYTHON_DEPS}"
 
 pkg_pretend() {
 	if [[ ${MERGE_TYPE} != binary ]] && use openmp; then

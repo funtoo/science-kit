@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 inherit cmake-utils eutils flag-o-matic gnome2-utils
@@ -89,7 +88,7 @@ src_install() {
 
 	if use stars ; then
 		insinto /usr/share/${PN}/stars/default
-		doins "${DISTDIR}"/stars_[45678]_[12]v0_1*.cat
+		doins "${DISTDIR}"/stars_{4_1,{5,6,7,8}_2}v0_1.cat
 	fi
 	newicon doc/images/stellarium-logo.png ${PN}.png
 }

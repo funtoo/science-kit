@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 inherit eutils fdo-mime gnome2-utils versionator
@@ -23,7 +22,7 @@ CDEPEND="
 	x11-libs/pango
 	>=x11-libs/cairo-1.2.0
 	x11-libs/gdk-pixbuf
-	dev-scheme/guile
+	>=dev-scheme/guile-2.0.0
 	nls? ( virtual/libintl )
 	stroke? ( >=dev-libs/libstroke-0.5.1 )"
 
@@ -42,7 +41,6 @@ S=${WORKDIR}/${MY_P}
 DOCS="AUTHORS NEWS README"
 
 src_prepare() {
-	append-libs -lgio-2.0
 	if ! use doc ; then
 		sed -i -e '/^SUBDIRS = /s/docs//' Makefile.in || die
 	fi

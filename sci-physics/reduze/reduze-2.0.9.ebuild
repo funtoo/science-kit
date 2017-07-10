@@ -1,6 +1,5 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -26,6 +25,8 @@ DEPEND="${RDEPEND}
 DOCS=( ChangeLog README )
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-gcc6.patch
+
 	# gentoo doc directory
 	sed -i \
 		-e "s:share/reduze:share/doc/${PF}:g" \

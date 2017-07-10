@@ -1,6 +1,5 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -18,7 +17,7 @@ KEYWORDS="amd64 x86 ~x64-macos"
 PATCHES=( "${FILESDIR}"/${P}-Makefile.patch )
 
 src_prepare() {
-	epatch ${PATCHES[@]}
+	epatch "${PATCHES[@]}"
 	tc-export CC AR
 }
 

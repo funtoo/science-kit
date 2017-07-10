@@ -1,6 +1,5 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -26,11 +25,13 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 ppc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="boost doc emacs examples python readline test"
+REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="
 	dev-libs/gmp:0=
 	dev-libs/ntl:0=
 	emacs? ( >=virtual/emacs-22 )
+	python? ( ${PYTHON_DEPS} )
 	readline? ( sys-libs/readline:0= )"
 DEPEND="${RDEPEND}
 	dev-lang/perl

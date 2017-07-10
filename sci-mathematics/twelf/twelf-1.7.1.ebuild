@@ -1,6 +1,5 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 
@@ -43,10 +42,10 @@ PATCHES=(
 	"${FILESDIR}/${PN}-1.7.1-emacs-twelf-init.patch"
 	"${FILESDIR}/${PN}-1.7.1-Makefile.patch"
 	"${FILESDIR}/${PN}-1.7.1-mlton-mlb.patch"
-	)
+)
 
 src_prepare() {
-	epatch ${PATCHES[@]}
+	epatch "${PATCHES[@]}"
 	sed \
 		-e "s@/usr/bin@${ROOT}usr/bin@g" \
 		-e "s@/usr/share@${ROOT}usr/share@" \

@@ -1,6 +1,5 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -31,7 +30,7 @@ S="${WORKDIR}/${MY_P}/"
 
 src_prepare() {
 	MAKEOPTS+=" -j1"
-	epatch ${PATCHES[@]}
+	epatch "${PATCHES[@]}"
 	sed \
 		-e "/^CC =/s:gcc:$(tc-getCC):g" \
 		-i */Makefile || die

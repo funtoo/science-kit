@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -11,26 +10,27 @@ inherit cmake-utils flag-o-matic python-single-r1
 DESCRIPTION="Advanced molecular editor that uses Qt4 and OpenGL"
 HOMEPAGE="http://avogadro.openmolecules.net/"
 SRC_URI="mirror://sourceforge/project/${PN}/${PN}/${PV}/${P}.tar.bz2"
-
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~x86"
 IUSE="+glsl python cpu_flags_x86_sse2 test"
+REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="
 	>=sci-chemistry/openbabel-2.3.0
 	>=dev-qt/qtgui-4.8.5:4
 	>=dev-qt/qtopengl-4.8.5:4
 	x11-libs/gl2ps
-	glsl? ( >=media-libs/glew-1.5.0 )
+	glsl? ( >=media-libs/glew-1.5.0:0= )
 	python? (
 		>=dev-libs/boost-1.35.0-r5[${PYTHON_USEDEP}]
 		dev-python/numpy[${PYTHON_USEDEP}]
 		dev-python/sip[${PYTHON_USEDEP}]
+		${PYTHON_DEPS}
 	)"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
-	dev-cpp/eigen"
+	<dev-cpp/eigen-3.3"
 
 # https://sourceforge.net/p/avogadro/bugs/653/
 RESTRICT="test"
@@ -39,11 +39,12 @@ PATCHES=(
 	#"${FILESDIR}"/${PN}-1.1.0-textrel.patch
 	"${FILESDIR}"/${PN}-1.1.0-xlibs.patch
 	"${FILESDIR}"/${P}-eigen3.patch
-	"${FILESDIR}"/${P}-mkspecs-dir.patch
-	"${FILESDIR}"/${P}-no-strip.patch
-	"${FILESDIR}"/${P}-pkgconfig_eigen.patch
-	"${FILESDIR}"/${P}-openbabel.patch
-	"${FILESDIR}"/${P}-boost-join-moc.patch
+	"${FILESDIR}"/${PN}-1.1.1-mkspecs-dir.patch
+	"${FILESDIR}"/${PN}-1.1.1-no-strip.patch
+	"${FILESDIR}"/${PN}-1.1.1-pkgconfig_eigen.patch
+	"${FILESDIR}"/${PN}-1.1.1-openbabel.patch
+	"${FILESDIR}"/${PN}-1.1.1-boost-join-moc.patch
+	"${FILESDIR}"/${PN}-1.1.1-math.patch
 )
 
 pkg_setup() {

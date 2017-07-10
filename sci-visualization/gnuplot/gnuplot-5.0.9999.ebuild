@@ -1,10 +1,9 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=5
+EAPI=6
 
-inherit autotools eutils flag-o-matic multilib readme.gentoo-r1 toolchain-funcs wxwidgets
+inherit autotools flag-o-matic readme.gentoo-r1 toolchain-funcs wxwidgets
 
 DESCRIPTION="Command-line driven interactive plotting program"
 HOMEPAGE="http://www.gnuplot.info/"
@@ -22,7 +21,7 @@ if [[ -z ${PV%%*9999} ]]; then
 else
 	MY_P="${P/_/.}"
 	SRC_URI="mirror://sourceforge/gnuplot/${MY_P}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sparc ~x86 ~ppc-aix ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sparc ~x86 ~ppc-aix ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 fi
 
 LICENSE="gnuplot bitmap? ( free-noncomm )"
@@ -67,9 +66,10 @@ GP_VERSION="${PV%.*}"
 E_SITEFILE="lisp/50${PN}-gentoo.el"
 TEXMF="${EPREFIX}/usr/share/texmf-site"
 
+PATCHES=( "${FILESDIR}"/${PN}-5.0.1-fix-underlinking.patch )
+
 src_prepare() {
-	# Fix underlinking
-	epatch "${FILESDIR}"/${PN}-5.0.1-fix-underlinking.patch
+	default
 
 	if [[ -z ${PV%%*9999} ]]; then
 		local dir
@@ -168,7 +168,7 @@ src_compile() {
 }
 
 src_install () {
-	default
+	emake DESTDIR="${D}" install
 
 	dodoc BUGS ChangeLog NEWS PGPKEYS PORTING README*
 	newdoc term/PostScript/README README-ps
@@ -180,8 +180,8 @@ src_install () {
 		# Demo files
 		insinto /usr/share/${PN}/${GP_VERSION}
 		doins -r demo
-		rm -f "${ED}"/usr/share/${PN}/${GP_VERSION}/demo/Makefile*
-		rm -f "${ED}"/usr/share/${PN}/${GP_VERSION}/demo/binary*
+		rm -f "${ED%/}"/usr/share/${PN}/${GP_VERSION}/demo/Makefile*
+		rm -f "${ED%/}"/usr/share/${PN}/${GP_VERSION}/demo/binary*
 	fi
 
 	if use doc; then
