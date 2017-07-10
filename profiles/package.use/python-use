@@ -37,8 +37,8 @@ sci-mathematics/Macaulay2 python_single_target_python2_7
 sci-mathematics/factmsieve python_single_target_python2_7
 sci-mathematics/p9m4 python_single_target_python2_7
 sci-mathematics/singular python_single_target_python2_7
-=sci-physics/espresso-3.3.1 python_single_target_python2_7
 =sci-physics/espresso-3.3.0 python_single_target_python2_7
+=sci-physics/espresso-3.3.1 python_single_target_python2_7
 sci-physics/rivet python_single_target_python2_7
 sci-physics/root python_single_target_python2_7
 sci-physics/yoda python_single_target_python2_7
