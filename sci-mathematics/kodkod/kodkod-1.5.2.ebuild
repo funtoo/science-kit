@@ -1,6 +1,5 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 
@@ -14,12 +13,14 @@ DESCRIPTION="a constraint solver for relational logic"
 HOMEPAGE="http://alloy.mit.edu/kodkod/index.html"
 SRC_URI="http://alloy.mit.edu/kodkod/${PV}/${P}.zip
 	https://waf.googlecode.com/files/waf-1.7.16"
+
 LICENSE="MIT"
 SLOT="0/${PV}"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-COMMON_DEP=""
+COMMON_DEP="${PYTHON_DEPS}"
 RDEPEND="${COMMON_DEP}
 	>=virtual/jre-1.6"
 DEPEND="${COMMON_DEP}

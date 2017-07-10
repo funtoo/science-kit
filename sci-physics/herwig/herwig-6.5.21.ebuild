@@ -1,6 +1,5 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -34,7 +33,7 @@ DEPEND="${RDEPEND}"
 S="${WORKDIR}"
 
 src_unpack() {
-	cp "${DISTDIR}"/* "${S}"
+	cp "${DISTDIR}"/{"${MY_P}".f,"${MY_P}".inc,"${MY_PINC}"} "${S}" || die
 }
 
 src_prepare() {

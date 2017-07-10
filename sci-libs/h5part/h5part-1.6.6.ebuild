@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -25,5 +24,5 @@ PATCHES=( "${FILESDIR}/${P}-mpio.patch" )
 S="${WORKDIR}/${MY_P}"
 
 src_configure() {
-	econf --enable-parallel --enable-shared --disable-static
+	econf --enable-parallel --enable-shared --disable-static CC=mpicc CXX=mpicxx
 }

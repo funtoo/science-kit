@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=3
 inherit elisp-common eutils flag-o-matic toolchain-funcs
@@ -44,6 +43,7 @@ src_prepare() {
 	epatch "${FILESDIR}/"${PN}-2.3.2-strip.patch
 	epatch "${FILESDIR}/"${PN}-2.3.2-ppc-powerpc-arch-fix.patch
 	epatch "${FILESDIR}/"${PN}-2.3.5-doc-make.patch
+	epatch "${FILESDIR}/"${PN}-2.3.5-no-dot-inc.patch
 
 	# disable default building of docs during install
 	sed -i \

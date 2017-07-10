@@ -1,13 +1,13 @@
-DEFINED_PHASES=compile configure install prepare setup
-DEPEND=x11-libs/libXt !x11-terms/terminator =dev-lang/python-2*
-DESCRIPTION=A de novo whole-genome shotgun DNA sequence assembler, also known as the Celera Assembler and CABOG
+DEFINED_PHASES=compile configure install prepare
+DEPEND=x11-libs/libXt !x11-terms/terminator
+DESCRIPTION=The Celera de novo whole-genome shotgun DNA sequence assembler, aka CABOG
 EAPI=4
 HOMEPAGE=https://sourceforge.net/projects/wgs-assembler/
 IUSE=static-libs
 KEYWORDS=amd64 x86
 LICENSE=GPL-2
-RDEPEND=x11-libs/libXt !x11-terms/terminator app-shells/tcsh dev-perl/Log-Log4perl =dev-lang/python-2*
+RDEPEND=x11-libs/libXt !x11-terms/terminator app-shells/tcsh dev-perl/Log-Log4perl
 SLOT=0
 SRC_URI=mirror://sourceforge/wgs-assembler/wgs-7.0.tar.bz2
-_eclasses_=epatch	8233751dc5105a6ae8fcd86ce2bb0247	epunt-cxx	f8073339d152f56626493f43d8ba4691	estack	5ac2a138d0b33354b764d84f9e835db8	eutils	e7491451996e8b54c3caeb713285b0fb	ltprune	2770eed66a9b8ef944714cd0e968182e	multilib	97f470f374f2e94ccab04a2fb21d811e	python	efc1c55fc44c5b7272fc2ffba73c3e6f	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
-_md5_=c4d83da689431ab93d575e326ee07e1d
+_eclasses_=epatch	8233751dc5105a6ae8fcd86ce2bb0247	epunt-cxx	f8073339d152f56626493f43d8ba4691	estack	5ac2a138d0b33354b764d84f9e835db8	eutils	e7491451996e8b54c3caeb713285b0fb	ltprune	2770eed66a9b8ef944714cd0e968182e	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
+_md5_=6ebc94c9eb0083edd0308af8a336afe0

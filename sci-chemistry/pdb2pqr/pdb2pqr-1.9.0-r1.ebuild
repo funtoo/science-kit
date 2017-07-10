@@ -1,6 +1,5 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -49,7 +48,7 @@ src_prepare() {
 	export CXXFLAGS="${CXXFLAGS}"
 	export LDFLAGS="${LDFLAGS}"
 
-	epatch ${PATCHES[@]}
+	epatch "${PATCHES[@]}"
 	tc-export CXX
 	rm -rf scons || die
 

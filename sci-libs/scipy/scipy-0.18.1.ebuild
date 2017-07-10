@@ -1,10 +1,9 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
-PYTHON_COMPAT=( python2_7 python3_{4,5} )
+PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 PYTHON_REQ_USE="threads(+)"
 
 DOC_PV=${PV}
@@ -131,7 +130,7 @@ python_test() {
 
 python_install_all() {
 	use doc && \
-		local DOCS=( "${DISTDIR}"/${PN}*pdf ) \
+		local DOCS=( "${DISTDIR}"/${PN}-${DOC_PV}-ref.pdf ) \
 		local HTML_DOCS=( "${WORKDIR}"/html/. )
 	distutils-r1_python_install_all
 }

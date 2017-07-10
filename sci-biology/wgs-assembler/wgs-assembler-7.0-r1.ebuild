@@ -1,14 +1,11 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=4
 
-PYTHON_DEPEND=2
+inherit eutils toolchain-funcs
 
-inherit eutils python toolchain-funcs
-
-DESCRIPTION="A de novo whole-genome shotgun DNA sequence assembler, also known as the Celera Assembler and CABOG"
+DESCRIPTION="The Celera de novo whole-genome shotgun DNA sequence assembler, aka CABOG"
 HOMEPAGE="https://sourceforge.net/projects/wgs-assembler/"
 SRC_URI="mirror://sourceforge/${PN}/wgs-${PV}.tar.bz2"
 
@@ -25,11 +22,6 @@ RDEPEND="${DEPEND}
 	dev-perl/Log-Log4perl"
 
 S="${WORKDIR}/wgs-${PV}"
-
-pkg_setup() {
-	python_set_active_version 2
-	python_pkg_setup
-}
 
 src_prepare() {
 	epatch \

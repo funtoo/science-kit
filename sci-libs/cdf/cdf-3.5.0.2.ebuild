@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -100,9 +99,8 @@ src_install() {
 	doenvd "${FILESDIR}"/50cdf
 
 	if use doc; then
-		insinto /usr/share/doc/${PF}
-		doins "${DISTDIR}"/${MY_DP}*.pdf
-		use java || rm "${D}"/usr/share/doc/${PF}/${MY_P}jrm.pdf
+		dodoc "${DISTDIR}"/${MY_DP}{0{crm,frm,prm,ug},ifd}.pdf
+		use java && dodoc "${DISTDIR}"/${MY_DP}jrm.pdf
 	fi
 
 	if use examples; then
