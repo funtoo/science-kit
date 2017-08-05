@@ -10,6 +10,7 @@ inherit cmake-utils flag-o-matic python-single-r1
 DESCRIPTION="Advanced molecular editor that uses Qt4 and OpenGL"
 HOMEPAGE="http://avogadro.openmolecules.net/"
 SRC_URI="mirror://sourceforge/project/${PN}/${PN}/${PV}/${P}.tar.bz2"
+
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~x86"
@@ -30,7 +31,7 @@ RDEPEND="
 	)"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
-	<dev-cpp/eigen-3.3"
+	dev-cpp/eigen"
 
 # https://sourceforge.net/p/avogadro/bugs/653/
 RESTRICT="test"
@@ -39,12 +40,11 @@ PATCHES=(
 	#"${FILESDIR}"/${PN}-1.1.0-textrel.patch
 	"${FILESDIR}"/${PN}-1.1.0-xlibs.patch
 	"${FILESDIR}"/${P}-eigen3.patch
-	"${FILESDIR}"/${PN}-1.1.1-mkspecs-dir.patch
-	"${FILESDIR}"/${PN}-1.1.1-no-strip.patch
-	"${FILESDIR}"/${PN}-1.1.1-pkgconfig_eigen.patch
-	"${FILESDIR}"/${PN}-1.1.1-openbabel.patch
-	"${FILESDIR}"/${PN}-1.1.1-boost-join-moc.patch
-	"${FILESDIR}"/${PN}-1.1.1-math.patch
+	"${FILESDIR}"/${P}-mkspecs-dir.patch
+	"${FILESDIR}"/${P}-no-strip.patch
+	"${FILESDIR}"/${P}-pkgconfig_eigen.patch
+	"${FILESDIR}"/${P}-openbabel.patch
+	"${FILESDIR}"/${P}-boost-join-moc.patch
 )
 
 pkg_setup() {
