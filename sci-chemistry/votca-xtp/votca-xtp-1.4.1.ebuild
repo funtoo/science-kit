@@ -16,7 +16,7 @@ if [ "${PV}" != "9999" ]; then
 else
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/${PN/-//}.git"
-	KEYWORDS=""
+	KEYWORDS="~amd64 ~x86"
 fi
 
 DESCRIPTION="Votca excitation and charge properties module"
@@ -27,9 +27,7 @@ SLOT="0"
 
 RDEPEND="
 	=sci-libs/votca-tools-${PV}[sqlite]
-	=sci-libs/votca-moo-${PV}
-	=sci-chemistry/votca-csg-${PV}
-	=sci-chemistry/votca-ctp-${PV}"
+	=sci-chemistry/votca-csg-${PV}"
 
 DEPEND="${RDEPEND}
 	doc? (
@@ -53,7 +51,12 @@ src_configure() {
 src_install() {
 	cmake-utils_src_install
 	if use doc; then
-		[[ ${PV} != *9999* ]] && dodoc "${DISTDIR}/${PN}-manual-${PV}.pdf"
+		if [[ ${PV} = *9999* ]]; then
+			cmake-utils_src_make -C "${CMAKE_BUILD_DIR}" manual
+			newdoc "${S}"/manual/xtp-manual.pdf "${PN}-manual-${PV}.pdf"
+		else
+			dodoc "${DISTDIR}/${PN}-manual-${PV}.pdf"
+		fi
 		cmake-utils_src_make -C "${CMAKE_BUILD_DIR}" html
 		dodoc -r "${CMAKE_BUILD_DIR}"/share/doc/html
 	fi
