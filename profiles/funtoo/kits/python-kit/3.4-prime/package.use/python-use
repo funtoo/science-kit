@@ -1,5 +1,6 @@
 sci-astronomy/astrometry python_single_target_python2_7
 sci-biology/amos python_single_target_python2_7
+sci-biology/cufflinks python_single_target_python2_7
 sci-biology/last python_single_target_python2_7
 sci-biology/meme python_single_target_python2_7
 sci-biology/samtools python_single_target_python2_7
@@ -13,8 +14,8 @@ sci-chemistry/ball python_single_target_python2_7
 sci-chemistry/ccpn python_single_target_python2_7
 sci-chemistry/coot python_single_target_python2_7
 sci-chemistry/molequeue python_single_target_python2_7
-=sci-chemistry/pdb-tools-0.2.1-r2 python_single_target_python2_7
 =sci-chemistry/pdb-tools-0.2.1-r1 python_single_target_python2_7
+=sci-chemistry/pdb-tools-0.2.1-r2 python_single_target_python2_7
 sci-chemistry/prodecomp python_single_target_python2_7
 sci-chemistry/relax python_single_target_python2_7
 sci-chemistry/sparky python_single_target_python2_7
@@ -38,6 +39,7 @@ sci-mathematics/Macaulay2 python_single_target_python2_7
 sci-mathematics/factmsieve python_single_target_python2_7
 sci-mathematics/p9m4 python_single_target_python2_7
 sci-mathematics/singular python_single_target_python2_7
+sci-misc/vitables python_single_target_python2_7
 sci-physics/rivet python_single_target_python2_7
 sci-physics/root python_single_target_python2_7
 sci-physics/yoda python_single_target_python2_7
