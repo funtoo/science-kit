@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile configure install prepare
-DEPEND=>=dev-lang/ocaml-4.02.3 dev-ml/menhir coq? ( sci-mathematics/coq ) doc? ( dev-tex/rubber ) gtk? ( dev-ml/lablgtk[sourceview] ) emacs? ( app-editors/emacs:* ) html? ( dev-tex/hevea ) hypothesis-selection? ( dev-ml/ocamlgraph ) zarith? ( dev-ml/zarith ) >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DEPEND=>=dev-lang/ocaml-4.02.3 dev-ml/menhir coq? ( sci-mathematics/coq ) doc? ( dev-tex/rubber ) gtk? ( dev-ml/lablgtk[sourceview] ) emacs? ( app-editors/emacs:* ) html? ( dev-tex/hevea ) hypothesis-selection? ( dev-ml/ocamlgraph ) zarith? ( dev-ml/zarith ) zip? ( dev-ml/camlzip ) >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
 DESCRIPTION=Platform for deductive program verification
 EAPI=6
 HOMEPAGE=http://why3.lri.fr/
-IUSE=coq doc emacs gtk html hypothesis-selection profiling zarith
+IUSE=coq doc emacs gtk html hypothesis-selection profiling zarith zip
 KEYWORDS=~amd64
 LICENSE=GPL-3
-RDEPEND=>=dev-lang/ocaml-4.02.3 dev-ml/menhir coq? ( sci-mathematics/coq ) doc? ( dev-tex/rubber ) gtk? ( dev-ml/lablgtk[sourceview] ) emacs? ( app-editors/emacs:* ) html? ( dev-tex/hevea ) hypothesis-selection? ( dev-ml/ocamlgraph ) zarith? ( dev-ml/zarith )
+RDEPEND=>=dev-lang/ocaml-4.02.3 dev-ml/menhir coq? ( sci-mathematics/coq ) doc? ( dev-tex/rubber ) gtk? ( dev-ml/lablgtk[sourceview] ) emacs? ( app-editors/emacs:* ) html? ( dev-tex/hevea ) hypothesis-selection? ( dev-ml/ocamlgraph ) zarith? ( dev-ml/zarith ) zip? ( dev-ml/camlzip )
 REQUIRED_USE=html? ( doc )
 SLOT=0
 SRC_URI=http://mirrors.cdn.adacore.com/art/591c45e2c7a447af2deed055 -> why3-for-spark-gpl-2017-src.tar.gz
 _eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
-_md5_=aec4213c9155bba680ff908a66df7eea
+_md5_=ac686ea44a468670a4acc561553a24f4
