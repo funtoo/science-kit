@@ -1,3 +1,4 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -5,7 +6,7 @@ EAPI=6
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="sqlite"
 
-inherit cmake-utils eutils fdo-mime gnome2-utils python-single-r1
+inherit cmake-utils eutils gnome2-utils python-single-r1 qmake-utils xdg-utils
 
 DESCRIPTION="User friendly Geographic Information System"
 HOMEPAGE="http://www.qgis.org/"
@@ -15,10 +16,10 @@ SRC_URI="
 
 LICENSE="GPL-2+ GPL-3+"
 SLOT="0"
-KEYWORDS="~*"
-IUSE="examples georeferencer grass mapserver oracle postgres python webkit"
+KEYWORDS="amd64 x86"
+IUSE="examples georeferencer grass mapserver oracle postgres python"
+
 REQUIRED_USE="
-	grass? ( python )
 	mapserver? ( python )
 	python? ( ${PYTHON_REQUIRED_USE} )"
 
@@ -34,7 +35,7 @@ COMMON_DEPEND="
 	dev-qt/qtscript:4
 	dev-qt/qtsvg:4
 	dev-qt/qtsql:4
-	sci-libs/gdal:=[geos,oracle?,python?,${PYTHON_USEDEP}]
+	sci-libs/gdal:=[geos,python?,${PYTHON_USEDEP}]
 	sci-libs/geos
 	sci-libs/libspatialindex:=
 	sci-libs/proj
@@ -44,7 +45,10 @@ COMMON_DEPEND="
 	georeferencer? ( sci-libs/gsl:= )
 	grass? ( >=sci-geosciences/grass-7.0.0:= )
 	mapserver? ( dev-libs/fcgi )
-	oracle? ( dev-db/oracle-instantclient:= )
+	oracle? (
+		dev-db/oracle-instantclient:=
+		sci-libs/gdal:=[oracle]
+	)
 	postgres? ( dev-db/postgresql:= )
 	python? ( ${PYTHON_DEPS}
 		dev-python/future[${PYTHON_USEDEP}]
@@ -52,17 +56,16 @@ COMMON_DEPEND="
 		dev-python/jinja[${PYTHON_USEDEP}]
 		dev-python/markupsafe[${PYTHON_USEDEP}]
 		dev-python/pygments[${PYTHON_USEDEP}]
-		dev-python/PyQt4[X,sql,svg,webkit?,${PYTHON_USEDEP}]
+		dev-python/PyQt4[X,sql,svg,${PYTHON_USEDEP}]
 		dev-python/python-dateutil[${PYTHON_USEDEP}]
 		dev-python/pytz[${PYTHON_USEDEP}]
 		dev-python/pyyaml[${PYTHON_USEDEP}]
 		dev-python/qscintilla-python[qt4(+),${PYTHON_USEDEP}]
 		dev-python/requests[${PYTHON_USEDEP}]
-		>=dev-python/sip-4.19.1[${PYTHON_USEDEP}]
+		dev-python/sip:=[${PYTHON_USEDEP}]
 		dev-python/six[${PYTHON_USEDEP}]
 		postgres? ( dev-python/psycopg:2[${PYTHON_USEDEP}] )
 	)
-	webkit? ( dev-qt/qtwebkit:4 )
 "
 DEPEND="${COMMON_DEPEND}
 	sys-devel/bison
@@ -75,24 +78,27 @@ RDEPEND="${COMMON_DEPEND}
 # Disabling test suite because upstream disallow running from install path
 RESTRICT="test"
 
-PATCHES=( "${FILESDIR}"/${PN}-lib64.patch "${FILESDIR}"/qgis_sip-ftbfs.patch )
+PATCHES=(
+	# TODO upstream
+	"${FILESDIR}/${PN}-2.18.6-featuresummary.patch"
+	# Taken from redhat
+	"${FILESDIR}/${P}-sip.patch"
+	# git master
+	"${FILESDIR}/${P}-cmake-lib-suffix.patch"
+)
 
 pkg_setup() {
-	use python && python-single-r1_pkg_setup
+	python-single-r1_pkg_setup
 }
 
 src_prepare() {
+	cmake-utils_src_prepare
+
+	sed -i -e "s:\${QT_BINARY_DIR}:$(qt4_get_bindir):" \
+		CMakeLists.txt || die "Failed to fix lrelease path"
 
 	cd src/plugins || die
-	use georeferencer || cmake_comment_add_subdirectory "georeferencer"
-	#remove bundled libs
-	rm -rf src/core/spatialite/ || die
-	rm -rf src/core/gps/qwtpolar-{0.1,1.0}/ || die
-	rm -rf src/core/gps/qextserialport/ || die
-	rm -rf src/core/gps/qextserialport/ || die
-	rm -rf "python/ext-libs/!(CMakeLists.txt|tests)" || die
-	rm -rf src/plugins/dxf2shp_converter/
-	cmake-utils_src_prepare
+	use georeferencer || cmake_comment_add_subdirectory georeferencer
 }
 
 src_configure() {
@@ -103,29 +109,47 @@ src_configure() {
 		-DQGIS_PLUGIN_SUBDIR=$(get_libdir)/qgis
 		-DQWT_INCLUDE_DIR=/usr/include/qwt6
 		-DQWT_LIBRARY=/usr/$(get_libdir)/libqwt6-qt4.so
-		-DWITH_INTERNAL_DATEUTIL=OFF
-		-DWITH_INTERNAL_FUTURE=OFF
-		-DWITH_INTERNAL_HTTPLIB2=OFF
-		-DWITH_INTERNAL_JINJA2=OFF
-		-DWITH_INTERNAL_MARKUPSAFE=OFF
-		-DWITH_INTERNAL_PYGMENTS=OFF
-		-DWITH_INTERNAL_PYTZ=OFF
 		-DWITH_INTERNAL_QWTPOLAR=OFF
-		-DWITH_INTERNAL_SIX=OFF
-		-DWITH_INTERNAL_YAML=OFF
 		-DPEDANTIC=OFF
 		-DWITH_APIDOC=OFF
 		-DWITH_QSPATIALITE=ON
 		-DENABLE_TESTS=OFF
-		-DWITH_BINDINGS="$(usex python)"
-		-DWITH_GRASS7="$(usex grass)"
-		-DGRASS_PREFIX7=/usr/$(get_libdir)/grass70
-		-DWITH_ORACLE="$(usex oracle)"
-		-DWITH_POSTGRESQL="$(usex postgres)"
-		-DWITH_PYSPATIALITE="$(usex python)"
-		-DWITH_SERVER="$(usex mapserver)"
-		-DWITH_QTWEBKIT="$(usex webkit)"
+		-DWITH_GRASS=$(usex grass)
+		-DWITH_SERVER=$(usex mapserver)
+		-DWITH_ORACLE=$(usex oracle)
+		-DWITH_POSTGRESQL=$(usex postgres)
+		-DWITH_BINDINGS=$(usex python)
+		-DWITH_QTWEBKIT=OFF
 	)
+
+	if has_version '<x11-libs/qscintilla-2.10'; then
+		mycmakeargs+=(
+			-DQSCINTILLA_LIBRARY=/usr/$(get_libdir)/qt4/libqscintilla2.so
+		)
+	fi
+
+	if use grass; then
+		mycmakeargs+=(
+			-DWITH_GRASS7=ON
+			-DGRASS_PREFIX7=/usr/$(get_libdir)/grass70
+		)
+	fi
+
+	if use python; then
+		mycmakeargs+=(
+			-DBINDINGS_GLOBAL_INSTALL=ON
+			-DWITH_PYSPATIALITE=ON
+			-DWITH_INTERNAL_DATEUTIL=OFF
+			-DWITH_INTERNAL_FUTURE=OFF
+			-DWITH_INTERNAL_MARKUPSAFE=OFF
+			-DWITH_INTERNAL_PYTZ=OFF
+			-DWITH_INTERNAL_SIX=OFF
+			-DWITH_INTERNAL_YAML=OFF
+		)
+	fi
+
+	# bug 612956
+	addpredict /dev/dri/renderD128
 
 	cmake-utils_src_configure
 }
@@ -154,9 +178,7 @@ src_install() {
 		docompress -x /usr/share/doc/${PF}/examples
 	fi
 
-	if use python; then
-		python_optimize "${ED%/}"/usr/share/qgis/python
-	fi
+	python_optimize "${ED%/}"/usr/share/qgis/python
 
 	if use grass; then
 		python_fix_shebang "${ED%/}"/usr/share/qgis/grass/scripts
@@ -180,12 +202,12 @@ pkg_postinst() {
 	fi
 
 	gnome2_icon_cache_update
-	fdo-mime_mime_database_update
-	fdo-mime_desktop_database_update
+	xdg_mimeinfo_database_update
+	xdg_desktop_database_update
 }
 
 pkg_postrm() {
 	gnome2_icon_cache_update
-	fdo-mime_mime_database_update
-	fdo-mime_desktop_database_update
+	xdg_mimeinfo_database_update
+	xdg_desktop_database_update
 }

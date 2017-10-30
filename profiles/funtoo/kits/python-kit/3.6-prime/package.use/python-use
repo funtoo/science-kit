@@ -2,6 +2,9 @@
 =sci-chemistry/pdb-tools-0.2.1-r2 python_single_target_python2_7
 =sci-electronics/pulseview-0.2.0-r1 python_single_target_python3_4 python_targets_python3_4
 =sci-electronics/sigrok-cli-0.5.0 python_single_target_python3_4 python_targets_python3_4
+=sci-geosciences/qgis-2.18.12 python_single_target_python2_7
+=sci-geosciences/qgis-2.18.12-r100 python_single_target_python3_4 python_targets_python3_4
+=sci-geosciences/qgis-2.18.14 python_single_target_python2_7
 =sci-libs/grib_api-1.11.0 python_single_target_python2_7
 =sci-libs/grib_api-1.14.5 python_single_target_python2_7
 =sci-libs/libsigrokdecode-0.3.0 python_single_target_python3_4 python_targets_python3_4
@@ -32,7 +35,6 @@ sci-electronics/geda-xgsch2pcb python_single_target_python2_7
 sci-electronics/gresistor python_single_target_python2_7
 sci-electronics/kicad python_single_target_python2_7
 sci-geosciences/grass python_single_target_python2_7
-sci-geosciences/qgis python_single_target_python2_7
 sci-libs/cctbx python_single_target_python2_7
 sci-libs/chemkit python_single_target_python2_7
 sci-libs/clblas python_single_target_python2_7

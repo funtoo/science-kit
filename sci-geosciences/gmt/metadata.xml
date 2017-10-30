@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-   <use>
+  <maintainer type="project">
+    <email>sci-geosciences@gentoo.org</email>
+    <name>Gentoo Geosciences Project</name>
+  </maintainer>
+  <use>
     <flag name="gdal">Enable <pkg>sci-libs/gdal</pkg> library support</flag>
     <flag name="gmtfull">Full resolution bathymetry database</flag>
     <flag name="gmthigh">Add high resolution bathymetry database</flag>
