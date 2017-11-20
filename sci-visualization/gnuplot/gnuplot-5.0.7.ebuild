@@ -17,16 +17,16 @@ if [[ -z ${PV%%*9999} ]]; then
 	ECVS_CVS_OPTIONS="-dP"
 	MY_P="${PN}"
 	SRC_URI=""
-	KEYWORDS="hppa ppc ppc64 x86"
+	KEYWORDS=""
 else
 	MY_P="${P/_/.}"
 	SRC_URI="mirror://sourceforge/gnuplot/${MY_P}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 hppa ~ia64 ppc ppc64 ~s390 ~sparc x86 ~ppc-aix ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sparc ~x86 ~ppc-aix ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 fi
 
 LICENSE="gnuplot bitmap? ( free-noncomm )"
 SLOT="0"
-IUSE="aqua bitmap cairo compat doc examples +gd ggi latex libcaca libcerf lua qt4 readline svga wxwidgets X"
+IUSE="aqua bitmap cairo compat doc examples +gd ggi latex libcaca libcerf lua qt5 readline svga wxwidgets X"
 
 RDEPEND="
 	cairo? (
@@ -41,9 +41,12 @@ RDEPEND="
 			>=dev-texlive/texlive-latexrecommended-2008-r2 ) )
 	libcaca? ( media-libs/libcaca )
 	lua? ( dev-lang/lua:0 )
-	qt4? ( >=dev-qt/qtcore-4.5:4
-		>=dev-qt/qtgui-4.5:4
-		>=dev-qt/qtsvg-4.5:4 )
+	qt5? ( dev-qt/qtcore:5=
+		dev-qt/qtgui:5=
+		dev-qt/qtnetwork:5=
+		dev-qt/qtprintsupport:5=
+		dev-qt/qtsvg:5=
+		dev-qt/qtwidgets:5= )
 	readline? ( sys-libs/readline:0= )
 	libcerf? ( sci-libs/libcerf )
 	svga? ( media-libs/svgalib )
@@ -81,12 +84,6 @@ src_prepare() {
 	# Add special version identification as required by provision 2
 	# of the gnuplot license
 	sed -i -e "1s/.*/& (Gentoo revision ${PR})/" PATCHLEVEL || die
-
-	# hacky workaround
-	# Please hack the buildsystem if you like
-	if use prefix && use qt4; then
-		append-ldflags -Wl,-rpath,"${EPREFIX}"/usr/$(get_libdir)/qt4
-	fi
 
 	DOC_CONTENTS='Gnuplot no longer links against pdflib, see the ChangeLog
 		for details. You can use the "pdfcairo" terminal for PDF output.'
@@ -126,6 +123,8 @@ src_configure() {
 	tc-export_build_env BUILD_CC
 	export CC_FOR_BUILD=${BUILD_CC}
 
+	use qt5 && append-cxxflags -std=c++11
+
 	econf \
 		--without-pdf \
 		--with-texdir="${TEXMF}/tex/latex/${PN}" \
@@ -143,7 +142,7 @@ src_configure() {
 		$(use_with svga linux-vga) \
 		$(use_with X x) \
 		--enable-stats \
-		$(use_with qt4 qt qt4) \
+		$(use_with qt5 qt qt5) \
 		$(use_enable wxwidgets) \
 		DIST_CONTACT="https://bugs.gentoo.org/" \
 		EMACS=no
