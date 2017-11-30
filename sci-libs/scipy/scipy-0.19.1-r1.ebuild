@@ -1,4 +1,3 @@
-# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -8,16 +7,21 @@ PYTHON_REQ_USE="threads(+)"
 
 DOC_PV=${PV}
 
-inherit fortran-2 distutils-r1 flag-o-matic git-r3 multiprocessing toolchain-funcs
+inherit fortran-2 distutils-r1 flag-o-matic multiprocessing toolchain-funcs
 
 DESCRIPTION="Scientific algorithms library for Python"
 HOMEPAGE="https://www.scipy.org/"
-EGIT_REPO_URI="https://github.com/scipy/scipy.git"
+SRC_URI="
+	mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz
+	doc? (
+		https://docs.scipy.org/doc/${PN}-${DOC_PV}/${PN}-html-${PV}.zip -> ${PN}-${DOC_PV}-html.zip
+		https://docs.scipy.org/doc/${PN}-${DOC_PV}/${PN}-ref-${PV}.pdf -> ${PN}-${DOC_PV}-ref.pdf
+	)"
 
 LICENSE="BSD LGPL-2"
 SLOT="0"
-KEYWORDS=""
-IUSE="sparse test"
+IUSE="doc sparse test"
+KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 CDEPEND="
 	>=dev-python/numpy-1.10[lapack,${PYTHON_USEDEP}]
@@ -27,17 +31,24 @@ CDEPEND="
 	sparse? ( sci-libs/umfpack:0= )"
 DEPEND="${CDEPEND}
 	dev-lang/swig
-	>=dev-python/cython-0.23.4[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.22[${PYTHON_USEDEP}]
+	>=dev-python/setuptools-36[${PYTHON_USEDEP}]
 	virtual/pkgconfig
-	test? (	dev-python/nose[${PYTHON_USEDEP}] )
-	"
-
+	doc? ( app-arch/unzip )
+	test? (	dev-python/nose[${PYTHON_USEDEP}] )"
 RDEPEND="${CDEPEND}
 	dev-python/pillow[${PYTHON_USEDEP}]"
 
 DOCS=( HACKING.rst.txt THANKS.txt )
 
 DISTUTILS_IN_SOURCE_BUILD=1
+
+src_unpack() {
+	default
+	if use doc; then
+		unzip -qo "${DISTDIR}"/${PN}-${DOC_PV}-html.zip -d html || die
+	fi
+}
 
 pc_incdir() {
 	$(tc-getPKG_CONFIG) --cflags-only-I $@ | \
@@ -85,14 +96,14 @@ python_prepare_all() {
 
 	# Drop hashes to force rebuild of cython based .c code
 	rm cythonize.dat || die
-
+	eapply "${FILESDIR}"/gcc5.patch
+	
 	distutils-r1_python_prepare_all
 }
 
 python_compile() {
 	${EPYTHON} tools/cythonize.py || die
 	distutils-r1_python_compile \
-		$(usex python_targets_python3_5 "" "-j $(makeopts_jobs)") \
 		${SCIPY_FCONFIG}
 }
 
@@ -100,11 +111,9 @@ python_test() {
 	# fails with bdist_egg. should it be fixed in distutils-r1 eclass?
 	distutils_install_for_testing ${SCIPY_FCONFIG}
 	cd "${TEST_DIR}" || die "no ${TEST_DIR} available"
-	einfo "Run test I"
 	"${PYTHON}" -c \
 		'import numpy as np; print("relaxed strides checking:", np.ones((10,1),order="C").flags.f_contiguous)' \
 		|| die
-	einfo "Run test II"
 	# https://github.com/scipy/scipy/issues/5426
 	"${EPYTHON}" -c \
 		"import scipy, sys; r = scipy.test('fast', verbose=2, raise_warnings='release'); sys.exit(0 if r.wasSuccessful() else 1)" \
@@ -112,6 +121,13 @@ python_test() {
 #	"${EPYTHON}" -c \
 #		"import scipy, sys; r = scipy.test('fast',verbose=2); sys.exit(0 if r.wasSuccessful() else 1)" \
 #		|| die "Tests fail with ${EPYTHON}"
+}
+
+python_install_all() {
+	use doc && \
+		local DOCS=( "${DISTDIR}"/${PN}-${DOC_PV}-ref.pdf ) \
+		local HTML_DOCS=( "${WORKDIR}"/html/. )
+	distutils-r1_python_install_all
 }
 
 python_install() {

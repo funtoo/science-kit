@@ -181,5 +181,22 @@ index f07d3ab1db..948821e91e 100644
 +    return sipGetState(sipTransferObj);
 +%End
 +};
+diff --git a/src/gui/qgsfiledownloader.h b/src/gui/qgsfiledownloader.h
+index c9276f7caf..841e4b6ee1 100644
+--- a/src/gui/qgsfiledownloader.h
++++ b/src/gui/qgsfiledownloader.h
+@@ -90,8 +90,10 @@ class GUI_EXPORT QgsFileDownloader : public QObject
+     void onSslErrors( QNetworkReply *reply, const QList<QSslError> &errors );
+ #endif
+ 
+-  private:
++  protected:
+     ~QgsFileDownloader();
++
++  private:
+     /**
+      * Abort current request and show an error if the instance has GUI
+      * notifications enabled.
 -- 
 2.12.0
+

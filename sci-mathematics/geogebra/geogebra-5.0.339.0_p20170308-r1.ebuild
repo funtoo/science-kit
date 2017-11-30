@@ -303,6 +303,11 @@ src_unpack() {
 	__set_gradle_repositories "${maven_basedir}"
 }
 
+src_prepare() {
+	epatch "${FILESDIR}/desktop-build_gradle.patch"
+	default
+}
+
 src_compile() {
 	local gradle_home="${T}/.gradle"
 
