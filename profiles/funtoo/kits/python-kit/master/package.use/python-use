@@ -36,7 +36,6 @@ sci-libs/chemkit python_single_target_python2_7
 sci-libs/clblas python_single_target_python2_7
 sci-libs/geos python_single_target_python2_7
 sci-libs/getdata python_single_target_python2_7
-sci-libs/libsigrok python_single_target_python2_7
 sci-libs/linux-gpib python_single_target_python2_7
 sci-libs/mathgl python_single_target_python2_7
 sci-libs/plplot python_single_target_python2_7
