@@ -31,8 +31,6 @@ KEYWORDS="~amd64 ~x86"
 REQUIRED_USE="
 	!X? ( !asimage !opengl !qt4 !tiff )
 	python? ( ${PYTHON_REQUIRED_USE} )
-	pythia6? ( !pythia8 )
-	pythia8? ( !pythia6 )
 	tmva? ( math gsl )
 	davix? ( ssl )
 "
@@ -104,6 +102,18 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	xinetd? ( sys-apps/xinetd )"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-5.28.00b-glibc212.patch
+	"${FILESDIR}"/${PN}-5.32.00-afs.patch
+	"${FILESDIR}"/${PN}-5.32.00-cfitsio.patch
+	"${FILESDIR}"/${PN}-5.32.00-chklib64.patch
+	"${FILESDIR}"/${PN}-6.00.01-dotfont.patch
+	"${FILESDIR}"/${PN}-6.11.02-hsimple.patch
+	"${FILESDIR}"/${PN}-6.12.04-no-ocaml.patch
+	"${FILESDIR}"/${PN}-6.12.04-find-oracle-12.patch
+	"${FILESDIR}"/${PN}-6.12.04-z3.patch
+)
+
 pkg_setup() {
 	use fortran && fortran-2_pkg_setup
 	use python && python-single-r1_pkg_setup
@@ -123,14 +133,6 @@ pkg_setup() {
 
 src_prepare() {
 	cmake-utils_src_prepare
-
-	epatch \
-        "${FILESDIR}"/${PN}-5.28.00b-glibc212.patch \
-        "${FILESDIR}"/${PN}-5.32.00-afs.patch \
-        "${FILESDIR}"/${PN}-5.32.00-cfitsio.patch \
-        "${FILESDIR}"/${PN}-5.32.00-chklib64.patch \
-        "${FILESDIR}"/${PN}-6.00.01-dotfont.patch \
-		"${FILESDIR}"/${PN}-6.11.02-hsimple.patch
 
 	# make sure we use system libs and headers
 	rm montecarlo/eg/inc/cfortran.h README/cfortran.doc || die
@@ -254,13 +256,6 @@ src_configure() {
 		${EXTRA_ECONF}
 	)
 
-	if use oracle ; then
-			mycmakeargs+=(
-				-DORACLE_PATH_INCLUDES="${ORACLE_HOME}/include"
-				-DORACLE_PATH_LIB="${ORACLE_HOME}/$(get_libdir)"
-			)
-	fi
-
 	cmake-utils_src_configure
 }
 
@@ -304,6 +299,7 @@ src_install() {
 	use emacs && elisp-install ${PN} "${BUILD_DIR}"/root-help.el
 
 	echo "PATH=${EPREFIX}/${MY_PREFIX}/bin" > 99root || die
+	echo "ROOTPATH=${EPREFIX}/${MY_PREFIX}/bin" > 99root || die
 	echo "LDPATH=${EPREFIX}/${MY_PREFIX}/$(get_libdir)" >> 99root || die
 
 	if use pythia8; then
