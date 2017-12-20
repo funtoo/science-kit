@@ -1,3 +1,4 @@
+=sci-calculators/units-2.14-r1 python_single_target_python2_7
 =sci-chemistry/pdb-tools-0.2.1-r1 python_single_target_python2_7
 =sci-chemistry/pdb-tools-0.2.1-r2 python_single_target_python2_7
 =sci-libs/grib_api-1.11.0 python_single_target_python2_7
@@ -14,7 +15,6 @@ sci-biology/samtools python_single_target_python2_7
 sci-biology/shrimp python_single_target_python2_7
 sci-biology/tophat python_single_target_python2_7
 sci-calculators/gonvert python_single_target_python2_7
-sci-calculators/units python_single_target_python2_7
 sci-chemistry/apbs python_single_target_python2_7
 sci-chemistry/aria python_single_target_python2_7
 sci-chemistry/avogadro python_single_target_python2_7
