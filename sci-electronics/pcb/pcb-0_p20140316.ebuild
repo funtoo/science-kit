@@ -7,7 +7,7 @@ inherit autotools eutils xdg-utils gnome2-utils toolchain-funcs
 
 DESCRIPTION="GPL Electronic Design Automation: Printed Circuit Board editor"
 HOMEPAGE="http://www.gpleda.org/"
-SRC_URI="mirror://sourceforge/pcb/pcb/${P}/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/pcb/pcb/${P/0_p/}/${P/0_p/}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -48,6 +48,8 @@ RDEPEND="${CDEPEND}
 	sci-electronics/electronics-menu"
 
 DOCS="AUTHORS README NEWS ChangeLog"
+
+S="${WORKDIR}/${P/0_p/}"
 
 pkg_setup() {
 	if use gtk && use motif; then
