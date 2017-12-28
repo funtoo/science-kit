@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install prepare
+DEPEND=X? ( x11-libs/libICE x11-libs/libXaw x11-libs/libXext x11-libs/libXmu ) fftw? ( sci-libs/fftw:3.0 ) >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DESCRIPTION=The Next Generation Spice (Electronic Circuit Simulator)
+EAPI=6
+HOMEPAGE=http://ngspice.sourceforge.net
+IUSE=X debug doc fftw openmp readline
+KEYWORDS=~amd64 ~ppc ~sparc ~x86 ~x64-macos
+LICENSE=BSD GPL-2
+RDEPEND=X? ( x11-libs/libICE x11-libs/libXaw x11-libs/libXext x11-libs/libXmu ) fftw? ( sci-libs/fftw:3.0 ) X? ( sci-visualization/xgraph )
+SLOT=0
+SRC_URI=mirror://sourceforge/ngspice/ngspice-27.tar.gz doc? ( mirror://sourceforge/ngspice/ngspice-27-manual.pdf )
+_eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
+_md5_=38337ec64c743853f395dfa8d6af8bde
