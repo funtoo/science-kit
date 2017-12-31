@@ -1,28 +1,26 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
-inherit eutils elisp-common qt4-r2 flag-o-matic autotools
+inherit eutils elisp-common flag-o-matic autotools
 
 DESCRIPTION="Graphics Layout Engine"
 HOMEPAGE="http://glx.sourceforge.net/"
 MY_P=${PN}-graphics-${PV}
 MAN_V=4.2.2
-SRC_URI="mirror://sourceforge/glx/${MY_P}f-src.tar.gz
-	doc? ( mirror://sourceforge/glx/${PN}-manual-${MAN_V}.pdf
-		   mirror://sourceforge/glx/GLEusersguide.pdf )"
+SRC_URI="mirror://sourceforge/glx/${MY_P}f-src.tar.gz"
 SLOT="0"
-LICENSE="BSD-2 emacs? ( GPL-2 ) qt4? ( GPL-2 )"
-IUSE="X qt4 jpeg png tiff doc emacs vim-syntax"
+LICENSE="BSD-2 emacs? ( GPL-2 )"
+IUSE="X jpeg png tiff doc emacs vim-syntax"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 
 DEPEND="
 	sys-libs/ncurses:0=
 	X? ( x11-libs/libX11 )
-	qt4? ( dev-qt/qtopengl:4 )
 	jpeg? ( virtual/jpeg:0 )
 	png? ( media-libs/libpng:0= )
 	tiff? ( media-libs/tiff:0 )
+	doc? ( dev-texlive/texlive-latexextra )
 	emacs? ( virtual/emacs )"
 
 RDEPEND="${DEPEND}
@@ -44,7 +42,6 @@ src_configure() {
 	econf \
 		--without-rpath \
 		--with-manip \
-		$(use_with qt4 qt "${EPREFIX}"/usr) \
 		$(use_with X x) \
 		$(use_with jpeg) \
 		$(use_with png) \
@@ -53,6 +50,9 @@ src_configure() {
 
 src_compile() {
 	emake
+	if use doc; then
+		emake -j1 doc
+	fi
 	if use emacs; then
 		cd contrib/editors/highlighting
 		mv ${PN}-emacs.el ${PN}-mode.el
@@ -63,19 +63,12 @@ src_compile() {
 src_install() {
 	# -jN failed to install some data files
 	emake -j1 DESTDIR="${D}" install
-	rmdir "${ED}"/usr/share/doc/gle-graphics || die "rmdir gle-graphics failed"
+	rm -rf "${ED}"/usr/share/doc/gle-graphics
 	dodoc README.txt
-
-	if use qt4; then
-		newicon src/gui/images/gle_icon.png gle.png
-		make_desktop_entry qgle GLE gle
-		newdoc src/gui/readme.txt gui_readme.txt
-	fi
 
 	if use doc; then
 		insinto /usr/share/doc/${PF}
-		doins "${DISTDIR}"/${PN}-manual-${MAN_V}.pdf \
-			"${DISTDIR}"/GLEusersguide.pdf
+		doins build/doc/gle-manual.pdf
 	fi
 
 	if use emacs; then
