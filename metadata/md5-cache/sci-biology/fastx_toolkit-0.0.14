@@ -1,0 +1,12 @@
+DEFINED_PHASES=prepare
+DEPEND=sci-biology/libgtextutils virtual/pkgconfig >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DESCRIPTION=Tools for Short Read FASTA/FASTQ file processing
+EAPI=6
+HOMEPAGE=http://hannonlab.cshl.edu/fastx_toolkit
+KEYWORDS=~amd64 ~x86
+LICENSE=AGPL-3
+RDEPEND=dev-perl/PerlIO-gzip dev-perl/GDGraph sci-biology/libgtextutils:= sci-visualization/gnuplot
+SLOT=0
+SRC_URI=https://github.com/agordon/fastx_toolkit/releases/download/0.0.14/fastx_toolkit-0.0.14.tar.bz2
+_eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
+_md5_=c3bb0edd6b01a31019cf5fd59e22122a
