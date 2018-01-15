@@ -484,7 +484,6 @@ sci-visualization/qtiplot:linguas_zh_CN - Chinese locale for China
 sci-visualization/veusz:emf - Add FITS format via dev-python/pyemf
 sci-visualization/veusz:fits - Add FITS format via dev-python/astropy
 sci-visualization/veusz:minuit - Use Minuit during fitting viadev-python/pyminuit
-sci-visualization/veusz:vo - Add Virtual Observatory tools via dev-python/astropy
 sci-visualization/visit:cgns - Builds the reader for the CFD General Notation System file format.
 sci-visualization/visit:silo - Adds support for reading .silo files.
 sci-visualization/visit:xdmf2 - Support for xdmf2 formated data.
