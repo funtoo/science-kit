@@ -472,15 +472,6 @@ sci-visualization/paraview:coprocessing - Enable the coprocessing infrastructure
 sci-visualization/paraview:development - Install development files including headers
 sci-visualization/paraview:nvcontrol - Add NVCONTROL support for OpenGL options
 sci-visualization/paraview:plugins - Build and install additional plugins
-sci-visualization/qtiplot:linguas_cs - Czech locale
-sci-visualization/qtiplot:linguas_de - German locale
-sci-visualization/qtiplot:linguas_es - Spanish locale
-sci-visualization/qtiplot:linguas_fr - French locale
-sci-visualization/qtiplot:linguas_ja - Japanese locale
-sci-visualization/qtiplot:linguas_ro - Romanian locale
-sci-visualization/qtiplot:linguas_ru - Russian locale
-sci-visualization/qtiplot:linguas_sv - Swedish locale
-sci-visualization/qtiplot:linguas_zh_CN - Chinese locale for China
 sci-visualization/veusz:emf - Add FITS format via dev-python/pyemf
 sci-visualization/veusz:fits - Add FITS format via dev-python/astropy
 sci-visualization/veusz:minuit - Use Minuit during fitting viadev-python/pyminuit

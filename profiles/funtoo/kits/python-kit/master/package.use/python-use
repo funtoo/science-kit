@@ -56,5 +56,4 @@ sci-visualization/gwyddion python_single_target_python2_7
 sci-visualization/paraview python_single_target_python2_7
 sci-visualization/pythonprop python_single_target_python2_7
 sci-visualization/pyxplot python_single_target_python2_7
-sci-visualization/qtiplot python_single_target_python2_7
 sci-visualization/visit python_single_target_python2_7
