@@ -1,5 +1,5 @@
 DEFINED_PHASES=install prepare
-DEPEND=sys-libs/zlib >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.16:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DEPEND=sys-libs/zlib >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
 DESCRIPTION=Mapping and Assembly with Qualities, mapping NGS reads to reference genomes
 EAPI=6
 HOMEPAGE=http://maq.sourceforge.net/
@@ -8,5 +8,5 @@ LICENSE=GPL-3
 RDEPEND=sys-libs/zlib
 SLOT=0
 SRC_URI=mirror://sourceforge/maq/maq-0.7.1.tar.bz2 mirror://sourceforge/maq/calib-36.dat.gz
-_eclasses_=autotools	4842e626555a9a4344f34cef2e190b67	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
+_eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
 _md5_=39ffb0025210075a8d7d7f6f81f8da56
