@@ -132,7 +132,7 @@ sci-geosciences/mapserver:proj - Enable sci-libs/proj library support (geographi
 sci-geosciences/mapserver:xslt - Enable xslt and exslt support xml-mapfile support
 sci-geosciences/merkaartor:libproxy - Use net-libs/libproxy for getting the HTTP/HTTPS/SOCKS proxy configuration
 sci-geosciences/merkaartor:webengine - Enable dev-qt/qtwebengine in some plugins
-sci-geosciences/qgis:designer - Build custom widgets for dev-qt/designer
+sci-geosciences/qgis:3d - Build QGIS 3D library using dev-qt/qt3d
 sci-geosciences/qgis:georeferencer - Determines whether georeferencer plugin should be built
 sci-geosciences/qgis:grass - Add support for sci-geosciences/grass
 sci-geosciences/qgis:mapserver - Determines whether mapserver should be built
