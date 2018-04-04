@@ -37,7 +37,6 @@ sci-biology/yass:dmalloc - Enable debugging with the dmalloc library
 sci-biology/yass:lowmem - Build for environments with low amounts of memory
 sci-calculators/datamash:openssl - Use dev-libs/openssl for cryptographic features
 sci-calculators/units:units_cur - Install the units_cur python script that updates currencies
-sci-chemistry/PyMca:matplotlib - Support for plotting through matplotlib
 sci-chemistry/apbs:fast - APBS fast mode (experimental)
 sci-chemistry/apbs:fetk - Include support for FeTK
 sci-chemistry/apbs:iapbs - C/C++/Fortran interface
@@ -61,7 +60,6 @@ sci-chemistry/gromacs:offensive - Enable gromacs partly offensive quotes
 sci-chemistry/gromacs:opencl - Enable opencl non-bonded kernels
 sci-chemistry/gromacs:single-precision - Single precision version of gromacs (default)
 sci-chemistry/gromacs:tng - Enable new trajectory format - tng
-sci-chemistry/gsim:emf - Support for .emf export
 sci-chemistry/jmol:client-only - Install the viewer only, no applet files for httpd
 sci-chemistry/molequeue:client - Build the client application
 sci-chemistry/molequeue:server - Build the serve application
