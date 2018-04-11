@@ -35,10 +35,11 @@ RDEPEND="
 		media-libs/glew:0=
 		virtual/opengl
 	)
-	vtk? ( sci-libs/vtk[qt5] )
+	vtk? ( sci-libs/vtk[qt5,views] )
 "
 DEPEND="${RDEPEND}
 	dev-cpp/eigen:3
+	dev-qt/qtopengl:5
 	test? ( dev-cpp/gtest )"
 
 S="${WORKDIR}/${PN}-${COMMIT}"
@@ -48,6 +49,7 @@ PATCHES=(
 	"${FILESDIR}/"${P}-underlinking.patch
 	"${FILESDIR}/"${P}-unbundle-jsoncpp.patch
 	"${FILESDIR}/"${P}-bundled-genxrdpattern.patch
+	"${FILESDIR}/"${P}-qt-5.11.patch
 )
 
 src_unpack() {
