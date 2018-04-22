@@ -1,3 +1,4 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -23,19 +24,18 @@ RDEPEND="
 	virtual/jpeg:0
 	szip? ( virtual/szip )"
 DEPEND="${RDEPEND}
-	net-libs/libtirpc
 	test? ( virtual/szip )"
 
 S="${WORKDIR}/${MYP}"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-4.2.11-fix-szip-detection.patch
+	"${FILESDIR}"/${PN}-4.2.11-enable-fortran-shared.patch
+)
+
 src_prepare() {
 	default
 	sed -i -e 's/-R/-L/g' config/commence.am || die #rpath
-	
-	eapply "${FILESDIR}"/${PN}-4.2.11-fix-szip-detection.patch
-	eapply	"${FILESDIR}"/${PN}-4.2.11-enable-fortran-shared.patch
-	eapply "${FILESDIR}"/${PN}-libtirpc.patch
-	
 	eautoreconf
 	[[ $(tc-getFC) = *gfortran ]] && append-fflags -fno-range-check
 }
