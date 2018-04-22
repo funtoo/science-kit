@@ -49,7 +49,12 @@ sci-chemistry/avogadro:glsl - Enable glsl features via GLEW.
 sci-chemistry/avogadro2:rpc - Enable RPC server
 sci-chemistry/avogadro2:vtk - include vtk support
 sci-chemistry/ball:cuda - Include cuda support
-sci-chemistry/ball:sql - Include SQL database support
+sci-chemistry/ball:fftw - Build with sci-libs/fftw (switching BALL to GPL3)
+sci-chemistry/ball:gui - Build VIEW library required for visualization and graphical user interfaces
+sci-chemistry/ball:lpsolve - Enable support for the Mixed Integer Linear Programming solver
+sci-chemistry/ball:openbabel - Enable support for sci-chemistry/openbabel (switching BALL to GPL3)
+sci-chemistry/ball:svm - Enable support for the Support Vector Machine module
+sci-chemistry/ball:webengine - Enable QtWebEngine support with Qt5 (requires gui)
 sci-chemistry/chemtool:emf - EMF export support
 sci-chemistry/cns:aria - Support patch for sci-chemistry/aria
 sci-chemistry/eden:double-precision - More precise calculations at the expense of speed
