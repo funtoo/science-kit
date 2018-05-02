@@ -306,6 +306,9 @@ sci-libs/symengine:llvm - Build with LLVM
 sci-libs/symengine:mpc - Add support for multiprecision complex arithmetic(dev-libs/mpc)
 sci-libs/symengine:mpfr - Add support for multiprecision floating point rouding(dev-libs/mpfr)
 sci-libs/taucs:cilk - Enable multithreading using dev-lang/cilk
+sci-libs/tensorflow:cuda - Enable support for nVidia CUDA
+sci-libs/tensorflow:jemalloc - Enable support for dev-libs/jemalloc
+sci-libs/tensorflow:mpi - Enable support for MPI
 sci-libs/umfpack:cholmod - Use sci-libs/cholmod for matrix ordering
 sci-libs/vtk:R - Enable support for dev-lang/R
 sci-libs/vtk:all-modules - Build all modules
