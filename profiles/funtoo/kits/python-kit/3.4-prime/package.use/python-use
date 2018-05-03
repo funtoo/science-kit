@@ -16,6 +16,7 @@ sci-chemistry/aria python_single_target_python2_7
 sci-chemistry/avogadro python_single_target_python2_7
 sci-chemistry/ball python_single_target_python2_7
 sci-chemistry/ccpn python_single_target_python2_7
+sci-chemistry/chemex python_single_target_python2_7
 sci-chemistry/coot python_single_target_python2_7
 sci-chemistry/molequeue python_single_target_python2_7
 sci-chemistry/prodecomp python_single_target_python2_7
