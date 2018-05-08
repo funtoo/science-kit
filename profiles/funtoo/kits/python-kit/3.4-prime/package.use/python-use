@@ -13,7 +13,6 @@ sci-biology/tophat python_single_target_python2_7
 sci-calculators/gonvert python_single_target_python2_7
 sci-chemistry/apbs python_single_target_python2_7
 sci-chemistry/aria python_single_target_python2_7
-sci-chemistry/avogadro python_single_target_python2_7
 sci-chemistry/ball python_single_target_python2_7
 sci-chemistry/ccpn python_single_target_python2_7
 sci-chemistry/chemex python_single_target_python2_7
