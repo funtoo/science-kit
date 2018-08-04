@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -7,15 +7,16 @@ inherit eutils scons-utils toolchain-funcs
 
 DESCRIPTION="A Free Toolkit for developing mapping applications"
 HOMEPAGE="http://www.mapnik.org/"
-SRC_URI="https://github.com/mapnik/mapnik/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/mapnik/mapnik/releases/download/v${PV}/mapnik-v${PV}.tar.bz2 -> ${P}.tar.bz2"
+S="${WORKDIR}/mapnik-v${PV}"
 
 LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="cairo debug doc gdal postgres sqlite"
+IUSE="cairo debug doc gdal osmfonts postgres sqlite"
 
 RDEPEND="
-	>=dev-libs/boost-1.48[threads]
+	>=dev-libs/boost-1.48:=[threads]
 	dev-libs/icu:=
 	sys-libs/zlib
 	media-libs/freetype
@@ -32,6 +33,12 @@ RDEPEND="
 		x11-libs/cairo
 		dev-cpp/cairomm
 	)
+	osmfonts? (
+		media-fonts/dejavu
+		media-fonts/noto
+		media-fonts/noto-cjk
+		media-fonts/unifont
+	)
 	postgres? ( >=dev-db/postgresql-8.3:* )
 	gdal? ( sci-libs/gdal )
 	sqlite? ( dev-db/sqlite:3 )"
@@ -40,7 +47,7 @@ DEPEND="${RDEPEND}"
 PATCHES=(
 	"${FILESDIR}/${PN}-2.2.0-configure-only-once.patch"
 	"${FILESDIR}/${PN}-2.2.0-dont-run-ldconfig.patch"
-	"${FILESDIR}/${PN}-2.2.0-scons.patch"
+	"${FILESDIR}/${PN}-3.0.18-scons.patch"
 )
 
 src_prepare() {
@@ -58,6 +65,7 @@ src_prepare() {
 }
 
 src_configure() {
+#	local PYTHONCMD="$(which python2.7)"
 	local PLUGINS=shape,csv,raster,geojson
 	use gdal && PLUGINS+=,gdal,ogr
 	use postgres && PLUGINS+=,postgis
@@ -74,6 +82,11 @@ src_configure() {
 		"RUNTIME_LINK=shared"
 		"PROJ_INCLUDES=/usr/include"
 		"PROJ_LIBS=/usr/$(get_libdir)"
+		"LIBDIR_SCHEMA=$(get_libdir)"
+		"FREETYPE_INCLUDES=/usr/include/freetype2"
+		"FREETYPE_LIBS=/usr/$(get_libdir)"
+		"XML2_INCLUDES=/usr/include/libxml2"
+		"XML2_LIBS=/usr/$(get_libdir)"
 		"SYSTEM_FONTS=/usr/share/fonts"
 		CAIRO="$(usex cairo 1 0)"
 		DEBUG="$(usex debug 1 0)"
