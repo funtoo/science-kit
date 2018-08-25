@@ -445,6 +445,7 @@ sci-physics/pythia:lhapdf - Support the use of external PDF sets via sci-physics
 sci-physics/pythia:root - Use sci-physics/root trees and histograms (in examples only)
 sci-physics/root:R - Enable support for dev-lang/R
 sci-physics/root:asimage - Enable support for media-libs/libafterimage
+sci-physics/root:cuda - Enable support for nVidia CUDA
 sci-physics/root:davix - Enable support for DAVIX Data Management Client (https://cern.ch/davix)
 sci-physics/root:fits - Enable support for images and data from FITS files with sci-libs/cfitsio
 sci-physics/root:fortran - Compile included Fortran programs
@@ -452,7 +453,6 @@ sci-physics/root:gdml - Enable GDML writer and reader
 sci-physics/root:http - Enable http server support including but not limited to fastcgi support
 sci-physics/root:jemalloc - Enable support for dev-libs/jemalloc
 sci-physics/root:libcxx - Build ROOT against sys-libs/libcxx
-sci-physics/root:math - Build all math related libraries plugins, needs sci-libs/gsl
 sci-physics/root:memstat - Build memory statistics library, helps to detect memory leaks
 sci-physics/root:minuit - Build ROOT's internal versions of minuit (fortran) and minuit2 (C++)
 sci-physics/root:pythia6 - Build the interface for sci-physics/pythia version 6.x
