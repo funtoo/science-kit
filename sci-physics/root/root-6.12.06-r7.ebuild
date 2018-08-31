@@ -9,14 +9,14 @@ CMAKE_MAKEFILE_GENERATOR=emake
 FORTRAN_NEEDED="fortran"
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 
-inherit cmake-utils cuda eapi7-ver elisp-common eutils fortran-2 \
+inherit cmake-utils eapi7-ver elisp-common eutils fortran-2 \
 	prefix python-single-r1 toolchain-funcs
 
 DESCRIPTION="C++ data analysis framework and interpreter from CERN"
 HOMEPAGE="https://root.cern"
 SRC_URI="https://root.cern/download/${PN}_v${PV}.source.tar.gz"
 
-IUSE="+X avahi aqua +asimage cuda +davix emacs +examples fits fftw fortran
+IUSE="+X avahi aqua +asimage +davix emacs +examples fits fftw fortran
 	+gdml graphviz +gsl http jemalloc kerberos ldap libcxx memstat
 	+minuit mysql odbc +opengl oracle postgres prefix pythia6 pythia8
 	+python qt5 R +roofit root7 shadow sqlite +ssl table +tbb test
@@ -68,7 +68,6 @@ CDEPEND="
 		>=x11-wm/afterstep-2.2.11[gif,jpeg,png,tiff?]
 	) )
 	avahi? ( net-dns/avahi[mdnsresponder-compat] )
-	cuda? ( >=dev-util/nvidia-cuda-toolkit-9.0 )
 	davix? ( net-libs/davix )
 	emacs? ( virtual/emacs )
 	fftw? ( sci-libs/fftw:3.0= )
@@ -107,8 +106,11 @@ RDEPEND="${CDEPEND}
 	xinetd? ( sys-apps/xinetd )"
 
 PATCHES=(
+	"${FILESDIR}"/${PN}-6.11.02-hsimple.patch
 	"${FILESDIR}"/${PN}-6.12.04-no-ocaml.patch
-	"${FILESDIR}"/${PN}-6.13.02-hsimple.patch
+	"${FILESDIR}"/${PN}-6.12.04-no-opengl.patch
+	"${FILESDIR}"/${PN}-6.12.04-z3.patch
+	"${FILESDIR}"/${PN}-6.12.06_cling-runtime-sysroot.patch
 )
 
 pkg_setup() {
@@ -147,15 +149,12 @@ src_configure() {
 		-DCMAKE_INSTALL_MANDIR="${EPREFIX%/}/usr/$(get_libdir)/${PN}/$(ver_cut 1-2)/share/man"
 		-DMCAKE_INSTALL_LIBDIR=$(get_libdir)
 		-DDEFAULT_SYSROOT="${EPREFIX}"
-		-DCLING_BUILD_PLUGINS=OFF
 		-Dexplicitlink=ON
 		-Dexceptions=ON
 		-Dfail-on-missing=ON
-		-Dgnuinstall=OFF
 		-Dshared=ON
 		-Dsoversion=ON
 		-Dbuiltin_llvm=ON
-		-Dbuiltin_clang=ON
 		-Dbuiltin_afterimage=OFF
 		-Dbuiltin_cfitsio=OFF
 		-Dbuiltin_davix=OFF
@@ -191,7 +190,6 @@ src_configure() {
 		-Dchirp=OFF
 		-Dcling=ON # cling=OFF is broken
 		-Dcocoa=$(usex aqua)
-		-Dcuda=$(usex cuda)
 		-Dcxx14=$(usex root7)
 		-Dcxxmodules=OFF # requires clang, unstable
 		-Ddavix=$(usex davix)
@@ -208,6 +206,7 @@ src_configure() {
 		-Dglite=OFF # not implemented
 		-Dglobus=OFF
 		-Dgminimal=OFF
+		-Dgnuinstall=OFF
 		-Dgsl_shared=$(usex gsl)
 		-Dgviz=$(usex graphviz)
 		-Dhdfs=OFF
@@ -239,7 +238,7 @@ src_configure() {
 		-Droot7=$(usex root7)
 		-Drootbench=OFF
 		-Droottest=$(usex test)
-		-Drpath=OFF
+		-Drpath=ON # needed for multi-slot to work
 		-Druby=OFF # deprecated and broken
 		-Druntime_cxxmodules=OFF # does not work yet
 		-Dr=$(usex R)
@@ -254,8 +253,6 @@ src_configure() {
 		-Dtesting=$(usex test)
 		-Dthread=$(usex threads)
 		-Dtmva=$(usex tmva)
-		-Dtmva-cpu=$(usex tmva)
-		-Dtmva-gpu=$(usex cuda)
 		-Dunuran=$(usex unuran)
 		-Dvc=$(usex vc)
 		-Dvdt=OFF
