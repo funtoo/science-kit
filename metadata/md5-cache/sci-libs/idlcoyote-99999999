@@ -1,0 +1,10 @@
+DEFINED_PHASES=install unpack
+DEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DESCRIPTION=GDL library from D. Fannings IDL courses
+EAPI=6
+HOMEPAGE=http://www.idlcoyote.com/
+LICENSE=BSD GPL-2
+RDEPEND=dev-lang/gdl
+SLOT=0
+_eclasses_=git-r3	918d6a744039c29af2cadc7317459765
+_md5_=99b27f681db45fbdc3c706419591c898
