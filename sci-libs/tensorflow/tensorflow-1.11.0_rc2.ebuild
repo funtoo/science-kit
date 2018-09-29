@@ -1,14 +1,14 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 DISTUTILS_OPTIONAL=1
 PYTHON_COMPAT=( python2_7 python3_6 )
 MY_PV=${PV/_rc/-rc}
 MY_P=${PN}-${MY_PV}
 
-inherit check-reqs cuda distutils-r1 eapi7-ver multiprocessing toolchain-funcs
+inherit check-reqs cuda distutils-r1 multiprocessing toolchain-funcs
 
 DESCRIPTION="Computation framework using data flow graphs for scalable machine learning"
 HOMEPAGE="https://www.tensorflow.org/"
@@ -39,13 +39,13 @@ bazel_external_uris="
 	python? (
 		https://github.com/intel/ARM_NEON_2_x86_SSE/archive/0f77d9d182265259b135dad949230ecbf1a2633d.tar.gz -> ARM_NEON_2_x86_SSE-0f77d9d182265259b135dad949230ecbf1a2633d.tar.gz
 		https://mirror.bazel.build/docs.python.org/2.7/_sources/license.txt -> tensorflow-python-license.txt
-		https://pypi.python.org/packages/5c/78/ff794fcae2ce8aa6323e789d1f8b3b7765f601e7702726f430e814822b96/gast-0.2.0.tar.gz
 		https://pypi.python.org/packages/bc/cc/3cdb0a02e7e96f6c70bd971bc8a90b8463fda83e264fa9c5c1c98ceabd81/backports.weakref-1.0rc1.tar.gz
 		!system-libs? (
 			https://github.com/abseil/abseil-py/archive/pypi-v0.2.2.tar.gz -> abseil-py-0.2.2.tar.gz
 			https://github.com/googleapis/googleapis/archive/f81082ea1e2f85c43649bee26e0d9871d4b41cdb.zip -> googleapis-f81082ea1e2f85c43649bee26e0d9871d4b41cdb.zip
 			https://github.com/GoogleCloudPlatform/google-cloud-cpp/archive/f875700a023bdd706333cde45aee8758b272c357.tar.gz -> google-cloud-cpp-f875700a023bdd706333cde45aee8758b272c357.tar.gz
 			https://github.com/google/boringssl/archive/a0fb951d2a26a8ee746b52f3ba81ab011a0af778.tar.gz -> boringssl-a0fb951d2a26a8ee746b52f3ba81ab011a0af778.tar.gz
+			https://pypi.python.org/packages/5c/78/ff794fcae2ce8aa6323e789d1f8b3b7765f601e7702726f430e814822b96/gast-0.2.0.tar.gz
 		)
 	)
 	!system-libs? (
@@ -82,6 +82,7 @@ RDEPEND="
 		>=dev-libs/flatbuffers-1.8.0
 		dev-python/absl-py[${PYTHON_USEDEP}]
 		dev-python/astor[${PYTHON_USEDEP}]
+		dev-python/gast[${PYTHON_USEDEP}]
 		dev-python/numpy[${PYTHON_USEDEP}]
 		>=dev-python/protobuf-python-3.6.0[${PYTHON_USEDEP}]
 		dev-python/six[${PYTHON_USEDEP}]
@@ -98,14 +99,22 @@ RDEPEND="
 		dev-libs/openssl:0
 	)"
 DEPEND="${RDEPEND}
-	!python? ( dev-lang/python )
+	dev-python/mock"
+BDEPEND="
 	app-arch/unzip
+	>=dev-libs/protobuf-3.6.0
 	>=dev-util/bazel-0.16.0
 	dev-java/java-config
 	dev-python/mock
-	dev-lang/nasm
 	dev-lang/swig
-	dev-python/cython"
+	dev-python/cython
+	cuda? (
+		>=dev-util/nvidia-cuda-toolkit-8.0[profiler]
+	)
+	!python? ( dev-lang/python )
+	python? (
+		>=net-libs/grpc-1.13.0[tools]
+	)"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 S="${WORKDIR}/${MY_P}"
@@ -177,13 +186,16 @@ setup_bazelrc() {
 	test --verbose_test_summary --verbose_failures --noshow_loading_progress
 
 	# make bazel only fetch distfiles from the cache
-	fetch --repository_cache=${T}/bazel-cache/ --distdir=${T}/bazel-distdir/
-	build --repository_cache=${T}/bazel-cache/ --distdir=${T}/bazel-distdir/
+	fetch --repository_cache="${T}/bazel-cache/" --distdir="${T}/bazel-distdir/"
+	build --repository_cache="${T}/bazel-cache/" --distdir="${T}/bazel-distdir/"
 
 	build --define=PREFIX=${EPREFIX%/}/usr
 	build --define=LIBDIR=\$(PREFIX)/$(get_libdir)
 
 	EOF
+
+	tc-is-cross-compiler || \
+		echo "build --nodistinct_host_configuration" >> "${T}/bazelrc" || die
 }
 
 ebazel() {
@@ -218,7 +230,8 @@ load_distfiles() {
 		else
 			einfo "Copying $dst to bazel distdir $src ..."
 		fi
-		ln -s "${DISTDIR}/${dst}" "${T}/bazel-distdir/${src}" || die
+		dst="$(readlink -f "${DISTDIR}/${dst}")"
+		ln -s "${dst}" "${T}/bazel-distdir/${src}" || die
 	done <<< "$(sed -re 's/!?[A-Za-z]+\?\s+\(\s*//g; s/\s+\)//g' <<< "${bazel_external_uris}")"
 }
 
@@ -243,12 +256,7 @@ src_prepare() {
 	default
 	use python && python_copy_sources
 
-	if use cuda; then
-		local i
-		for i in /dev/nvidia*; do
-			addpredict $i
-		done
-	fi
+	use cuda && cuda_add_sandbox
 }
 
 src_configure() {
@@ -291,15 +299,9 @@ src_configure() {
 			export CUDNN_INSTALL_PATH="${EPREFIX%/}/opt/cuda"
 			export GCC_HOST_COMPILER_PATH="$(cuda_gccdir)/$(tc-getCC)"
 			export TF_NCCL_VERSION="1"
-
-			TF_CUDA_VERSION="$(best_version dev-util/nvidia-cuda-toolkit)"
-			TF_CUDA_VERSION="${TF_CUDA_VERSION##*cuda-toolkit-}"
-			export TF_CUDA_VERSION="$(ver_cut 1-2 ${TF_CUDA_VERSION})"
+			export TF_CUDA_VERSION="$(cuda_toolkit_version)"
+			export TF_CUDNN_VERSION="$(cuda_cudnn_version)"
 			einfo "Setting CUDA version: $TF_CUDA_VERSION"
-
-			TF_CUDNN_VERSION="$(best_version dev-libs/cudnn)"
-			TF_CUDNN_VERSION="${TF_CUDNN_VERSION##*cudnn-}"
-			export TF_CUDNN_VERSION="$(ver_cut 1-2 ${TF_CUDNN_VERSION})"
 			einfo "Setting CUDNN version: $TF_CUDNN_VERSION"
 		fi
 
@@ -336,11 +338,11 @@ src_configure() {
 				com_google_protobuf
 				com_google_protobuf_cc
 				protobuf_archive
+				gast_archive
 			)
 		fi
 
-		SYSLIBS="${SYSLIBS[@]}"
-		export TF_SYSTEM_LIBS="${SYSLIBS// /,}"
+		export TF_SYSTEM_LIBS="${SYSLIBS[@]}"
 
 		# Only one bazelrc is read, import our one before configure sets its options
 		echo "import ${T}/bazelrc" >> ./.bazelrc
