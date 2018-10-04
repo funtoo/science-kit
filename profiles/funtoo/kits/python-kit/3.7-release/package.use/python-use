@@ -7,6 +7,7 @@
 =sci-libs/libsigrokdecode-0.4.1 python_single_target_python3_4 python_targets_python3_4
 =sci-libs/libsigrokdecode-0.5.0 python_single_target_python3_4 python_targets_python3_4
 =sci-libs/libsigrokdecode-0.5.1 python_single_target_python3_4 python_targets_python3_4
+=sci-libs/libsigrokdecode-0.5.2 python_single_target_python3_4 python_targets_python3_4
 =sci-libs/libsigrokdecode-9999 python_single_target_python3_4 python_targets_python3_4
 =sci-libs/linux-gpib-4.1.0 python_single_target_python2_7
 =sci-libs/vtk-6.1.0-r4 python_single_target_python2_7
