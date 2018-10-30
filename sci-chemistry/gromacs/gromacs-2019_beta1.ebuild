@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -14,11 +14,10 @@ if [[ $PV = *9999* ]]; then
 		http://repo.or.cz/r/gromacs.git"
 	[[ $PV = 9999 ]] && EGIT_BRANCH="master" || EGIT_BRANCH="release-${PV:0:4}"
 	inherit git-r3
-	KEYWORDS=""
 else
 	SRC_URI="ftp://ftp.gromacs.org/pub/${PN}/${PN}-${PV/_/-}.tar.gz
 		test? ( http://gerrit.gromacs.org/download/regressiontests-${PV/_/-}.tar.gz )"
-	KEYWORDS="~alpha ~amd64 ~arm ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~x64-macos ~x86-macos"
+	KEYWORDS="~amd64 ~arm ~x86 ~amd64-linux ~x86-linux ~x64-macos ~x86-macos"
 fi
 
 ACCE_IUSE="cpu_flags_x86_sse2 cpu_flags_x86_sse4_1 cpu_flags_x86_fma4 cpu_flags_x86_avx cpu_flags_x86_avx2"
@@ -31,7 +30,7 @@ HOMEPAGE="http://www.gromacs.org/"
 #        base,    vmd plugins, fftpack from numpy,  blas/lapck from netlib,        memtestG80 library,  mpi_thread lib
 LICENSE="LGPL-2.1 UoI-NCSA !mkl? ( !fftw? ( BSD ) !blas? ( BSD ) !lapack? ( BSD ) ) cuda? ( LGPL-3 ) threads? ( BSD )"
 SLOT="0/${PV}"
-IUSE="X blas cuda +doc -double-precision +fftw +hwloc lapack mkl mpi +offensive opencl openmp +single-precision test +threads +tng ${ACCE_IUSE}"
+IUSE="X blas cuda +doc -double-precision +fftw +gmxapi +hwloc lapack +lmfit mkl mpi +offensive opencl openmp +single-precision test +threads +tng ${ACCE_IUSE}"
 
 CDEPEND="
 	X? (
@@ -40,11 +39,12 @@ CDEPEND="
 		x11-libs/libICE
 		)
 	blas? ( virtual/blas )
-	cuda? ( >=dev-util/nvidia-cuda-toolkit-4.2.9-r1 )
+	cuda? ( >=dev-util/nvidia-cuda-toolkit-6.5.14 )
 	opencl? ( virtual/opencl )
 	fftw? ( sci-libs/fftw:3.0 )
 	hwloc? ( sys-apps/hwloc )
 	lapack? ( virtual/lapack )
+	lmfit? ( sci-libs/lmfit )
 	mkl? ( sci-libs/mkl )
 	mpi? ( virtual/mpi )
 	"
@@ -52,6 +52,8 @@ DEPEND="${CDEPEND}
 	virtual/pkgconfig
 	doc? (
 		app-doc/doxygen
+		dev-python/sphinx
+		media-gfx/mscgen
 		dev-texlive/texlive-latex
 		dev-texlive/texlive-latexextra
 		media-gfx/imagemagick
@@ -146,8 +148,15 @@ src_configure() {
 		fft_opts=( -DGMX_FFT_LIBRARY=fftpack )
 	fi
 
+	if use lmfit; then
+		local lmfit_opts=( -DGMX_USE_LMFIT=EXTERNAL )
+	else
+		local lmfit_opts=( -DGMX_USE_LMFIT=INTERNAL )
+	fi
+
 	mycmakeargs_pre+=(
 		"${fft_opts[@]}"
+		"${lmfit_opts[@]}"
 		-DGMX_X11=$(usex X)
 		-DGMX_EXTERNAL_BLAS=$(usex blas)
 		-DGMX_EXTERNAL_LAPACK=$(usex lapack)
@@ -181,6 +190,7 @@ src_configure() {
 			${mycmakeargs_pre[@]} ${p}
 			-DGMX_MPI=OFF
 			-DGMX_THREAD_MPI=$(usex threads)
+			-DGMXAPI=$(usex gmxapi)
 			"${opencl[@]}"
 			"${cuda[@]}"
 			"$(use test && echo -DREGRESSIONTEST_PATH="${WORKDIR}/${P}_${x}/tests")"
@@ -197,6 +207,7 @@ src_configure() {
 			-DGMX_THREAD_MPI=OFF
 			-DGMX_MPI=ON ${cuda}
 			-DGMX_OPENMM=OFF
+			-DGMXAPI=OFF
 			-DGMX_BUILD_MDRUN_ONLY=ON
 			-DBUILD_SHARED_LIBS=OFF
 			-DGMX_BUILD_MANUAL=OFF
@@ -215,10 +226,10 @@ src_compile() {
 		BUILD_DIR="${WORKDIR}/${P}_${x}"\
 			cmake-utils_src_compile
 		# not 100% necessary for rel ebuilds as available from website
-		if use doc; then
-			BUILD_DIR="${WORKDIR}/${P}_${x}"\
-				cmake-utils_src_compile manual
-		fi
+		#if use doc; then
+		#	BUILD_DIR="${WORKDIR}/${P}_${x}"\
+		#		cmake-utils_src_compile manual
+		#fi
 		use mpi || continue
 		einfo "Compiling for ${x} precision with mpi"
 		BUILD_DIR="${WORKDIR}/${P}_${x}_mpi"\
@@ -237,9 +248,9 @@ src_install() {
 	for x in ${GMX_DIRS}; do
 		BUILD_DIR="${WORKDIR}/${P}_${x}" \
 			cmake-utils_src_install
-		if use doc; then
-			newdoc "${WORKDIR}/${P}_${x}"/docs/manual/gromacs.pdf "${PN}-manual-${PV}.pdf"
-		fi
+		#if use doc; then
+		#	newdoc "${WORKDIR}/${P}_${x}"/docs/manual/gromacs.pdf "${PN}-manual-${PV}.pdf"
+		#fi
 		use mpi || continue
 		BUILD_DIR="${WORKDIR}/${P}_${x}_mpi" \
 			cmake-utils_src_install
