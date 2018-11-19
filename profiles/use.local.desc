@@ -419,6 +419,9 @@ sci-misc/h5utils:octave - Build Octave plugins
 sci-misc/nco:dap - Support for remote data access with the NETCDF DAP client
 sci-misc/nco:ncap2 - Build next generation netcdf arithmetic processor (needs dev-java/antlr)
 sci-misc/nco:udunits - Add sci-libs/udunits files support
+sci-misc/tango:dbserver - Enable build of tango dbserver
+sci-misc/tango:mariadb - Use dev-db/mariadb
+sci-misc/tango:zeromq - Allow to use ZeroMQ broker via net-libs/zeromq
 sci-physics/bullet:bullet3 - Build Bullet 3
 sci-physics/bullet:double-precision - Build libraries in double precision
 sci-physics/bullet:extras - Build additional libraries
@@ -451,6 +454,9 @@ sci-physics/pythia:lhapdf - Support the use of external PDF sets via sci-physics
 sci-physics/pythia:root - Use sci-physics/root trees and histograms (in examples only)
 sci-physics/root:R - Enable support for dev-lang/R
 sci-physics/root:asimage - Enable support for media-libs/libafterimage
+sci-physics/root:c++11 - Build using the C++11 standard
+sci-physics/root:c++14 - Build using the C++14 standard
+sci-physics/root:c++17 - Build using the C++17 standard
 sci-physics/root:cuda - Enable support for nVidia CUDA
 sci-physics/root:davix - Enable support for DAVIX Data Management Client (https://cern.ch/davix)
 sci-physics/root:fits - Enable support for images and data from FITS files with sci-libs/cfitsio
