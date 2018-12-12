@@ -12,19 +12,9 @@ PYTHON_COMPAT=( python2_7 python3_{4,5,6,7} )
 inherit cmake-utils cuda eapi7-ver elisp-common eutils fortran-2 \
 	prefix python-single-r1 toolchain-funcs
 
-if [[ ${PV} == "9999" ]] ; then
-	inherit git-r3
-	KEYWORDS=""
-	EGIT_REPO_URI="http://root.cern/git/root.git"
-	SLOT=0
-else
-	KEYWORDS="~amd64 ~x86"
-	SRC_URI="https://root.cern/download/${PN}_v${PV}.source.tar.gz"
-	SLOT="$(ver_cut 1-2)/$(ver_cut 3)"
-fi
-
 DESCRIPTION="C++ data analysis framework and interpreter from CERN"
 HOMEPAGE="https://root.cern"
+SRC_URI="https://root.cern/download/${PN}_v${PV}.source.tar.gz"
 
 IUSE="+X aqua +asimage +c++11 c++14 c++17 cuda +davix emacs +examples
 	fits fftw fortran +gdml graphviz +gsl http jemalloc kerberos ldap
@@ -33,7 +23,9 @@ IUSE="+X aqua +asimage +c++11 c++14 c++17 cuda +davix emacs +examples
 	table +tbb test +threads +tiff +tmva +unuran vc xinetd +xml xrootd
 	zeroconf"
 
+SLOT="$(ver_cut 1-2)/$(ver_cut 3)"
 LICENSE="LGPL-2.1 freedist MSttfEULA LGPL-3 libpng UoI-NCSA"
+KEYWORDS="~amd64 ~x86"
 
 REQUIRED_USE="
 	^^ ( c++11 c++14 c++17 )
@@ -54,7 +46,6 @@ CDEPEND="
 	media-fonts/dejavu
 	media-libs/freetype:2=
 	media-libs/libpng:0=
-	sys-devel/llvm:5=
 	sys-libs/ncurses:=
 	sys-libs/zlib
 	X? (
@@ -105,7 +96,7 @@ CDEPEND="
 	shadow? ( virtual/shadow )
 	sqlite? ( dev-db/sqlite:3 )
 	ssl? ( dev-libs/openssl:0= )
-	tbb? ( >=dev-cpp/tbb-2018 )
+	tbb? ( dev-cpp/tbb )
 	tmva? ( dev-python/numpy[${PYTHON_USEDEP}] )
 	vc? ( dev-libs/vc )
 	xml? ( dev-libs/libxml2:2= )
@@ -119,7 +110,9 @@ RDEPEND="${CDEPEND}
 	xinetd? ( sys-apps/xinetd )"
 
 PATCHES=(
+	"${FILESDIR}"/${PN}-6.12.04-no-ocaml.patch
 	"${FILESDIR}"/${PN}-6.12.06_cling-runtime-sysroot.patch
+	"${FILESDIR}"/${PN}-6.14.06-oracle.patch
 )
 
 pkg_setup() {
@@ -158,7 +151,6 @@ src_configure() {
 		-DCMAKE_INSTALL_MANDIR="${EPREFIX%/}/usr/$(get_libdir)/${PN}/$(ver_cut 1-2)/share/man"
 		-DCMAKE_INSTALL_LIBDIR=$(get_libdir)
 		-DDEFAULT_SYSROOT="${EPREFIX}"
-		-DLLVM_CONFIG="${EPREFIX%/}/usr/lib/llvm/5/bin/llvm-config"
 		-DCLING_BUILD_PLUGINS=OFF
 		-Dexplicitlink=ON
 		-Dexceptions=ON
@@ -166,7 +158,7 @@ src_configure() {
 		-Dgnuinstall=OFF
 		-Dshared=ON
 		-Dsoversion=ON
-		-Dbuiltin_llvm=OFF
+		-Dbuiltin_llvm=ON
 		-Dbuiltin_clang=ON
 		-Dbuiltin_afterimage=OFF
 		-Dbuiltin_cfitsio=OFF
@@ -292,7 +284,7 @@ src_install() {
 	cmake-utils_src_install
 
 	ROOTSYS=${EPREFIX%/}/usr/$(get_libdir)/${PN}/$(ver_cut 1-2)
-	ROOTENV=9999${PN}-$(ver_cut 1-2)
+	ROOTENV=$((9999 - $(ver_cut 2)))${PN}-$(ver_cut 1-2)
 
 	# ROOT fails without this symlink because it only looks in lib
 	if [[ ! -d ${D}/${ROOTSYS}/lib ]]; then
