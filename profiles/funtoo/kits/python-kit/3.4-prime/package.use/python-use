@@ -1,5 +1,12 @@
 =sci-chemistry/pdb-tools-0.2.1-r1 python_single_target_python2_7
 =sci-chemistry/pdb-tools-0.2.1-r2 python_single_target_python2_7
+=sci-libs/grib_api-1.11.0 python_single_target_python2_7
+=sci-libs/grib_api-1.14.5 python_single_target_python2_7
+=sci-libs/libsigrok-0.4.0 python_single_target_python2_7
+=sci-libs/libsigrok-0.5.1 python_single_target_python2_7
+=sci-libs/libsigrokdecode-0.4.1 python_single_target_python3_5 python_targets_python3_5
+=sci-libs/libsigrokdecode-0.5.2 python_single_target_python3_5 python_targets_python3_5
+=sci-libs/libsigrokdecode-9999 python_single_target_python3_5 python_targets_python3_5
 =sci-libs/linux-gpib-4.1.0 python_single_target_python2_7
 =sci-libs/linux-gpib-4.2.0 python_single_target_python2_7
 =sci-libs/linux-gpib-4.2.0_rc1 python_single_target_python2_7
@@ -9,6 +16,14 @@
 =sci-libs/vtk-8.1.0-r1 python_single_target_python2_7
 =sci-libs/vtk-8.1.0-r2 python_single_target_python2_7
 =sci-libs/vtk-8.1.0-r3 python_single_target_python2_7
+=sci-physics/root-6.12.06-r9 python_single_target_python2_7
+=sci-physics/root-6.14.08-r2 python_single_target_python2_7
+=sci-physics/root-6.16.00 python_single_target_python2_7
+=sci-physics/root-6.16.00-r1 python_single_target_python2_7
+=sci-physics/root-9999 python_single_target_python2_7
+=sci-visualization/paraview-5.5.2 python_single_target_python2_7
+=sci-visualization/paraview-5.6.0 python_single_target_python2_7
+=sci-visualization/paraview-5.6.0-r1 python_single_target_python2_7
 sci-astronomy/astrometry python_single_target_python2_7
 sci-biology/amos python_single_target_python2_7
 sci-biology/bcftools python_single_target_python2_7
@@ -19,9 +34,9 @@ sci-biology/samtools python_single_target_python2_7
 sci-biology/shrimp python_single_target_python2_7
 sci-biology/tophat python_single_target_python2_7
 sci-calculators/gonvert python_single_target_python2_7
+sci-calculators/units python_single_target_python2_7
 sci-chemistry/apbs python_single_target_python2_7
 sci-chemistry/aria python_single_target_python2_7
-sci-chemistry/ball python_single_target_python2_7
 sci-chemistry/ccpn python_single_target_python2_7
 sci-chemistry/chemex python_single_target_python2_7
 sci-chemistry/coot python_single_target_python2_7
@@ -36,24 +51,33 @@ sci-chemistry/vmd python_single_target_python2_7
 sci-electronics/geda-xgsch2pcb python_single_target_python2_7
 sci-electronics/gresistor python_single_target_python2_7
 sci-electronics/kicad python_single_target_python2_7
+sci-electronics/klayout python_single_target_python2_7
+sci-electronics/pulseview python_single_target_python3_5 python_targets_python3_5
+sci-electronics/sigrok-cli python_single_target_python3_5 python_targets_python3_5
 sci-geosciences/grass python_single_target_python2_7
 sci-geosciences/qgis python_single_target_python3_5 python_targets_python3_5
+sci-libs/cantera python_single_target_python3_5 python_targets_python3_5
 sci-libs/cctbx python_single_target_python2_7
 sci-libs/chemkit python_single_target_python2_7
+sci-libs/clblas python_single_target_python2_7
 sci-libs/geos python_single_target_python2_7
 sci-libs/getdata python_single_target_python2_7
+sci-libs/libmed python_single_target_python2_7
 sci-libs/mathgl python_single_target_python2_7
 sci-libs/plplot python_single_target_python2_7
+sci-libs/shogun python_single_target_python2_7
 sci-libs/xdmf2 python_single_target_python2_7
 sci-mathematics/Macaulay2 python_single_target_python2_7
 sci-mathematics/factmsieve python_single_target_python2_7
-sci-mathematics/p9m4 python_single_target_python2_7
+sci-mathematics/relational python_single_target_python3_5 python_targets_python3_5
 sci-mathematics/singular python_single_target_python2_7
+sci-mathematics/z3 python_single_target_python2_7
+sci-misc/mendeleydesktop python_single_target_python2_7
 sci-misc/vitables python_single_target_python2_7
+sci-physics/espresso python_single_target_python2_7
 sci-physics/rivet python_single_target_python2_7
 sci-physics/yoda python_single_target_python2_7
 sci-visualization/gwyddion python_single_target_python2_7
-sci-visualization/paraview python_single_target_python2_7
 sci-visualization/pythonprop python_single_target_python2_7
 sci-visualization/pyxplot python_single_target_python2_7
 sci-visualization/visit python_single_target_python2_7
