@@ -11,7 +11,6 @@
 sci-astronomy/astrometry python_single_target_python2_7
 sci-biology/amos python_single_target_python2_7
 sci-biology/bcftools python_single_target_python2_7
-sci-biology/cufflinks python_single_target_python2_7
 sci-biology/last python_single_target_python2_7
 sci-biology/meme python_single_target_python2_7
 sci-biology/samtools python_single_target_python2_7
