@@ -1,5 +1,8 @@
 =sci-chemistry/pdb-tools-0.2.1-r1 python_single_target_python2_7
 =sci-chemistry/pdb-tools-0.2.1-r2 python_single_target_python2_7
+=sci-electronics/kicad-4.0.7 python_single_target_python2_7
+=sci-electronics/kicad-5.0.1 python_single_target_python2_7
+=sci-electronics/kicad-5.1.0 python_single_target_python2_7
 =sci-libs/grib_api-1.11.0 python_single_target_python2_7
 =sci-libs/linux-gpib-4.1.0 python_single_target_python2_7
 =sci-libs/vtk-6.1.0-r4 python_single_target_python2_7
@@ -32,7 +35,6 @@ sci-chemistry/viewmol python_single_target_python2_7
 sci-chemistry/vmd python_single_target_python2_7
 sci-electronics/geda-xgsch2pcb python_single_target_python2_7
 sci-electronics/gresistor python_single_target_python2_7
-sci-electronics/kicad python_single_target_python2_7
 sci-geosciences/grass python_single_target_python2_7
 sci-libs/cctbx python_single_target_python2_7
 sci-libs/chemkit python_single_target_python2_7
