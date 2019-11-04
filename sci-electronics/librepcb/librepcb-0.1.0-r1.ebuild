@@ -28,6 +28,8 @@ RDEPEND="
 
 DEPEND="${RDEPEND}"
 
+PATCHES=( "${FILESDIR}"/${P}-gcc9_remove_DEBUG_ASSERT_PURE_FUNCTION.patch )
+
 src_configure() {
 	eqmake5 -r PREFIX="/usr"
 }
@@ -35,3 +37,4 @@ src_configure() {
 src_install() {
 	emake INSTALL_ROOT="${D}" install
 }
+
