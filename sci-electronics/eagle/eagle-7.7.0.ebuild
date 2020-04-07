@@ -1,4 +1,3 @@
-# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -7,13 +6,11 @@ inherit eutils
 
 DESCRIPTION="CadSoft EAGLE schematic and printed circuit board (PCB) layout editor"
 HOMEPAGE="http://www.cadsoft.de"
-SRC_URI="
-	x86? ( ftp://ftp.cadsoft.de/${PN}/program/${PV%\.[0-9]}/${PN}-lin32-${PV}.run )
-	amd64? ( ftp://ftp.cadsoft.de/${PN}/program/${PV%\.[0-9]}/${PN}-lin64-${PV}.run )"
+SRC_URI="ftp://ftp.cadsoft.de/${PN}/program/${PV%\.[0-9]}/${PN}-lin64-${PV}.run"
 
 LICENSE="cadsoft-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 -*"
+KEYWORDS="*"
 IUSE="doc"
 
 QA_PREBUILT="opt/eagle/bin/eagle"
@@ -21,7 +18,7 @@ RESTRICT="mirror bindist"
 
 RDEPEND="
 	sys-libs/glibc
-	dev-libs/openssl:0
+	dev-libs/openssl-compat:1.0.0
 	>=sys-libs/zlib-1.2.8-r1
 	>=media-libs/freetype-2.5.0.1
 	>=media-libs/fontconfig-2.10.92
