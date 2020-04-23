@@ -10,5 +10,5 @@ RDEPEND=media-libs/libpng:0= media-libs/tiff:0 virtual/glu virtual/opengl x11-li
 REQUIRED_USE=python_targets_python2_7
 SLOT=0
 SRC_URI=mirror://sourceforge/viewmol/viewmol-2.4.1.src.tgz
-_eclasses_=multilib	1d91b03d42ab6308b5f4f6b598ed110e	prefix	e51c7882b7b721e54e684f7eb143cbfe	python-single-r1	d93acbd6ef50348b41ff4ead9a020a16	python-utils-r1	6eaf2ebfc1433cdf9317ada205aaecf6	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529
+_eclasses_=multilib	1d91b03d42ab6308b5f4f6b598ed110e	prefix	e51c7882b7b721e54e684f7eb143cbfe	python-single-r1	d93acbd6ef50348b41ff4ead9a020a16	python-utils-r1	a1c04fa94c9a4cb3199d61f7f4499228	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529
 _md5_=5c16e9f922010a805910e336d46f96ba
