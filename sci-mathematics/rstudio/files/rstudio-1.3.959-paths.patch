@@ -1,6 +1,6 @@
---- rstudio-1.0.44-orig/CMakeGlobals.txt	2016-10-19 08:32:41.000000000 +1100
-+++ rstudio-1.0.44/CMakeGlobals.txt	2016-12-01 23:33:04.149326324 +1100
-@@ -123,7 +123,7 @@
+--- rstudio-1.3.959-orig/CMakeGlobals.txt	2020-05-19 04:11:10.000000000 +1000
++++ rstudio-1.3.959/CMakeGlobals.txt	2020-05-25 19:30:10.711859714 +1000
+@@ -181,7 +181,7 @@
     else()
       set(RSTUDIO_INSTALL_BIN bin)
     endif()
@@ -9,9 +9,9 @@
  endif()
  
  # if the install prefix is /usr/local then tweak as appropriate
---- rstudio-1.0.44-orig/src/cpp/server/CMakeLists.txt	2016-10-19 08:32:41.000000000 +1100
-+++ rstudio-1.0.44/src/cpp/server/CMakeLists.txt	2016-12-01 23:35:51.634862018 +1100
-@@ -155,7 +155,7 @@
+--- rstudio-1.3.959-orig/src/cpp/server/CMakeLists.txt	2020-05-19 04:11:10.000000000 +1000
++++ rstudio-1.3.959/src/cpp/server/CMakeLists.txt	2020-05-25 19:30:10.711859714 +1000
+@@ -190,7 +190,7 @@
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${RSERVER_INITD_DEBIAN_SCRIPT}.in
                    ${CMAKE_CURRENT_BINARY_DIR}/${RSERVER_INITD_DEBIAN_SCRIPT})
     install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${RSERVER_INITD_DEBIAN_SCRIPT}
@@ -20,7 +20,7 @@
  
     # install configured redhat init.d script
     set(RSERVER_INITD_REDHAT_DIR "extras/init.d/redhat")
-@@ -163,7 +163,7 @@
+@@ -198,7 +198,7 @@
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${RSERVER_INITD_REDHAT_SCRIPT}.in
                    ${CMAKE_CURRENT_BINARY_DIR}/${RSERVER_INITD_REDHAT_SCRIPT})
     install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${RSERVER_INITD_REDHAT_SCRIPT}
@@ -29,7 +29,7 @@
  
     # install configured suse init.d script
     set(RSERVER_INITD_SUSE_DIR "extras/init.d/suse")
-@@ -171,13 +171,13 @@
+@@ -206,13 +206,13 @@
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${RSERVER_INITD_SUSE_SCRIPT}.in
                    ${CMAKE_CURRENT_BINARY_DIR}/${RSERVER_INITD_SUSE_SCRIPT})
     install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${RSERVER_INITD_SUSE_SCRIPT}
@@ -43,21 +43,9 @@
 -           DESTINATION ${RSERVER_PAM_DIR})
 +           DESTINATION ${DISTRO_SHARE}/${RSERVER_PAM_DIR})
  
-    # install configured apparmor profile
-    set(RSERVER_APPARMOR_DIR "extras/apparmor")
-@@ -185,9 +185,9 @@
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${RSERVER_APPARMOR_PROFILE}.in
-                   ${CMAKE_CURRENT_BINARY_DIR}/${RSERVER_APPARMOR_PROFILE})
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${RSERVER_APPARMOR_PROFILE}
--           DESTINATION ${RSERVER_APPARMOR_DIR})
-+           DESTINATION ${DISTRO_SHARE}/${RSERVER_APPARMOR_DIR})
-    install(PROGRAMS ${CMAKE_CURRENT_SOURCE_DIR}/${RSERVER_APPARMOR_DIR}/apparmor-profile-load
--           DESTINATION ${RSERVER_APPARMOR_DIR})
-+           DESTINATION ${DISTRO_SHARE}/${RSERVER_APPARMOR_DIR})
- 
     # install configured upstart profile
     set(RSERVER_UPSTART_DIR "extras/upstart")
-@@ -195,12 +195,12 @@
+@@ -220,12 +220,12 @@
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${RSERVER_UPSTART_PROFILE}.in
                    ${CMAKE_CURRENT_BINARY_DIR}/${RSERVER_UPSTART_PROFILE})
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${RSERVER_UPSTART_PROFILE}
@@ -72,22 +60,22 @@
  
      # install configured systemd profile
     set(RSERVER_SYSTEMD_DIR "extras/systemd")
---- rstudio-1.0.44-orig/src/cpp/server/ServerOptions.cpp	2016-10-19 08:32:41.000000000 +1100
-+++ rstudio-1.0.44/src/cpp/server/ServerOptions.cpp	2016-12-01 23:33:04.151326331 +1100
-@@ -386,8 +386,8 @@
+--- rstudio-1.3.959-orig/src/cpp/server/ServerOptions.cpp	2020-05-19 04:11:10.000000000 +1000
++++ rstudio-1.3.959/src/cpp/server/ServerOptions.cpp	2020-05-25 19:34:19.377675880 +1000
+@@ -442,8 +442,8 @@
  
     // convert relative paths by completing from the system installation
     // path (this allows us to be relocatable)
 -   resolvePath(resourcePath, &wwwLocalPath_);
 -   resolvePath(resourcePath, &wwwSymbolMapsPath_);
-+   resolvePath(resourcePath.childPath(DISTRO_SHARE), &wwwLocalPath_);
-+   resolvePath(resourcePath.childPath(DISTRO_SHARE), &wwwSymbolMapsPath_);
++   resolvePath(resourcePath.completeChildPath(DISTRO_SHARE), &wwwLocalPath_);
++   resolvePath(resourcePath.completeChildPath(DISTRO_SHARE), &wwwSymbolMapsPath_);
     resolvePath(binaryPath, &authPamHelperPath_);
     resolvePath(binaryPath, &rsessionPath_);
     resolvePath(binaryPath, &rldpathPath_);
---- rstudio-1.0.44-orig/src/cpp/session/SessionOptions.cpp	2016-10-19 08:32:41.000000000 +1100
-+++ rstudio-1.0.44/src/cpp/session/SessionOptions.cpp	2016-12-01 23:33:04.151326331 +1100
-@@ -49,7 +49,7 @@
+--- rstudio-1.3.959-orig/src/cpp/session/SessionOptions.cpp	2020-05-19 04:11:10.000000000 +1000
++++ rstudio-1.3.959/src/cpp/session/SessionOptions.cpp	2020-05-25 19:33:58.318606745 +1000
+@@ -52,7 +52,7 @@
  namespace session {  
  
  namespace {
@@ -96,7 +84,7 @@
  const char* const kDefaultPostbackPath = "bin/postback/rpostback";
  const char* const kDefaultRsclangPath = "bin/rsclang";
  
-@@ -481,14 +481,14 @@
+@@ -586,14 +586,14 @@
     }
     
     // convert relative paths by completing from the app resource path
@@ -108,23 +96,23 @@
 -   resolvePath(resourcePath_, &modulesRSourcePath_);
 -   resolvePath(resourcePath_, &sessionLibraryPath_);
 -   resolvePath(resourcePath_, &sessionPackageArchivesPath_);
-+   resolvePath(resourcePath_.childPath(DISTRO_SHARE), &rResourcesPath_);
-+   resolvePath(resourcePath_.childPath(DISTRO_SHARE), &agreementFilePath_);
-+   resolvePath(resourcePath_.childPath(DISTRO_SHARE), &wwwLocalPath_);
-+   resolvePath(resourcePath_.childPath(DISTRO_SHARE), &wwwSymbolMapsPath_);
-+   resolvePath(resourcePath_.childPath(DISTRO_SHARE), &coreRSourcePath_);
-+   resolvePath(resourcePath_.childPath(DISTRO_SHARE), &modulesRSourcePath_);
-+   resolvePath(resourcePath_.childPath(DISTRO_SHARE), &sessionLibraryPath_);
-+   resolvePath(resourcePath_.childPath(DISTRO_SHARE), &sessionPackageArchivesPath_);
++   resolvePath(resourcePath_.completeChildPath(DISTRO_SHARE), &rResourcesPath_);
++   resolvePath(resourcePath_.completeChildPath(DISTRO_SHARE), &agreementFilePath_);
++   resolvePath(resourcePath_.completeChildPath(DISTRO_SHARE), &wwwLocalPath_);
++   resolvePath(resourcePath_.completeChildPath(DISTRO_SHARE), &wwwSymbolMapsPath_);
++   resolvePath(resourcePath_.completeChildPath(DISTRO_SHARE), &coreRSourcePath_);
++   resolvePath(resourcePath_.completeChildPath(DISTRO_SHARE), &modulesRSourcePath_);
++   resolvePath(resourcePath_.completeChildPath(DISTRO_SHARE), &sessionLibraryPath_);
++   resolvePath(resourcePath_.completeChildPath(DISTRO_SHARE), &sessionPackageArchivesPath_);
     resolvePostbackPath(resourcePath_, &rpostbackPath_);
  #ifdef _WIN32
     resolvePath(resourcePath_, &consoleIoPath_);
-@@ -498,7 +498,7 @@
-    resolvePath(resourcePath_, &sumatraPath_);
-    resolvePath(resourcePath_, &winutilsPath_);
- #endif
+@@ -626,7 +626,7 @@
+    }
+    winptyPath_ = pty.completePath(completion).getAbsolutePath();
+ #endif // _WIN32
 -   resolvePath(resourcePath_, &hunspellDictionariesPath_);
-+   resolvePath(resourcePath_.childPath(DISTRO_SHARE), &hunspellDictionariesPath_);
++   resolvePath(resourcePath_.completeChildPath(DISTRO_SHARE), &hunspellDictionariesPath_);
     resolvePath(resourcePath_, &mathjaxPath_);
     resolvePath(resourcePath_, &libclangHeadersPath_);
     resolvePandocPath(resourcePath_, &pandocPath_);

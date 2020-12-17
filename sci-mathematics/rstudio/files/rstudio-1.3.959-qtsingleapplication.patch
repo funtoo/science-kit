@@ -1,20 +1,20 @@
---- rstudio-0.99.473-orig/src/cpp/desktop/CMakeLists.txt	2015-08-12 09:58:43.000000000 +1000
-+++ rstudio-0.99.473/src/cpp/desktop/CMakeLists.txt	2015-08-30 23:16:11.396175587 +1000
-@@ -93,7 +93,12 @@
-    find_package(Qt5DBus REQUIRED)
- endif()
+--- rstudio-1.3.959-orig/src/cpp/desktop/CMakeLists.txt	2020-05-19 04:11:10.000000000 +1000
++++ rstudio-1.3.959/src/cpp/desktop/CMakeLists.txt	2020-05-24 17:15:47.039422975 +1000
+@@ -138,6 +138,13 @@
+ get_filename_component(QT_LIBRARY_PATH "${QT_BIN_DIR}/../lib"     ABSOLUTE CACHE)
+ get_filename_component(QT_INSTALL_PATH "${QT_BIN_DIR}/.."         ABSOLUTE CACHE)
  
--
 +find_path(QTSINGLEAPPLIB_INCLUDE_DIR NAMES QtSingleApplication
 +  PATH_SUFFIXES QtSolutions
 +  PATHS
 +  /usr/include/qt5)
 +find_library(QTSINGLEAPPLIB Qt5Solutions_SingleApplication-2.6
 +  libQt5Solutions_SingleApplication-2.6)
- 
++
  # disable clang warnings for qt sources
  if(APPLE)
-@@ -113,7 +118,6 @@
+    add_definitions(-Wno-unused-private-field
+@@ -156,7 +163,6 @@
  
  set(MOC_DESKTOP_HEADER_FILES ${DESKTOP_HEADER_FILES})
  list(REMOVE_ITEM MOC_DESKTOP_HEADER_FILES
@@ -22,33 +22,33 @@
    ${CMAKE_CURRENT_SOURCE_DIR}/DesktopDetectRHome.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/DesktopOptions.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/DesktopRVersion.hpp
-@@ -175,8 +179,6 @@
-   DesktopSubMenu.cpp
+@@ -225,8 +231,6 @@
    DesktopSynctex.cpp
-   DesktopNetworkAccessManager.cpp
+   DesktopJobLauncherOverlay.cpp
+   RemoteDesktopSessionLauncherOverlay.cpp
 -  3rdparty/qtsingleapplication/qtsingleapplication.cpp
 -  3rdparty/qtsingleapplication/qtlocalpeer.cpp
  )
  
  if(WIN32)
-@@ -219,6 +221,7 @@
-   ${CORE_SOURCE_DIR}/include
+@@ -283,6 +287,7 @@
+   ${OPENSSL_INCLUDE_DIR}
    ${CMAKE_CURRENT_SOURCE_DIR}
    ${CMAKE_CURRENT_BINARY_DIR}
 +  ${QTSINGLEAPPLIB_INCLUDE_DIR}
+   ${EXT_SOURCE_DIR}
+   ${SESSION_SOURCE_DIR}/include
    ${TESTS_INCLUDE_DIR}
- )
- 
-@@ -332,6 +335,7 @@
- 
+@@ -386,6 +391,7 @@
     # set link dependencies
     target_link_libraries(rstudio
+       ${RSTUDIO_QTMODULES}
 +      ${QTSINGLEAPPLIB}
        ${QT_LIBRARIES}
+       ${Boost_LIBRARIES}
        rstudio-core
-       ${LINK_FLAGS}
---- rstudio-0.99.473-orig/src/cpp/desktop/DesktopPosixApplication.hpp	2015-08-12 09:58:43.000000000 +1000
-+++ rstudio-0.99.473/src/cpp/desktop/DesktopPosixApplication.hpp	2015-08-30 21:41:21.616934106 +1000
+--- rstudio-1.3.959-orig/src/cpp/desktop/DesktopPosixApplication.hpp	2020-05-19 04:11:10.000000000 +1000
++++ rstudio-1.3.959/src/cpp/desktop/DesktopPosixApplication.hpp	2020-05-24 17:13:22.050016953 +1000
 @@ -16,7 +16,7 @@
  #ifndef DESKTOP_POSIX_APPLICATION_HPP
  #define DESKTOP_POSIX_APPLICATION_HPP
@@ -56,5 +56,5 @@
 -#include "3rdparty/qtsingleapplication/QtSingleApplication"
 +#include <QtSingleApplication>
  
- namespace rstudio {
- namespace desktop {
+ #include "DesktopApplicationLaunch.hpp"
+ 
