@@ -5,8 +5,6 @@
 =sci-electronics/kicad-4.0.7 python_single_target_python2_7
 =sci-electronics/kicad-5.0.1 python_single_target_python2_7
 =sci-electronics/kicad-5.1.0 python_single_target_python2_7
-=sci-geosciences/gpsd-3.17-r3 python_single_target_python2_7
-=sci-geosciences/gpsd-9999 python_single_target_python2_7
 =sci-geosciences/seawater-2.0.1 python_single_target_python2_7
 =sci-libs/grib_api-1.11.0 python_single_target_python2_7
 =sci-libs/minfx-1.0.10 python_single_target_python2_7
