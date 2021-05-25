@@ -6,7 +6,7 @@ PYTHON_COMPAT=( python3+ )
 PYTHON_REQ_USE="sqlite"
 
 SRC_URI="https://qgis.org/downloads/qgis-3.18.3.tar.bz2"
-inherit cmake desktop python-single-r1 qmake-utils xdg
+inherit cmake eutils desktop python-single-r1 qmake-utils xdg
 
 DESCRIPTION="User friendly Geographic Information System"
 HOMEPAGE="https://www.qgis.org/en/site/"
@@ -103,6 +103,7 @@ pkg_setup() {
 }
 
 src_prepare() {
+	eapply "${FILESDIR}/qgis-3.18.0-alternate-proj-header.patch"
 	cmake_src_prepare
 	sed -e "/QtWebKit.*.py/d" \
 		-i python/PyQt/CMakeLists.txt || die
