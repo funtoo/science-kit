@@ -91,7 +91,6 @@ sci-geosciences/mapserver python_single_target_python2_7
 sci-geosciences/tappy python_single_target_python2_7
 sci-geosciences/tilecache python_single_target_python2_7
 sci-libs/ccpn-data python_single_target_python2_7
-sci-libs/geos python_single_target_python2_7
 sci-libs/getdata python_single_target_python2_7
 sci-libs/magma python_single_target_python2_7
 sci-libs/mmtk python_single_target_python2_7
