@@ -12,6 +12,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86"
 IUSE="examples"
 
+PATCHES=( "${FILESDIR}/iverilogy-10.2-build-fixup.patch")
+
 RDEPEND="
 	app-arch/bzip2
 	sys-libs/readline:0=
@@ -21,7 +23,8 @@ DEPEND="${RDEPEND}"
 S="${WORKDIR}/${P#i}"
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install
+	local MAKEOPTS="-j1"
+	emake DESTDIR="${D}" install
 	einstalldocs
 	dodoc *.txt
 

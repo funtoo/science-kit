@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile configure install postinst prepare
-DEPEND=sys-libs/ncurses:0= gtk? ( x11-libs/gtk+:2 ) xforms? ( x11-libs/xforms ) xplanet? ( x11-misc/xplanet[truetype] ) >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DEPEND=sys-libs/ncurses:0= gtk? ( x11-libs/gtk+:2 ) xforms? ( x11-libs/xforms ) xplanet? ( x11-misc/xplanet[truetype] ) >=app-portage/elt-patches-20170815 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
 DESCRIPTION=Satellite tracking and orbital prediction
 EAPI=6
-HOMEPAGE=http://www.qsl.net/kd2bd/predict.html
+HOMEPAGE=https://www.qsl.net/kd2bd/predict.html
 IUSE=doc gtk nls xforms xplanet
 KEYWORDS=amd64 ~ppc x86 ~amd64-linux ~x86-linux
 LICENSE=GPL-2
 RDEPEND=sys-libs/ncurses:0= gtk? ( x11-libs/gtk+:2 ) xforms? ( x11-libs/xforms ) xplanet? ( x11-misc/xplanet[truetype] )
 SLOT=0
 SRC_URI=mirror://debian/pool/main/p/predict/predict_2.2.3.orig.tar.gz mirror://debian/pool/main/p/predict/predict_2.2.3-3.1.diff.gz
-_eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
-_md5_=941459ae5670aab6b0b6406c27f5913f
+_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
+_md5_=0a502f232f50af6168d75348f704c638

@@ -1,14 +1,15 @@
 DEFINED_PHASES=compile configure install prepare setup test unpack
-DEPEND=test? ( ruby_targets_ruby23? ( dev-ruby/libxml[ruby_targets_ruby23] ) ruby_targets_ruby24? ( dev-ruby/libxml[ruby_targets_ruby24] ) ) >=app-portage/elt-patches-20170317 ruby_targets_ruby23? ( dev-lang/ruby:2.3 ) ruby_targets_ruby24? ( dev-lang/ruby:2.4 ) ruby_targets_ruby23? ( doc? ( dev-ruby/rake[ruby_targets_ruby23] ) ) ruby_targets_ruby24? ( doc? ( dev-ruby/rake[ruby_targets_ruby24] ) ) ruby_targets_ruby23? ( test? ( dev-ruby/rake[ruby_targets_ruby23] ) ) ruby_targets_ruby24? ( test? ( dev-ruby/rake[ruby_targets_ruby24] ) ) ruby_targets_ruby23? ( virtual/rubygems[ruby_targets_ruby23] ) ruby_targets_ruby24? ( virtual/rubygems[ruby_targets_ruby24] ) test? ( ruby_targets_ruby23? ( virtual/rubygems[ruby_targets_ruby23] ) ruby_targets_ruby24? ( virtual/rubygems[ruby_targets_ruby24] ) )
+DEPEND=test? ( ruby_targets_ruby26? ( dev-ruby/libxml[ruby_targets_ruby26(-)] ) ) ruby_targets_ruby26? ( dev-lang/ruby:2.6 ) ruby_targets_ruby26? ( doc? ( dev-ruby/rake[ruby_targets_ruby26(-)] ) ) ruby_targets_ruby26? ( test? ( dev-ruby/rake[ruby_targets_ruby26(-)] ) ) ruby_targets_ruby26? ( virtual/rubygems[ruby_targets_ruby26(-)] !!dev-ruby/psych[ruby_targets_ruby26(-)] ) test? ( ruby_targets_ruby26? ( virtual/rubygems[ruby_targets_ruby26(-)] ) )
 DESCRIPTION=An integrated environment for bioinformatics using the Ruby language
 EAPI=6
 HOMEPAGE=http://bioruby.org/
-IUSE=test elibc_FreeBSD ruby_targets_ruby23 ruby_targets_ruby24 doc test test
+IUSE=test ruby_targets_ruby23 ruby_targets_ruby24 doc test test
 KEYWORDS=amd64 ~ppc x86
 LICENSE=Ruby
-RDEPEND=ruby_targets_ruby23? ( dev-ruby/libxml[ruby_targets_ruby23] ) ruby_targets_ruby24? ( dev-ruby/libxml[ruby_targets_ruby24] ) ruby_targets_ruby23? ( dev-lang/ruby:2.3 ) ruby_targets_ruby24? ( dev-lang/ruby:2.4 ) ruby_targets_ruby23? ( virtual/rubygems[ruby_targets_ruby23] ) ruby_targets_ruby24? ( virtual/rubygems[ruby_targets_ruby24] )
-REQUIRED_USE=|| ( ruby_targets_ruby23 ruby_targets_ruby24 )
+RDEPEND=ruby_targets_ruby26? ( dev-ruby/libxml[ruby_targets_ruby26(-)] ) ruby_targets_ruby26? ( dev-lang/ruby:2.6 ) ruby_targets_ruby26? ( virtual/rubygems[ruby_targets_ruby26(-)] )
+REQUIRED_USE=|| ( ruby_targets_ruby26 )
+RESTRICT=!test? ( test ) !test? ( test ) !test? ( test )
 SLOT=0
-SRC_URI=mirror://rubygems/bio-1.5.1.gem
-_eclasses_=epatch	8233751dc5105a6ae8fcd86ce2bb0247	epunt-cxx	e99babeaa7d98c1caaa6a61a79902210	estack	5ac2a138d0b33354b764d84f9e835db8	eutils	1fb064d93b3ffd05c2fb19ef430a4aa1	java-utils-2	0ee72667014428e01a01df2345244cf3	ltprune	2770eed66a9b8ef944714cd0e968182e	multilib	97f470f374f2e94ccab04a2fb21d811e	ruby-fakegem	cac2e21b84be90235a90a9b36087c8f4	ruby-ng	db566842d642e5c611d8a2284ac465b7	ruby-utils	e5942a80e3c3b936c6b84d6dc4af9f9c	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	versionator	c80ccf29e90adea7c5cae94b42eb76d0
+SRC_URI=https://rubygems.org/gems/bio-1.5.1.gem
+_eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	multilib	d410501a125f99ffb560b0c523cd3d1e	ruby-fakegem	6ee14a23a169409059ed36d4dddc3197	ruby-ng	40cdc81a417bc6d63c6a19ff8029bdc2	ruby-utils	ec0e33f7343a706b3b8fc14cb63b25e8	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
 _md5_=2aecf9a558ab9d1f3e8760530ccd8e56

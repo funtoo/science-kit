@@ -1,12 +1,12 @@
 DEFINED_PHASES=configure postinst postrm preinst prepare
-DEPEND=gnome-base/gnome-mime-data x11-misc/shared-mime-info dev-util/intltool dev-util/desktop-file-utils dev-libs/libxslt || ( gnome-base/librsvg media-gfx/imagemagick[xml,png,svg] ) media-gfx/imagemagick[png] virtual/pkgconfig >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 dev-util/desktop-file-utils x11-misc/shared-mime-info
+DEPEND=gnome-base/gnome-mime-data x11-misc/shared-mime-info dev-util/intltool dev-util/desktop-file-utils dev-libs/libxslt || ( gnome-base/librsvg media-gfx/imagemagick[xml,png,svg] ) media-gfx/imagemagick[png] virtual/pkgconfig >=app-portage/elt-patches-20170815 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 dev-util/desktop-file-utils x11-misc/shared-mime-info
 DESCRIPTION=A collection of data files to add support for chemical MIME types
 EAPI=6
 HOMEPAGE=http://chemical-mime.sourceforge.net/
-KEYWORDS=amd64 arm x86
+KEYWORDS=amd64 arm ~arm64 x86
 LICENSE=LGPL-2.1
 RDEPEND=gnome-base/gnome-mime-data x11-misc/shared-mime-info
 SLOT=0
 SRC_URI=mirror://sourceforge/chemical-mime/chemical-mime-data-0.1.94.tar.bz2
-_eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	xdg	b9b6b9db86c43f6332c29a940276cc14	xdg-utils	9ef13b5c5bcf0c50d6aa53692d8e441c
-_md5_=1487b2e6f40664c22cb2b54cc15c7fcc
+_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=f0afdb2c06d7be3b1cd99bf2ced48904

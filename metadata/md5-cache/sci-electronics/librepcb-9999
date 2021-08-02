@@ -1,10 +1,11 @@
 DEFINED_PHASES=configure install unpack
-DEPEND=dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtnetwork:5[ssl] dev-qt/qtopengl:5 dev-qt/qtprintsupport:5 dev-qt/qtsql:5 dev-qt/qtwidgets:5 dev-qt/qtwebkit:5 dev-qt/qtxml:5 sys-libs/zlib >=dev-vcs/git-1.8.2.1
+DEPEND=dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtnetwork:5[ssl] dev-qt/qtopengl:5 dev-qt/qtprintsupport:5 dev-qt/qtsql:5 dev-qt/qtwidgets:5 dev-qt/qtwebkit:5 dev-qt/qtxml:5 sys-libs/zlib >=dev-vcs/git-1.8.2.1[curl]
 DESCRIPTION=Free EDA software to develop printed circuit boards
 EAPI=6
-HOMEPAGE=http://librepcb.org/
+HOMEPAGE=https://librepcb.org/
 LICENSE=GPL-3+
+PROPERTIES=live
 RDEPEND=dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtnetwork:5[ssl] dev-qt/qtopengl:5 dev-qt/qtprintsupport:5 dev-qt/qtsql:5 dev-qt/qtwidgets:5 dev-qt/qtwebkit:5 dev-qt/qtxml:5 sys-libs/zlib
 SLOT=0
-_eclasses_=estack	5ac2a138d0b33354b764d84f9e835db8	git-r3	18aed4252aebae08e3db185e684ee37c	multilib	97f470f374f2e94ccab04a2fb21d811e	qmake-utils	990448b067cb3cfe1443bc25fb57239c	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
-_md5_=8b46b88575ffd88dd6018474efc45029
+_eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	git-r3	7dcb8a92f5a091f13e82494fa317ca4b	multilib	d410501a125f99ffb560b0c523cd3d1e	qmake-utils	bdf97e69a34b864d6d545f4ec3143ff7	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
+_md5_=97838f38b403319a674266f4420c09aa

@@ -1,13 +1,13 @@
 DEFINED_PHASES=configure install prepare
-DEPEND=>=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 >=app-portage/elt-patches-20170317 dev-libs/expat dev-libs/libpcre:3 sci-libs/plplot:= sys-libs/zlib mysql? ( virtual/mysql ) pdf? ( media-libs/libharu:= ) png? ( media-libs/gd:2=[png] ) postgres? ( dev-db/postgresql:= ) X? ( x11-libs/libXt ) >=sci-biology/emboss-6.6.0-r1[mysql=,pdf=,png=,postgres=,static-libs=,X=]
+DEPEND=>=app-portage/elt-patches-20170815 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 dev-libs/expat dev-libs/libpcre:3 sci-libs/plplot:= sys-libs/zlib mysql? ( dev-db/mysql-connector-c:0= ) pdf? ( media-libs/libharu:= ) png? ( media-libs/gd:2=[png] ) postgres? ( dev-db/postgresql:= ) X? ( x11-libs/libXt ) >=sci-biology/emboss-6.6.0-r1[mysql=,pdf=,png=,postgres=,static-libs=,X=]
 DESCRIPTION=EMBOSS integrated version of Applications from the CBS group
 EAPI=6
 HOMEPAGE=http://emboss.sourceforge.net/
 IUSE=mysql pdf png postgres static-libs X
 KEYWORDS=~amd64 ~x86 ~amd64-linux ~x86-linux
 LICENSE=LGPL-2 GPL-2
-RDEPEND=dev-libs/expat dev-libs/libpcre:3 sci-libs/plplot:= sys-libs/zlib mysql? ( virtual/mysql ) pdf? ( media-libs/libharu:= ) png? ( media-libs/gd:2=[png] ) postgres? ( dev-db/postgresql:= ) X? ( x11-libs/libXt ) >=sci-biology/emboss-6.6.0-r1[mysql=,pdf=,png=,postgres=,static-libs=,X=]
+RDEPEND=dev-libs/expat dev-libs/libpcre:3 sci-libs/plplot:= sys-libs/zlib mysql? ( dev-db/mysql-connector-c:0= ) pdf? ( media-libs/libharu:= ) png? ( media-libs/gd:2=[png] ) postgres? ( dev-db/postgresql:= ) X? ( x11-libs/libXt ) >=sci-biology/emboss-6.6.0-r1[mysql=,pdf=,png=,postgres=,static-libs=,X=]
 SLOT=0
 SRC_URI=ftp://emboss.open-bio.org/pub/EMBOSS/CBSTOOLS-1.0.0.660.tar.gz -> embassy-cbstools-1.0.0.660.tar.gz
-_eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	emboss-r2	b90872716a4f1de7d47000c2f3598556	epatch	8233751dc5105a6ae8fcd86ce2bb0247	epunt-cxx	e99babeaa7d98c1caaa6a61a79902210	estack	5ac2a138d0b33354b764d84f9e835db8	eutils	1fb064d93b3ffd05c2fb19ef430a4aa1	flag-o-matic	02908f00f002f0f07c5b74783d778325	libtool	e32ea84bf82cf8987965b574672dba93	ltprune	2770eed66a9b8ef944714cd0e968182e	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
+_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	desktop	b1d22ac8bdd4679ab79c71aca235009d	emboss-r2	4cc77fdd8beda583053fe8bf1a2cc8a5	epatch	a1bf4756dba418a7238f3be0cb010c54	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	a09389deba2c0a7108b581e02c7cecbf	libtool	f143db5a74ccd9ca28c1234deffede96	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	d410501a125f99ffb560b0c523cd3d1e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf
 _md5_=4166ba28131fdf70907b31300aa4c08b

@@ -1,15 +1,15 @@
 DEFINED_PHASES=compile configure install
-DEPEND=>=dev-lang/ocaml-4.02.3[ocamlopt?] dev-ml/menhir coq? ( sci-mathematics/coq ) doc? ( dev-tex/rubber ) gtk? ( dev-ml/lablgtk[sourceview] ) emacs? ( app-editors/emacs:* ) html? ( dev-tex/hevea ) hypothesis-selection? ( dev-ml/ocamlgraph ) zarith? ( dev-ml/zarith ) zip? ( >=dev-ml/camlzip-1.07 ) >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DEPEND=>=dev-lang/ocaml-4.02.3[ocamlopt?] dev-ml/menhir coq? ( sci-mathematics/coq ) doc? ( dev-tex/rubber ) gtk? ( dev-ml/lablgtk[sourceview] ) emacs? ( virtual/emacs ) html? ( dev-tex/hevea ) hypothesis-selection? ( dev-ml/ocamlgraph ) zarith? ( dev-ml/zarith ) zip? ( >=dev-ml/camlzip-1.07 ) >=app-portage/elt-patches-20170815 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
 DESCRIPTION=Platform for deductive program verification
 EAPI=6
 HOMEPAGE=http://why3.lri.fr/
 IUSE=coq doc emacs gtk html hypothesis-selection +ocamlopt profiling zarith zip
 KEYWORDS=amd64
 LICENSE=GPL-3
-RDEPEND=>=dev-lang/ocaml-4.02.3[ocamlopt?] dev-ml/menhir coq? ( sci-mathematics/coq ) doc? ( dev-tex/rubber ) gtk? ( dev-ml/lablgtk[sourceview] ) emacs? ( app-editors/emacs:* ) html? ( dev-tex/hevea ) hypothesis-selection? ( dev-ml/ocamlgraph ) zarith? ( dev-ml/zarith ) zip? ( >=dev-ml/camlzip-1.07 )
+RDEPEND=>=dev-lang/ocaml-4.02.3[ocamlopt?] dev-ml/menhir coq? ( sci-mathematics/coq ) doc? ( dev-tex/rubber ) gtk? ( dev-ml/lablgtk[sourceview] ) emacs? ( virtual/emacs ) html? ( dev-tex/hevea ) hypothesis-selection? ( dev-ml/ocamlgraph ) zarith? ( dev-ml/zarith ) zip? ( >=dev-ml/camlzip-1.07 )
 REQUIRED_USE=html? ( doc )
 RESTRICT=strip
 SLOT=0
 SRC_URI=http://mirrors.cdn.adacore.com/art/5b0819dec7a447df26c27a43 -> why3-for-spark-gpl-2018-src.tar.gz
-_eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
-_md5_=17836cc054e1fe584891d4cb5235f6e4
+_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
+_md5_=7b6b7101e8cccc2a4cc91bf6abaec684
