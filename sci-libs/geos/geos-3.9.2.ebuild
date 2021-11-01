@@ -5,7 +5,7 @@ EAPI=6
 
 DESCRIPTION="Geometry engine library for Geographic Information Systems"
 HOMEPAGE="http://trac.osgeo.org/geos/"
-SRC_URI=https://download.osgeo.org/geos//geos-3.9.1.tar.bz2
+SRC_URI=https://download.osgeo.org/geos//geos-3.9.2.tar.bz2
 
 LICENSE="LGPL-2.1"
 SLOT="0"
