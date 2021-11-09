@@ -9,7 +9,7 @@ inherit autotools bash-completion-r1 perl-module distutils-r1 flag-o-matic java-
 
 DESCRIPTION="Translator library for raster geospatial data formats (includes OGR support)"
 HOMEPAGE="https://gdal.org/"
-SRC_URI="https://github.com/OSGeo/gdal/releases/download/v3.3.3/gdal-3.3.3.tar.gz"
+SRC_URI="https://github.com/OSGeo/gdal/releases/download/v3.4.0/gdal-3.4.0.tar.gz"
 
 SLOT="0/3.2"
 LICENSE="BSD Info-ZIP MIT"
