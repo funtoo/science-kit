@@ -5,7 +5,7 @@ EAPI=7
 DESCRIPTION="PROJ coordinate transformation software"
 HOMEPAGE="https://proj4.org/"
 SRC_URI="
-	https://github.com/OSGeo/PROJ/releases/download/8.2.0/proj-8.2.0.tar.gz
+	https://github.com/OSGeo/PROJ/releases/download/8.2.1/proj-8.2.1.tar.gz
 	https://download.osgeo.org/proj/proj-datumgrid-latest.tar.gz
 	europe? ( https://download.osgeo.org/proj/proj-datumgrid-europe-latest.tar.gz )
 "
