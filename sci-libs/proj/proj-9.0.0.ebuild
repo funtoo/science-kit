@@ -2,48 +2,61 @@
 
 EAPI=7
 
-DESCRIPTION="PROJ coordinate transformation software"
-HOMEPAGE="https://proj4.org/"
-SRC_URI="
-	https://github.com/OSGeo/PROJ/releases/download/9.0.0/proj-9.0.0.tar.gz
-	https://download.osgeo.org/proj/proj-datumgrid-latest.tar.gz
-	europe? ( https://download.osgeo.org/proj/proj-datumgrid-europe-latest.tar.gz )
-"
+inherit cmake
+
+DESCRIPTION="PROJ - Cartographic Projections and Coordinate Transformations Library proj"
+HOMEPAGE="https://proj.org/"
+SRC_URI="https://github.com/OSGeo/proj/tarball/65c84b6e2a40ec8e6b8d1de86bcd556d01ef2aeb -> proj-9.0.0-65c84b6.tar.gz"
 
 LICENSE="MIT"
-SLOT="0/19"
+# Changes on every major release
+SLOT="0/$(ver_cut 1)"
 KEYWORDS="*"
-IUSE="curl europe static-libs test +tiff"
-REQUIRED_USE="test? ( !europe )"
+IUSE="curl test +tiff"
 
 RESTRICT="!test? ( test )"
 
-RDEPEND="
-	dev-db/sqlite:3
+RDEPEND="dev-db/sqlite:3
 	curl? ( net-misc/curl )
-	tiff? ( media-libs/tiff )
-"
-DEPEND="${RDEPEND}"
+	tiff? ( media-libs/tiff )"
+DEPEND="${RDEPEND}
+	test? ( dev-cpp/gtest )"
 
-src_unpack() {
-	unpack ${P}.tar.gz
-	cd "${S}"/data || die
-	mv README README.DATA || die
-	unpack proj-datumgrid-latest.tar.gz
-	use europe && unpack proj-datumgrid-europe-latest.tar.gz
+post_src_unpack() {
+	if [ ! -d "${S}" ]; then
+		mv OSGeo-proj* "${S}" || die
+	fi
 }
 
 src_configure() {
-	econf \
-		$(use_with curl) \
-		$(use_enable static-libs static) \
-		$(use_enable tiff)
+	local mycmakeargs=(
+		-DDOCDIR="${EPREFIX}"/usr/share/${PF}
+		-DBUILD_TESTING=$(usex test)
+		-DENABLE_CURL=$(usex curl)
+		-DBUILD_PROJSYNC=$(usex curl)
+		-DENABLE_TIFF=$(usex tiff)
+	)
+
+	use test && mycmakeargs+=( -DUSE_EXTERNAL_GTEST=ON )
+
+	cmake_src_configure
+}
+
+src_test() {
+	local myctestargs=(
+		# proj_test_cpp_api: https://lists.osgeo.org/pipermail/proj/2019-September/008836.html
+		# testprojinfo: Also related to map data?
+		-E "(proj_test_cpp_api|testprojinfo)"
+	)
+
+	cmake_src_test
 }
 
 src_install() {
-	default
+	cmake_src_install
+
 	cd data || die
-	dodoc README.{DATA,DATUMGRID}
-	use europe && dodoc README.EUROPE
-	find "${D}" -name '*.la' -type f -delete || die
+	dodoc README.DATA
+
+	find "${ED}" -name '*.la' -type f -delete || die
 }
