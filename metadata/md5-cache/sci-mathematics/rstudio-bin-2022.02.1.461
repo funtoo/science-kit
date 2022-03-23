@@ -8,6 +8,6 @@ LICENSE=AGPL-3
 RDEPEND=app-text/pandoc dev-java/aopalliance:1 dev-java/gin:2.1 dev-java/javax-inject =dev-java/validation-api-1.0*:1.0[source] dev-haskell/pandoc-citeproc dev-lang/R[cairo] dev-libs/boost:= dev-cpp/yaml-cpp >=dev-libs/mathjax-2.7.4 sys-apps/util-linux sys-devel/clang:* sys-libs/zlib dev-db/soci[postgres,sqlite,c++11] >=virtual/jre-1.8:= x11-libs/pango || ( dev-libs/openssl:0= dev-libs/libressl:0= )
 RESTRICT=mirror strip preserve-libs
 SLOT=0
-SRC_URI=https://download1.rstudio.org/desktop/bionic/amd64/rstudio-2022.02.0-443-amd64-debian.tar.gz -> rstudio-2022.02.0.443_x86_64.pkg.tar.gz
+SRC_URI=https://download1.rstudio.org/desktop/bionic/amd64/rstudio-2022.02.1-461-amd64-debian.tar.gz -> rstudio-2022.02.1.461_x86_64.pkg.tar.gz
 _eclasses_=unpacker	3cd8bad0d31e525cd26be1bfa4e61631	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
-_md5_=4d5009b62a9309563b35d89242a79be2
+_md5_=a4f0c6999545c7b1c807e90b7a172404
