@@ -4,9 +4,9 @@ EAPI=7
 
 inherit cmake
 
-DESCRIPTION="PROJ - Cartographic Projections and Coordinate Transformations Library proj"
+DESCRIPTION="PROJ - Cartographic Projections and Coordinate Transformations Library PROJ"
 HOMEPAGE="https://proj.org/"
-SRC_URI="https://github.com/OSGeo/proj/tarball/65c84b6e2a40ec8e6b8d1de86bcd556d01ef2aeb -> proj-9.0.0-65c84b6.tar.gz"
+SRC_URI="https://github.com/OSGeo/PROJ/tarball/65c84b6e2a40ec8e6b8d1de86bcd556d01ef2aeb -> PROJ-9.0.0-65c84b6.tar.gz"
 
 LICENSE="MIT"
 # Changes on every major release
@@ -24,7 +24,7 @@ DEPEND="${RDEPEND}
 
 post_src_unpack() {
 	if [ ! -d "${S}" ]; then
-		mv OSGeo-proj* "${S}" || die
+		mv OSGeo-PROJ* "${S}" || die
 	fi
 }
 
@@ -56,7 +56,7 @@ src_install() {
 	cmake_src_install
 
 	cd data || die
-	dodoc README.DATA
+	dodoc README
 
 	find "${ED}" -name '*.la' -type f -delete || die
 }
