@@ -6,8 +6,8 @@ IUSE=doc
 KEYWORDS=*
 LICENSE=cadsoft-2
 RDEPEND=sys-libs/glibc dev-libs/openssl-compat:1.0.0 >=sys-libs/zlib-1.2.8-r1 >=media-libs/freetype-2.5.0.1 >=media-libs/fontconfig-2.10.92 x11-libs/libXext x11-libs/libX11 >=x11-libs/libXrender-0.9.8 >=x11-libs/libXrandr-1.4.2 >=x11-libs/libXcursor-1.1.14 >=x11-libs/libXi-1.7.2 net-print/cups x11-libs/libxcb
-RESTRICT=mirror bindist
+RESTRICT=bindist
 SLOT=0
 SRC_URI=ftp://ftp.cadsoft.de/eagle/program/7.7/eagle-lin64-7.7.0.run
 _eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	epatch	a1bf4756dba418a7238f3be0cb010c54	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	d410501a125f99ffb560b0c523cd3d1e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf
-_md5_=3fcd55ed0b5966524a3ef442b9ad2bb5
+_md5_=79d1e34d87c1c804cf57b4e0579097db
