@@ -11,7 +11,7 @@ SRC_URI="https://dl.google.com/dl/linux/direct/google-earth-pro-stable_7.3.4_amd
 LICENSE="googleearth GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
-RESTRICT="mirror splitdebug"
+RESTRICT="splitdebug"
 IUSE="+bundled-libs"
 
 QA_PREBUILT="*"
