@@ -2,12 +2,12 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( {{python_compat}} )
+PYTHON_COMPAT=( python3+ )
 inherit cmake java-pkg-opt-2 python-single-r1
 
 DESCRIPTION="Translator library for raster geospatial data formats (includes OGR support)"
 HOMEPAGE="https://gdal.org/"
-SRC_URI="{{artifacts[0].src_uri}}"
+SRC_URI="https://github.com/OSGeo/gdal/tarball/9df25fe720fe9af25aeb63523460001ef049e059 -> gdal-3.5.1-9df25fe.tar.gz"
 
 LICENSE="BSD Info-ZIP MIT"
 SLOT="0/31" # subslot is libgdal.so.<SONAME>
@@ -85,7 +85,7 @@ pkg_setup() {
 
 post_src_unpack() {
 	if [ ! -d "${S}" ]; then
-		mv "${WORKDIR}"/{{github_user}}-{{github_repo}}* "${S}" || die
+		mv "${WORKDIR}"/OSGeo-gdal* "${S}" || die
 	fi
 }
 
