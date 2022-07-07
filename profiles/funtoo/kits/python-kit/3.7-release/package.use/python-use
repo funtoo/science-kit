@@ -94,7 +94,6 @@ sci-libs/ccpn-data python_single_target_python2_7
 sci-libs/getdata python_single_target_python2_7
 sci-libs/magma python_single_target_python2_7
 sci-libs/mmtk python_single_target_python2_7
-sci-libs/nlopt python_single_target_python2_7
 sci-libs/plplot python_single_target_python2_7
 sci-libs/xdmf2 python_single_target_python2_7
 sci-mathematics/Macaulay2 python_single_target_python2_7
