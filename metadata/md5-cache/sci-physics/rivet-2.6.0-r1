@@ -10,5 +10,5 @@ RDEPEND=dev-libs/boost:= sci-libs/gsl:= sci-physics/fastjet[plugins] sci-physics
 REQUIRED_USE=python? ( ^^ ( python_single_target_python2_7 ) )
 SLOT=0
 SRC_URI=http://www.hepforge.org/archive/rivet/Rivet-2.6.0.tar.bz2 doc? ( https://rivet.hepforge.org/trac/export/8a05acecd26c18f368f4b748da2d5aa2db46be6c/doc/refs.bib )
-_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	bash-completion-r1	47a7402d95930413ce25ba8d857339bb	eapi8-dosym	cd7d420bb5be5ee079f27239ce76b8f5	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	python-single-r1	ce99dfba1cad0514af51a32b2b6964af	python-utils-r1	62a980ca9c5f570cad01b65ab90228ca	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
+_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	bash-completion-r1	47a7402d95930413ce25ba8d857339bb	eapi8-dosym	cd7d420bb5be5ee079f27239ce76b8f5	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	python-single-r1	ce99dfba1cad0514af51a32b2b6964af	python-utils-r1	32393cac272daca4c136cc44e6005b67	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
 _md5_=28e28f5807559f9ca9f679438a616bfc
