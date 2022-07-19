@@ -6,7 +6,7 @@ inherit eapi7-ver desktop eutils gnome2-utils pax-utils unpacker xdg-utils
 
 DESCRIPTION="A 3D interface to the planet"
 HOMEPAGE="https://www.google.com/earth/desktop/"
-SRC_URI="https://dl.google.com/dl/linux/direct/google-earth-pro-stable_7.3.4_amd64.deb"
+SRC_URI="https://dl.google.com/dl/linux/direct/google-earth-pro-stable_7.3.4_amd64.deb -> google-earth-pro-stable_7.3.4_amd64.deb"
 
 LICENSE="googleearth GPL-2"
 SLOT="0"
