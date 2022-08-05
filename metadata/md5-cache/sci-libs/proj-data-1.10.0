@@ -1,0 +1,14 @@
+BDEPEND=dev-util/ninja dev-util/cmake
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=sci-libs/proj tiff? ( media-libs/tiff )
+DESCRIPTION=Repository for proj datum grids (for use by PROJ 7 or later)
+EAPI=7
+HOMEPAGE=https://proj.org/
+IUSE=+tiff
+KEYWORDS=*
+LICENSE=MIT
+RDEPEND=sci-libs/proj tiff? ( media-libs/tiff )
+SLOT=0
+SRC_URI=https://github.com/OSGeo/PROJ-data/tarball/1e420e207253c1add8b6b6d98b894d7ab87c162c -> PROJ-data-1.10.0-1e420e2.tar.gz
+_eclasses_=cmake	ac7cb516f6a288b6a82bc0649ce49878	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	a09389deba2c0a7108b581e02c7cecbf	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	ninja-utils	132cbb376048d079b5a012f5467c4e7f	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=49848496263634883c6e51c36f5c76eb
