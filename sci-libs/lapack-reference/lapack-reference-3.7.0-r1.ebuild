@@ -1,7 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit eutils fortran-2 cmake-utils multilib flag-o-matic toolchain-funcs
 
@@ -11,7 +10,7 @@ SRC_URI="http://www.netlib.org/lapack/lapack-${PV}.tgz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
+KEYWORDS="*"
 IUSE="+deprecated"
 
 DEPEND="app-eselect/eselect-lapack
@@ -45,12 +44,21 @@ src_prepare() {
 }
 
 src_configure() {
+	local my_fcflags
+	local gcc_version=$(gcc -dumpversion | cut -d'.' -f1 ) || die
+
+	if [ $gcc_version -ge 10 ]; then
+		my_fcflags='-fallow-argument-mismatch'
+	else
+		my_fcflags=''
+	fi
+
 	local mycmakeargs=(
 		-Wno-dev
 		-DUSE_OPTIMIZED_BLAS=ON
 		-DBLAS_LIBRARIES="$($(tc-getPKG_CONFIG) --libs blas)"
 		-DBUILD_DEPRECATED=$(usex deprecated)
-		-DCMAKE_Fortran_FLAGS="$($(tc-getPKG_CONFIG) --cflags blas) $(get_abi_CFLAGS) ${FCFLAGS}"
+		-DCMAKE_Fortran_FLAGS="$($(tc-getPKG_CONFIG) --cflags blas) $(get_abi_CFLAGS) ${FCFLAGS} ${my_fcflags}"
 		-DBUILD_STATIC_LIBS=ON
 		-DBUILD_SHARED_LIBS=ON
 	)
@@ -68,6 +76,13 @@ src_install() {
 	mkdir -p "${ED}/usr/$(get_libdir)/lapack/reference" || die
 	mv "${ED}/usr/$(get_libdir)"/lib* "${ED}/usr/$(get_libdir)/pkgconfig"/* \
 		"${ED}/usr/$(get_libdir)/lapack/reference" || die
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		# modify install_names accordingly, bug #608266
+		local lib
+		for lib in "${ED}"/usr/$(get_libdir)/lapack/reference/*.dylib ; do
+			install_name_tool -id "${lib#${D%/}}" "${lib}"
+		done
+	fi
 	rmdir "${ED}/usr/$(get_libdir)/pkgconfig" || die
 
 	eselect lapack add $(get_libdir) "${T}"/eselect.lapack.reference ${ESELECT_PROF}
