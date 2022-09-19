@@ -1,4 +1,3 @@
-# Copyright 2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -9,7 +8,7 @@ SRC_URI="mirror://sourceforge/tango-cs/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="*"
 IUSE="+dbserver java +mariadb +zeromq"
 
 DEPEND="
@@ -18,7 +17,7 @@ DEPEND="
 	!mariadb? ( dev-db/mysql-connector-c )
 	dbserver? (
 		mariadb? ( dev-db/mariadb[server] )
-		!mariadb? ( dev-db/mysql[server] )
+		!mariadb? ( dev-db/mysql-community )
 		virtual/mysql[server] )
 	java? ( virtual/jdk:* )
 	zeromq? ( net-libs/zeromq )
