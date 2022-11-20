@@ -1,5 +1,5 @@
 DEFINED_PHASES=configure install setup
-DEPEND=|| ( dev-lang/python:3.10 >=dev-lang/python-2.7.5-r2:2.7 dev-lang/python:3.8 dev-lang/python:3.9 dev-lang/python:3.7 ) test? ( sci-libs/htslib sci-biology/samtools:0 )
+DEPEND=|| ( >=dev-lang/python-2.7.5-r2:2.7 dev-lang/python:3.8 dev-lang/python:3.9 dev-lang/python:3.7 dev-lang/python:3.10 ) test? ( sci-libs/htslib sci-biology/samtools:0 )
 DESCRIPTION=Tools for manipulation and analysis of BED, GFF/GTF, VCF, SAM/BAM file formats
 EAPI=6
 HOMEPAGE=https://bedtools.readthedocs.io/

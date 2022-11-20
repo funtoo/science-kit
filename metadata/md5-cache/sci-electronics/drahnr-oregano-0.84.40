@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install postinst postrm setup
-DEPEND=dev-libs/glib:2 dev-libs/libxml2:2 x11-libs/goocanvas:2.0 x11-libs/gtk+:3 x11-libs/gtksourceview:3.0 || ( dev-lang/python:3.10[threads(+)] dev-lang/python:3.8[threads(+)] dev-lang/python:3.9[threads(+)] dev-lang/python:3.7[threads(+)] ) dev-util/glib-utils virtual/pkgconfig
+DEPEND=dev-libs/glib:2 dev-libs/libxml2:2 x11-libs/goocanvas:2.0 x11-libs/gtk+:3 x11-libs/gtksourceview:3.0 || ( dev-lang/python:3.8[threads(+)] dev-lang/python:3.9[threads(+)] dev-lang/python:3.7[threads(+)] dev-lang/python:3.10[threads(+)] ) dev-util/glib-utils virtual/pkgconfig
 DESCRIPTION=Application for the schematic capturing and simulation of electrical circuits
 EAPI=6
 HOMEPAGE=https://github.com/drahnr/oregano
