@@ -14,7 +14,7 @@ DESCRIPTION="IDE for the R language"
 HOMEPAGE="
 	http://www.rstudio.org
 	https://github.com/rstudio/rstudio/"
-SRC_URI="https://download1.rstudio.org/desktop/bionic/amd64/rstudio-2022.07.2-576-amd64-debian.tar.gz -> rstudio-2022.07.2.576_x86_64.pkg.tar.gz"
+SRC_URI="https://download1.rstudio.org/electron/bionic/amd64/rstudio-2022.12.0-353-amd64-debian.tar.gz -> rstudio-2022.12.0.353_x86_64.pkg.tar.gz"
 
 LICENSE="AGPL-3"
 SLOT="0"
