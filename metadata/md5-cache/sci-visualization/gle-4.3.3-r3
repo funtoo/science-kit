@@ -1,0 +1,14 @@
+BDEPEND=dev-util/ninja dev-util/cmake
+DEFINED_PHASES=compile configure install postinst postrm prepare test
+DEPEND=app-text/ghostscript-gpl dev-libs/boost dev-qt/qtcore:5 dev-qt/qtdbus:5 dev-qt/qtgui:5 dev-qt/qtnetwork:5 dev-qt/qtopengl:5 dev-qt/qtwidgets:5 media-libs/freeglut media-libs/glu media-libs/libpng media-libs/tiff sys-libs/zlib media-libs/libjpeg-turbo x11-libs/cairo x11-libs/pixman emacs? ( app-editors/emacs:* )
+DESCRIPTION=Graphics Layout Engine
+EAPI=7
+HOMEPAGE=http://glx.sourceforge.io/ https://github.com/vlabella/GLE/
+IUSE=doc emacs
+KEYWORDS=*
+LICENSE=BSD GPL-2+
+RDEPEND=app-text/ghostscript-gpl dev-libs/boost dev-qt/qtcore:5 dev-qt/qtdbus:5 dev-qt/qtgui:5 dev-qt/qtnetwork:5 dev-qt/qtopengl:5 dev-qt/qtwidgets:5 media-libs/freeglut media-libs/glu media-libs/libpng media-libs/tiff sys-libs/zlib media-libs/libjpeg-turbo x11-libs/cairo x11-libs/pixman emacs? ( app-editors/emacs:* ) virtual/latex-base
+SLOT=0
+SRC_URI=https://github.com/vlabella/GLE/archive/refs/tags/4.3.3.tar.gz -> gle-4.3.3.tar.gz https://github.com/vlabella/gle-library/archive/d476418f006b001dc7f47dcafb413c0557fa44a7.tar.gz -> gle-library.tar.gz doc? ( https://dev.gentoo.org/~grozin/gle-manual.pdf.gz ) emacs? ( https://dev.gentoo.org/~grozin/gle-mode.el.gz )
+_eclasses_=cmake	ac7cb516f6a288b6a82bc0649ce49878	elisp-common	23f47b2e1de7abf387105eddd1318738	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	d0939f99dd528dd0c5ec25284877bf5c	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	ninja-utils	132cbb376048d079b5a012f5467c4e7f	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=bb887cfc53e8a772b1463ac176f016d6
