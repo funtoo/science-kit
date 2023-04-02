@@ -1,0 +1,14 @@
+BDEPEND=virtual/pkgconfig doc? ( app-text/docbook-xml-dtd:4.1.2 dev-lang/perl dev-libs/libxslt ) dev-util/ninja dev-util/cmake
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=dev-qt/qtcore:5 sci-libs/shapelib:= sys-libs/zlib virtual/libusb:1
+DESCRIPTION=GPS waypoints, tracks and routes converter
+EAPI=7
+HOMEPAGE=https://www.gpsbabel.org/ https://github.com/GPSBabel/gpsbabel
+IUSE=doc
+KEYWORDS=*
+LICENSE=GPL-2
+RDEPEND=dev-qt/qtcore:5 sci-libs/shapelib:= sys-libs/zlib virtual/libusb:1
+SLOT=0
+SRC_URI=https://api.github.com/repos/GPSBabel/gpsbabel/tarball/refs/tags/gpsbabel_1_8_0 -> gpsbabel-1.8.0.tar.gz doc? ( https://www.gpsbabel.org/style3.css -> gpsbabel.org-style3.css )
+_eclasses_=cmake	ac7cb516f6a288b6a82bc0649ce49878	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	d0939f99dd528dd0c5ec25284877bf5c	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	ninja-utils	132cbb376048d079b5a012f5467c4e7f	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=51f7f80b9cf03ae433f8d13efc2058b4
