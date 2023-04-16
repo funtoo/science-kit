@@ -9,5 +9,5 @@ RDEPEND=app-text/pandoc dev-java/aopalliance:1 dev-java/gin:2.1 dev-java/javax-i
 RESTRICT=strip preserve-libs
 SLOT=0
 SRC_URI=https://download1.rstudio.org/electron/bionic/amd64/rstudio-2023.03.0-386-amd64-debian.tar.gz -> rstudio-2023.03.0.386_x86_64.pkg.tar.gz
-_eclasses_=unpacker	1cae8d330d7e2eb64488d3a858fdee0b	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
+_eclasses_=unpacker	cbd6624f820a4289653f5dcb999bea7a	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
 _md5_=d9efcdf457979245f7d229e3a1619330
