@@ -2,16 +2,16 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( {{python_compat}} )
+PYTHON_COMPAT=( python3+ )
 inherit cmake java-pkg-opt-2 python-single-r1
 
 DESCRIPTION="Translator library for raster geospatial data formats (includes OGR support)"
 HOMEPAGE="https://gdal.org/"
-SRC_URI="{{artifacts[0].src_uri}}"
+SRC_URI="https://github.com/OSGeo/gdal/tarball/ab9cb1a1d4928cdcf2877d8e0c6ad9fc2c79fbc9 -> gdal-3.7.0-ab9cb1a.tar.gz"
 
 LICENSE="BSD Info-ZIP MIT"
 SLOT="0/31" # subslot is libgdal.so.<SONAME>
-KEYWORDS="{{keywords}}"
+KEYWORDS=""
 IUSE="armadillo +curl cpu_flags_x86_avx cpu_flags_x86_avx2 cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse4_1 cpu_flags_x86_ssse3 fits geos gif gml hdf5 heif java jpeg jpeg2k lzma mysql netcdf odbc ogdi opencl oracle pdf png postgres python spatialite sqlite webp xls zstd"
 # Tests fail to build in 3.5.0, let's not worry too much yet given
 # we're only just porting to CMake. Revisit later.
@@ -85,7 +85,7 @@ pkg_setup() {
 
 post_src_unpack() {
 	if [ ! -d "${S}" ]; then
-		mv "${WORKDIR}"/{{github_user}}-{{github_repo}}* "${S}" || die
+		mv "${WORKDIR}"/OSGeo-gdal* "${S}" || die
 	fi
 }
 
