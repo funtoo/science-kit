@@ -11,7 +11,7 @@ SRC_URI="https://github.com/OSGeo/gdal/tarball/68da5257b139d4d80162cf83fdb8c6d26
 
 LICENSE="BSD Info-ZIP MIT"
 SLOT="0/31" # subslot is libgdal.so.<SONAME>
-KEYWORDS=""
+KEYWORDS="*"
 IUSE="armadillo +curl cpu_flags_x86_avx cpu_flags_x86_avx2 cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse4_1 cpu_flags_x86_ssse3 fits geos gif gml hdf5 heif java jpeg jpeg2k lzma mysql netcdf odbc ogdi opencl oracle pdf png postgres python spatialite sqlite webp xls zstd"
 # Tests fail to build in 3.5.0, let's not worry too much yet given
 # we're only just porting to CMake. Revisit later.
