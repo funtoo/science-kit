@@ -7,7 +7,7 @@ inherit cmake-utils flag-o-matic
 DESCRIPTION="C++ library for geometric algorithms and data structures"
 HOMEPAGE="https://www.cgal.org/"
 SRC_URI="
-	https://github.com/CGAL/cgal/tarball/de4fa0d7d57b5a997012f2804161386ff4bc0d0f -> cgal-5.6-de4fa0d.tar.gz
+	https://github.com/CGAL/cgal/tarball/1ecf3e056f9d94ae32e750b0b4dcfbf7e5159695 -> cgal-5.6-1ecf3e0.tar.gz
 	doc? ( https://github.com/CGAL/cgal/releases/download/v5.6/CGAL-5.6-doc_html.tar.xz -> CGAL-5.6-doc_html.tar.xz )
 "
 
