@@ -5,7 +5,7 @@ EAPI=7
 PYTHON_COMPAT=( python3+ )
 PYTHON_REQ_USE="sqlite"
 
-SRC_URI="https://qgis.org/downloads/qgis-3.34.1.tar.bz2 -> qgis-3.34.1.tar.bz2"
+SRC_URI="https://qgis.org/downloads/qgis-3.34.2.tar.bz2 -> qgis-3.34.2.tar.bz2"
 inherit cmake eutils desktop python-single-r1 qmake-utils xdg
 
 DESCRIPTION="User friendly Geographic Information System"
