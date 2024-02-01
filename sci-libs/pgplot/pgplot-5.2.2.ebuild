@@ -1,19 +1,21 @@
-# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-inherit eutils fortran-2 toolchain-funcs
-
-MY_P="${PN}${PV//.}"
+inherit fortran-2 flag-o-matic toolchain-funcs
 
 DESCRIPTION="FORTRAN/C device-independent scientific graphic library"
-HOMEPAGE="http://www.astro.caltech.edu/~tjp/pgplot/"
-SRC_URI="ftp://ftp.astro.caltech.edu/pub/pgplot/${MY_P}.tar.gz"
+HOMEPAGE="https://www.astro.caltech.edu/~tjp/pgplot/"
+SRC_URI="https://ftp.osuosl.org/pub/gentoo/distfiles/c9/pgplot522.tar.gz -> pgplot522.tar.gz"
+# NOTE:  We're using a https mirror for the sources until they're available
+# from the author in a way that's compatible with metatools.
+# In case our mirror breaks, here's an alternative:
+# https://distfiles.macports.org/pgplot/pgplot522.tar.gz
+
 
 SLOT="0"
 LICENSE="free-noncomm"
-KEYWORDS="~amd64 ~arm ~ia64 ~ppc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="*"
 IUSE="doc motif static-libs tk"
 
 RDEPEND="
@@ -26,30 +28,17 @@ DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
 
 S="${WORKDIR}/${PN}"
-
 PATCHES=(
-	"${FILESDIR}"/${PN}-drivers.patch
-	"${FILESDIR}"/${PN}-makemake.patch
-	"${FILESDIR}"/${PN}-compile-setup.patch
-	"${FILESDIR}"/${PN}-headers.patch
-	"${FILESDIR}"/${PN}-libpng15.patch
-	"${FILESDIR}"/${PN}-tk86.patch
+	"${FILESDIR}"/"${PN}-5.2.2-compile-setup.patch"
+	"${FILESDIR}"/"${PN}-5.2.2-drivers.patch"
+	"${FILESDIR}"/"${PN}-5.2.2-headers.patch"
+	"${FILESDIR}"/"${PN}-5.2.2-libpng15.patch"
+	"${FILESDIR}"/"${PN}-5.2.2-makemake.patch"
+	"${FILESDIR}"/"${PN}-5.2.2-tk86.patch"
 )
 
 src_prepare() {
 	default
-	# gfortran < 4.3 does not compile gif, pp and wd drivers
-	if [[ $(tc-getFC) == *gfortran* ]] &&
-		[[ $(gcc-major-version)$(gcc-minor-version) -lt 43 ]] ; then
-		ewarn "Warning!"
-		ewarn "gfortran < 4.3 selected: does not compile all drivers"
-		ewarn "disabling gif, wd, and ppd drivers"
-		ewarn "if you want more drivers, use gfortran >= 4.3"
-		sed -e 's/GIDRIV/! GIDRIV/g' \
-			-e 's/PPDRIV/! GIDRIV/g' \
-			-e 's/WDDRIV/! GIDRIV/g' \
-			-i drivers.list || die "sed drivers failed"
-	fi
 
 	# fix pointers for 64 bits
 	if use amd64 || use ia64; then
@@ -78,6 +67,10 @@ src_prepare() {
 }
 
 src_configure() {
+	# GCC 10 workaround
+	# bug #722190
+	append-fflags $(test-flags-FC -fallow-argument-mismatch)
+
 	./makemake . linux
 	# post makefile creation prefix hack
 	sed -i -e "s|/usr|${EPREFIX}/usr|g" makefile || die
@@ -125,7 +118,7 @@ src_test() {
 src_install() {
 	insinto /usr/$(get_libdir)/pgplot
 	doins grfont.dat grexec.f *.inc rgb.txt
-	echo "PGPLOT_FONT=${EPREFIX%/}/usr/$(get_libdir)/pgplot/grfont.dat" >> 99pgplot
+	echo "PGPLOT_FONT=${EPREFIX}/usr/$(get_libdir)/pgplot/grfont.dat" >> 99pgplot
 	doenvd 99pgplot
 
 	dolib.so libpgplot.so*
@@ -157,17 +150,20 @@ src_install() {
 	if use doc; then
 		dodoc cpg/cpgplot.doc applications/curvefit/curvefit.doc pgplot.html
 		dodoc pgplot-routines.pdf pgplot-routines.tex
-		insinto /usr/share/doc/${PF}/examples
-		doins  examples/* cpg/cpgdemo.c
-		insinto /usr/share/doc/${PF}/applications
-		doins -r applications/*
+		docinto examples
+		dodoc -r examples/. cpg/cpgdemo.c
+		docompress -x /usr/share/doc/${PF}/examples
+		dodoc -r applications
+		docompress -x /usr/share/doc/${PF}/applications
 		if use motif; then
-			insinto /usr/share/doc/${PF}/pgm
-			doins pgmf/* drivers/xmotif/pgmdemo.c
+			docinto pgm
+			dodoc -r pgmf/. drivers/xmotif/pgmdemo.c
+			docompress -x /usr/share/doc/${PF}/pgm
 		fi
 		if use tk; then
-			insinto /usr/share/doc/${PF}/pgtk
-			doins drivers/xtk/pgtkdemo.*
+			docinto pgtk
+			dodoc drivers/xtk/pgtkdemo.*
+			docompress -x /usr/share/doc/${PF}/pgtk
 		fi
 	fi
 }

@@ -1,5 +1,5 @@
 DEFINED_PHASES=install postinst postrm prepare
-DEPEND=>=dev-scheme/guile-2[deprecated,networking] <dev-scheme/guile-2.2 dev-scheme/guile-gnome-platform x11-libs/guile-gtk app-arch/unzip app-text/docbook-sgml-utils >=app-portage/elt-patches-20170815 !<sys-devel/gettext-0.18.1.1-r3 =sys-devel/automake-1.9* >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DEPEND=>=dev-scheme/guile-2[deprecated,networking] <dev-scheme/guile-2.2 dev-scheme/guile-gnome-platform x11-libs/guile-gtk app-arch/unzip app-text/docbook-sgml-utils >=app-portage/elt-patches-20170815 =sys-devel/automake-1.9* >=sys-devel/autoconf-2.71 >=sys-devel/libtool-2.4
 DESCRIPTION=Analog waveform viewer for SPICE-like simulations
 EAPI=6
 HOMEPAGE=http://gwave.sourceforge.net
@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=>=dev-scheme/guile-2[deprecated,networking] <dev-scheme/guile-2.2 dev-scheme/guile-gnome-platform x11-libs/guile-gtk sci-electronics/electronics-menu gnuplot? ( sci-visualization/gnuplot ) plotutils? ( media-libs/plotutils )
 SLOT=0
 SRC_URI=https://sourceforge.net/code-snapshots/svn/g/gw/gwave/code/gwave-code-249-trunk.zip
-_eclasses_=autotools	5223f703a2e9c194fcda924f8c4b6baf	desktop	b1d22ac8bdd4679ab79c71aca235009d	epatch	cb17fbe94a2c43cbc0f8e76abf15479a	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gnome2-utils	532371cfcba45b2ab0d2950547c97d95	libtool	f143db5a74ccd9ca28c1234deffede96	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	d410501a125f99ffb560b0c523cd3d1e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf	xdg-utils	14d00d009167652b1fa363e55effe213
+_eclasses_=autotools	e9ade2787b2f54643c7cdffbfa1cca9c	desktop	b1d22ac8bdd4679ab79c71aca235009d	epatch	cb17fbe94a2c43cbc0f8e76abf15479a	eqawarn	bb3d80ca38bc542ed397ab65f64256a6	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gnome2-utils	532371cfcba45b2ab0d2950547c97d95	libtool	f143db5a74ccd9ca28c1234deffede96	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	d410501a125f99ffb560b0c523cd3d1e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf	xdg-utils	14d00d009167652b1fa363e55effe213
 _md5_=d5acf75d2de21c6efc1b5c744deda824

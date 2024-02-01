@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install prepare setup test
-DEPEND=virtual/blas hsl? ( sci-libs/coinhsl:0= ) lapack? ( virtual/lapack ) mpi? ( virtual/mpi ) mumps? ( sci-libs/mumps:0=[mpi=] ) virtual/pkgconfig doc? ( app-doc/doxygen[dot] ) test? ( sci-libs/coinor-sample sci-libs/mumps ) >=app-portage/elt-patches-20170815 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 mumps? ( virtual/fortran )
+DEPEND=virtual/blas hsl? ( sci-libs/coinhsl:0= ) lapack? ( virtual/lapack ) mpi? ( virtual/mpi ) mumps? ( sci-libs/mumps:0=[mpi=] ) virtual/pkgconfig doc? ( app-doc/doxygen[dot] ) test? ( sci-libs/coinor-sample sci-libs/mumps ) >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.5:1.16 ) >=sys-devel/autoconf-2.71 >=sys-devel/libtool-2.4 mumps? ( virtual/fortran )
 DESCRIPTION=Interior-Point Optimizer for large-scale nonlinear optimization
 EAPI=6
 HOMEPAGE=https://projects.coin-or.org/Ipopt/
@@ -10,5 +10,5 @@ RDEPEND=virtual/blas hsl? ( sci-libs/coinhsl:0= ) lapack? ( virtual/lapack ) mpi
 RESTRICT=test
 SLOT=0/1
 SRC_URI=http://www.coin-or.org/download/source/Ipopt/Ipopt-3.12.12.tgz
-_eclasses_=autotools	5223f703a2e9c194fcda924f8c4b6baf	desktop	b1d22ac8bdd4679ab79c71aca235009d	epatch	cb17fbe94a2c43cbc0f8e76abf15479a	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	fortran-2	f75a2d9321053acf424991e805f32ede	libtool	f143db5a74ccd9ca28c1234deffede96	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	d410501a125f99ffb560b0c523cd3d1e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf
+_eclasses_=autotools	e9ade2787b2f54643c7cdffbfa1cca9c	desktop	b1d22ac8bdd4679ab79c71aca235009d	epatch	cb17fbe94a2c43cbc0f8e76abf15479a	eqawarn	bb3d80ca38bc542ed397ab65f64256a6	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	fortran-2	f75a2d9321053acf424991e805f32ede	libtool	f143db5a74ccd9ca28c1234deffede96	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	d410501a125f99ffb560b0c523cd3d1e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf
 _md5_=952aeb1d029254e672182c103d2f3757
