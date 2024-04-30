@@ -1,0 +1,14 @@
+BDEPEND=doc? ( app-text/doxygen ) dev-util/ninja dev-util/cmake
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=>=sci-libs/proj-6.0.0:= jpeg? ( media-libs/libjpeg-turbo:= ) tiff? ( >=media-libs/tiff-3.9.1:= ) zlib? ( sys-libs/zlib )
+DESCRIPTION=Library for reading TIFF files with embedded tags for geographic information
+EAPI=7
+HOMEPAGE=https://trac.osgeo.org/geotiff/ https://github.com/OSGeo/libgeotiff
+IUSE=doc jpeg +tiff zlib
+KEYWORDS=*
+LICENSE=GPL-2
+RDEPEND=>=sci-libs/proj-6.0.0:= jpeg? ( media-libs/libjpeg-turbo:= ) tiff? ( >=media-libs/tiff-3.9.1:= ) zlib? ( sys-libs/zlib )
+SLOT=0/5
+SRC_URI=https://github.com/OSGeo/libgeotiff/tarball/62eb5bd68c5a0c9baf21ef9719172ed1f0229218 -> libgeotiff-1.7.1-62eb5bd.tar.gz
+_eclasses_=cmake	ac7cb516f6a288b6a82bc0649ce49878	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	d0939f99dd528dd0c5ec25284877bf5c	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	ninja-utils	132cbb376048d079b5a012f5467c4e7f	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=13abcb1cb2a70d00f9b237eb50d0c0f8

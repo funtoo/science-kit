@@ -1,0 +1,15 @@
+BDEPEND=>=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.5:1.16 ) >=sys-devel/autoconf-2.71 >=sys-devel/libtool-2.4
+DEFINED_PHASES=configure install prepare setup
+DEPEND=net-libs/libtirpc sys-libs/zlib virtual/jpeg:0 szip? ( virtual/szip ) test? ( virtual/szip ) fortran? ( virtual/fortran )
+DESCRIPTION=General purpose library and format for storing scientific data
+EAPI=7
+HOMEPAGE=http://www.hdfgroup.org/hdf4.html
+IUSE=examples fortran szip static-libs test
+KEYWORDS=*
+LICENSE=NCSA-HDF
+RDEPEND=net-libs/libtirpc sys-libs/zlib virtual/jpeg:0 szip? ( virtual/szip ) fortran? ( virtual/fortran )
+REQUIRED_USE=test? ( szip )
+SLOT=0
+SRC_URI=https://github.com/HDFGroup/hdf4/tarball/8f4844800098b9360787f30fd277775782fd7160 -> hdf4-4.3.0-8f48448.tar.gz
+_eclasses_=autotools	e9ade2787b2f54643c7cdffbfa1cca9c	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	d0939f99dd528dd0c5ec25284877bf5c	fortran-2	f75a2d9321053acf424991e805f32ede	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
+_md5_=1a2fdf58f7c06f8f168f7730ff2cb0a1

@@ -1,21 +1,19 @@
-# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=4
+EAPI=7
 
-inherit autotools-utils
+inherit autotools
 
 DESCRIPTION="Multiple independent streams of pseudo-random numbers"
 HOMEPAGE="http://statmath.wu.ac.at/software/RngStreams/"
-SRC_URI="${HOMEPAGE}${P}.tar.gz"
+SRC_URI="https://statmath.wu.ac.at/software/RngStreams/rngstreams-1.0.1.tar.gz -> rngstreams-1.0.1.tar.gz"
 
 LICENSE="GPL-3"
 SLOT=0
-KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
+KEYWORDS="*"
 IUSE="doc examples static-libs"
 
 src_install() {
-	autotools-utils_src_install
 	use doc && dohtml -r doc/rngstreams.html/* && dodoc doc/${PN}.pdf
 	if use examples; then
 		rm examples/Makefile*

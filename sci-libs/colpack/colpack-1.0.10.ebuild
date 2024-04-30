@@ -1,25 +1,22 @@
-# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit autotools eutils
-
-MYPN="ColPack"
+inherit autotools
 
 DESCRIPTION="C++ algorithms for specialized vertex coloring problems"
 LICENSE="GPL-3 LGPL-3"
 HOMEPAGE="http://cscapes.cs.purdue.edu/coloringpage/"
-SRC_URI="https://github.com/CSCsw/${MYPN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/CSCsw/ColPack/tarball/ffa4e4130011537bdc4658ebb78ab3088f0ea6dc -> ColPack-1.0.10-ffa4e41.tar.gz"
 
 SLOT="0"
 IUSE="openmp static-libs"
-KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="*"
 
 RDEPEND=""
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/${MYPN}-${PV}"
+S="${WORKDIR}/CSCsw-ColPack-ffa4e41"
 
 pkg_setup() {
 	if [[ ${MERGE_TYPE} != "binary" ]] && use openmp && [[ $(tc-getCC)$ == *gcc* ]] &&	! tc-has-openmp; then
