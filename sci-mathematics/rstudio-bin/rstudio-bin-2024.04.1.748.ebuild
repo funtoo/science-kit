@@ -14,7 +14,7 @@ DESCRIPTION="IDE for the R language"
 HOMEPAGE="
 	http://www.rstudio.org
 	https://github.com/rstudio/rstudio/"
-SRC_URI="https://download1.rstudio.org/electron/focal/amd64/rstudio-2024.04.0-735-amd64-debian.tar.gz -> rstudio-2024.04.0.735_x86_64.pkg.tar.gz"
+SRC_URI="https://download1.rstudio.org/electron/focal/amd64/rstudio-2024.04.1-748-amd64-debian.tar.gz -> rstudio-2024.04.1.748_x86_64.pkg.tar.gz"
 
 LICENSE="AGPL-3"
 SLOT="0"
