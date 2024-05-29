@@ -7,6 +7,7 @@ inherit autotools fortran-2 flag-o-matic toolchain-funcs
 DESCRIPTION="Autotooled, updated version of a powerful, fast semi-empirical package"
 HOMEPAGE="https://sourceforge.net/projects/mopac7/"
 SRC_URI="http://www.bioinformatics.org/ghemical/download/current/mopac7-1.15.tar.gz -> mopac7-1.15.tar.gz
+
 	http://wwwuser.gwdg.de/~ggroenh/qmmm/mopac/dcart.f
 	http://wwwuser.gwdg.de/~ggroenh/qmmm/mopac/gmxmop.f"
 
