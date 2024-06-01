@@ -6,7 +6,7 @@ inherit cmake
 
 DESCRIPTION="PROJ - Cartographic Projections and Coordinate Transformations Library PROJ"
 HOMEPAGE="https://proj.org/"
-SRC_URI="https://github.com/OSGeo/PROJ/tarball/f927dbc403b990f5ccbe8b9a6f435dffbc9d3811 -> PROJ-9.4.0-f927dbc.tar.gz"
+SRC_URI="https://github.com/OSGeo/PROJ/tarball/875a485fa5ef435c57f7682f904dd31ca92253ab -> PROJ-9.4.1-875a485.tar.gz"
 
 LICENSE="MIT"
 # Changes on every major release
