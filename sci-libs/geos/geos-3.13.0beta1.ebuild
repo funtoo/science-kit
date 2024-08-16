@@ -6,7 +6,7 @@ inherit cmake
 
 DESCRIPTION="Geometry engine library for Geographic Information Systems"
 HOMEPAGE="https://trac.osgeo.org/geos/"
-SRC_URI="https://download.osgeo.org/geos/geos-3.12.2.tar.bz2 -> geos-3.12.2.tar.bz2"
+SRC_URI="https://download.osgeo.org/geos/geos-3.13.0beta1.tar.bz2 -> geos-3.13.0beta1.tar.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
