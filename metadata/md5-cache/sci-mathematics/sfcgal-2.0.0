@@ -9,6 +9,6 @@ KEYWORDS=*
 LICENSE=LGPL-2
 RDEPEND=dev-libs/boost dev-libs/gmp dev-libs/mpfr >=sci-mathematics/cgal-4.14 osg? ( dev-games/openscenegraph:= )
 SLOT=0
-SRC_URI=https://gitlab.com/sfcgal/SFCGAL/-/archive/v1.5.2/SFCGAL-v1.5.2.tar.bz2 -> sfcgal-1.5.2.tar.bz2
+SRC_URI=https://gitlab.com/sfcgal/SFCGAL/-/archive/v2.0.0/SFCGAL-v2.0.0.tar.bz2 -> sfcgal-2.0.0.tar.bz2
 _eclasses_=cmake-utils	77cd39e6009811bf97a59d91ffd5b54f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	d0939f99dd528dd0c5ec25284877bf5c	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	ninja-utils	132cbb376048d079b5a012f5467c4e7f	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	xdg-utils	14d00d009167652b1fa363e55effe213
-_md5_=26cfdbd8b0167764c59fc300565b84e2
+_md5_=992e755efc2fc7937485b1d1610ef1e3
