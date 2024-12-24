@@ -7,7 +7,7 @@ MY_P="${PN}_${MY_PV}"
 
 DESCRIPTION="GPS waypoints, tracks and routes converter"
 HOMEPAGE="https://www.gpsbabel.org/ https://github.com/GPSBabel/gpsbabel"
-SRC_URI="https://api.github.com/repos/GPSBabel/gpsbabel/tarball/refs/tags/gpsbabel_1_9_0 -> gpsbabel-1.9.0.tar.gz
+SRC_URI="https://api.github.com/repos/GPSBabel/gpsbabel/tarball/refs/tags/gpsbabel_1_10_0 -> gpsbabel-1.10.0.tar.gz
     doc? ( https://www.gpsbabel.org/style3.css -> gpsbabel.org-style3.css )
 "
 KEYWORDS="*"
